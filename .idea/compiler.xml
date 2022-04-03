@@ -6,7 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="closet-project" />
+        <module name="closet-api" />
+        <module name="closet-model" />
       </profile>
     </annotationProcessing>
   </component>
