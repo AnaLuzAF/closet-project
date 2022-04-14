@@ -19,7 +19,7 @@ public class UserClient implements UsersApi {
 
     /*
     @Override
-    public void post(Book book) {
+    public void insert(Book book) {
         restTemplate.postForObject(host + "/books", book, Void.class);
     }
 

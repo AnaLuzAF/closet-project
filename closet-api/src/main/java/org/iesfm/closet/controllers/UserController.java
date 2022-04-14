@@ -19,7 +19,7 @@ public class UserController implements UsersApi {
 
     /*
     @RequestMapping(method = RequestMethod.POST, path = "/books")
-    public void post(@RequestBody Book book) {
+    public void insert(@RequestBody Book book) {
 
         if(!bookDAO.insert(book)) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Duplicado");

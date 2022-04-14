@@ -7,7 +7,7 @@ public interface UsersApi {
     // METODOS PARA EL CLIENT??? NO SABEMOS
 
     /*
-    void post(Book book);
+    void insert(Book book);
 
     List<Book> getBooks(Boolean available, Integer year);
 
