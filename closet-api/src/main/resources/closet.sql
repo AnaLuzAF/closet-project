@@ -13,9 +13,10 @@ email 				VARCHAR (50) NOT NULL
 
 CREATE TABLE IF NOT EXISTS item (
 id				    INT AUTO_INCREMENT PRIMARY KEY,
-type		        VARCHAR (40) NOT NULL,
+modeling	        VARCHAR (40) NOT NULL,
 name		        VARCHAR (40) NOT NULL,
-user_id             INT NOT NULL,
+image               VARCHAR (100) NOT NULL,
+user_id             INT,
 FOREIGN KEY(user_id) REFERENCES user(id)
 );
 
@@ -64,9 +65,9 @@ REFERENCES user (id)
 INSERT INTO user(nick_name,password,email) VALUES('UserTester','1234','usertester@gmail.com');
 
 
-INSERT INTO item(type, name, user_id) VALUES('parte de arriba', 'camisa de cuadros', 1);
-INSERT INTO item(type, name, user_id) VALUES('parte de abajo', 'vaqueros', 1);
-INSERT INTO item(type, name, user_id) VALUES('zapatos', 'tacones rojos', 1);
+INSERT INTO item(modeling, name, image, user_id) VALUES('parte de arriba', 'camisa de cuadros', 'camisaUno', 1);
+INSERT INTO item(modeling, name, image, user_id) VALUES('parte de abajo', 'vaqueros','vaquerosUno', 1);
+INSERT INTO item(modeling, name, image, user_id) VALUES('zapatos', 'tacones rojos','zapatosUno', 1);
 
 INSERT INTO type(top, bottom, shoes) VALUES('top', 'bottom', 'shoes');
 

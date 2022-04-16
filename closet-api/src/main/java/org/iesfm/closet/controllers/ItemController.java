@@ -24,18 +24,15 @@ public class ItemController implements ItemsApi {
     }
 
     @Override
-    @RequestMapping(method = RequestMethod.POST, path = "/users/items")
+    @RequestMapping(method = RequestMethod.POST, path = "/items")
     public void insert(@RequestBody Item item) {
      itemDAO.post(item);
     }
 
     @Override
     @RequestMapping(method = RequestMethod.POST, path = "/users/{userId}/items")
-    public void returnUser(@PathVariable (value = "userId") int userId,
-                           @PathVariable (value = "nickName") String nickName,
-                           @PathVariable (value = "password") String password,
-                           @PathVariable (value = "email") String email) {
-        if (!itemDAO.returnUser(userId,nickName ,password ,email )){
+    public void returnUser(@PathVariable ("userId") int userId){
+        if (!itemDAO.returnUser(userId)){
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "user not found"
             );

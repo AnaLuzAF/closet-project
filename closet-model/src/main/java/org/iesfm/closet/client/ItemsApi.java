@@ -15,7 +15,7 @@ public interface ItemsApi {
     //Muestra los datos de un item dado un id.
     List<Item> listById(int id);
 
-    //Devolver un user a través del id del usuario, el nickName, password, email
-    void returnUser(int userId,String nickName, String password, String email);
+    //Devolver un user a través del id del usuario
+    void returnUser(int userId);
 
 }

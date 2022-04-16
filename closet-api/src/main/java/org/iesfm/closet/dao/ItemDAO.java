@@ -12,6 +12,6 @@ public interface ItemDAO {
 
     public List<Item> listItemById(int id);
 
-    boolean returnUser(int userId,String nickName, String password, String email);
+    boolean returnUser(int userId);
 
 }
