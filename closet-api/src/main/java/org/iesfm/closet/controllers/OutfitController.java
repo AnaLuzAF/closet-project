@@ -26,12 +26,11 @@ public class OutfitController implements OutfitsApi {
     Ver los outfits de una categoria: GET /users/{userId}/outfits/{category}
     */
 
-    @RequestMapping(method = RequestMethod.POST, path = "/users/{userId}/categories/{name}/outfits")
-    public void insert(@PathVariable("id") int userId, @PathVariable("name") String name, @RequestBody Outfit outfit) {
+    @RequestMapping(method = RequestMethod.POST, path = "/users/{user_id}/categories/{name}/outfits")
+    public void insert(@PathVariable("user_id") int user_id, @PathVariable("name") String name, @RequestBody Outfit outfit) {
 
-
-        if (!outfitDAO.insert(outfit)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Some of the parameters are missing");
+        if (!outfitDAO.insert(name, outfit)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bad request");
 
             // lanzar excepciones segun el error:
             // si no encuentra al user
@@ -43,10 +42,11 @@ public class OutfitController implements OutfitsApi {
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/users/{userId}/outfits")
+   /* @RequestMapping(method = RequestMethod.GET, path = "/users/{userId}/outfits")
     public List<Outfit> getOutfits(@PathVariable("id") int userId) {
         return outfitDAO.listAll();
     }
+*/
 
 // get all outfits / outfits from selected category (puedes poner all o el nombre de la categoria)
     @RequestMapping(method = RequestMethod.GET, path = "/users/{user_id}/categories/{name}/outfits")

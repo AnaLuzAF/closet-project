@@ -12,8 +12,7 @@ public class ConsultasToDo {
     --Eliminar usuario: DELETE /users/{id}
 
     // ITEM
-    // TODO - revisar que se añada el user_id automaticamente desde el path variable
-    // TODO -- meterlo en el pojo y que se rellene con lo del path variable??
+    // TODO - revisar que se añada el user_id automaticamente desde el path variable - mira como lo he hecho en insert outfit, pasando el parametro
     --Crear prenda/añadir prenda: POST /users/{userId}/items
 
     --Listar todas las prendas de un usuario: GET /users/{userId}/items
@@ -23,15 +22,20 @@ public class ConsultasToDo {
     Eliminar una prenda: DELETE /users/{userId}/items/{id}
 
     // OUTFIT
-    Crear outfit (añadir un outfit a una categoria): POST /users/{userId}/outfits/{category}?? pueden ser varias --> PathVariable(“tags”) List<Tag> tags ???
+    --Crear outfit (añadir un outfit a una categoria): POST /users/{user_id}/categories/{name}/outfits
 
+     Ver un outfit (getOutfit) : GET /users/{userId}/categories/{name}/outfits/{id}
+
+     --Listar todos los outfits: GET /users/{user_id}/categories/all/outfits
+
+     Ver los outfits de una categoria: GET /users/{userId}/outfits/{category}
+
+    // CATEGORY
     --Crear categoria (si no hubiese ninguna por defecto): POST /users/{userId}/categories
 
     --Listar las categorias existentes: GET /users/{userId}/categories
 
-    Ver un outfit (getOutfit) : GET /users/{userId}/outfits
 
-    Ver los outfits de una categoria: GET /users/{userId}/outfits/{category}
 */
 }
 

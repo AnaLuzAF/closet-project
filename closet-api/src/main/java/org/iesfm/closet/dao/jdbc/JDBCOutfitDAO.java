@@ -17,63 +17,41 @@ public class JDBCOutfitDAO implements OutfitDAO {
         this.jdbc = jdbc;
     }
 
-    // añadir outfit a una categoria
-
-    // TODO - INSERTAR UN OUTFIT EN UNA CATEGORIA - HACER TABLA NUEVA BBDD??
-    // TODO - INSERT OUTFIT INTO CATEGORY
-    // TODO - falta userId??
     private final static String INSERT_OUTFIT = "INSERT INTO outfit(" +
-            " top, " +
-            " bottom, " +
-            " shoes, " +
-            " tags" +
+            " top_id, " +
+            " bottom_id, " +
+            " shoes_id, " +
+            " categories" +
             ") " +
             "VALUES(" +
-            " :top, " +
-            " :bottom, " +
-            " :shoes, " +
-            " :tags" +
+            " :top_id, " +
+            " :bottom_id, " +
+            " :shoes_id, " +
+            " :categories" +
             ")";
 
     private static final String SELECT_OUTFITS = "SELECT * FROM outfit";
 
     // seleccionar las categorias de un outfit
     private static final String SELECT_OUTFIT_CATEGORIES = "SELECT categories FROM outfit where id = :id";
+    // select * from categories where category in.. category = :name
 
-    // TODO -- hacer consulta bien
-    private static final String SELECT_OUTFITS_FROM_CATEGORY = "SELECT o.* FROM outfit o INNER JOIN category c ON o.category=c.name WHERE c.name=:name";
+    // TODO -- hacer consulta bien - NO FUNCIONA - en consola SI FUNCIONA la query que no esta comentada
+    //private static final String SELECT_OUTFITS_FROM_CATEGORY = "SELECT o.* FROM outfit o INNER JOIN category c ON o.category=c.name WHERE c.name=:name";
+    private static final String SELECT_OUTFITS_FROM_CATEGORY = "SELECT * FROM outfit WHERE categories = :name";
 
-    /*
-    private static final String SELECT_LENT_BOOKS = "" +
-            "SELECT " +
-            "o.* " +
-            "FROM outfit o " +
-            "INNER JOIN category c " +
-            "ON o.category=c.name " +
-            "WHERE c.name=:name";
 
-    private static final String SELECT_AVAILABLE_BOOKS = "" +
-            "SELECT " +
-            "* " +
-            "FROM book " +
-            "WHERE isbn NOT IN (" +
-            "SELECT DISTINCT isbn FROM book_lend WHERE status=1" +
-            ")";
-*/
 
     // IMPLEMENTACION DE LAS QUERIES
 
-
-
     @Override
-    public boolean insert(Outfit outfit) {
+    public boolean insert(String name, Outfit outfit) {
         try {
             Map<String, Object> params = new HashMap<>();
-            params.put("top", outfit.getTop());
-            params.put("bottom", outfit.getBottom());
-            params.put("shoes", outfit.getShoes());
-            // TODO - buscar el get TAGS en otro ejercicio
-            params.put("tags", outfit.getCategories());
+            params.put("top_id", outfit.getTop());
+            params.put("bottom_id", outfit.getBottom());
+            params.put("shoes_id", outfit.getShoes());
+            params.put("categories", name);
 
             return jdbc.update(INSERT_OUTFIT, params) == 1;
         } catch (DuplicateKeyException e) {
@@ -81,6 +59,7 @@ public class JDBCOutfitDAO implements OutfitDAO {
         }
     }
 
+    // TODO - no funciona
     @Override
     public List<Outfit> listOutfitsFromCategory(String name) {
         Map<String, Object> params = new HashMap<>();

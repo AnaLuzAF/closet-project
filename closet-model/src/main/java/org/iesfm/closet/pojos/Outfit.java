@@ -17,9 +17,9 @@ public class Outfit {
     @JsonCreator
     public Outfit(
             @JsonProperty("id") int id,
-            @JsonProperty("top") String top,
-            @JsonProperty("bottom") String bottom,
-            @JsonProperty("shoes") String shoes,
+            @JsonProperty("top_id") String top,
+            @JsonProperty("bottom_id") String bottom,
+            @JsonProperty("shoes_id") String shoes,
             @JsonProperty("categories") List<String> categories) {
         this.id = id;
         this.top = top;

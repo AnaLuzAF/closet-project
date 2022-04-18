@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface OutfitDAO {
 
-    boolean insert(Outfit outfit);
+    boolean insert(String name, Outfit outfit);
 
     List<Outfit> listAll();
 
