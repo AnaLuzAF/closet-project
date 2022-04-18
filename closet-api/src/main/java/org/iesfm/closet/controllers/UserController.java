@@ -36,5 +36,4 @@ public class UserController implements UsersApi {
 
         return userDAO.getUser(id);
     }
-
 }

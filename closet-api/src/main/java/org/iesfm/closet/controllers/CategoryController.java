@@ -18,14 +18,14 @@ public class CategoryController implements CategoriesApi {
 
 
     @RequestMapping(method = RequestMethod.POST, path = "/users/{user_id}/categories")
-    public void addCategory(@PathVariable("user_id") int userId, @RequestBody Category category) {
+    public void addCategory(@PathVariable("user_id") int user_id, @RequestBody Category category) {
         if (!categoryDAO.addCategory(category)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Failed to create category");
         }
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/users/{user_id}/categories")
-    public List<Category> listAll(@PathVariable("user_id") int userId, @RequestBody Category category) {
+    public List<Category> listAll(@PathVariable("user_id") int user_id) {
         return categoryDAO.listAll();
     }
 }

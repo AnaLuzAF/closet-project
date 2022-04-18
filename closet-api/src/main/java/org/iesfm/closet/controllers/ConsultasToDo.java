@@ -24,7 +24,9 @@ public class ConsultasToDo {
     // OUTFIT
     Crear outfit (añadir un outfit a una categoria): POST /users/{userId}/outfits/{category}?? pueden ser varias --> PathVariable(“tags”) List<Tag> tags ???
 
-    Crear categoria (si no hubiese ninguna por defecto): POST /users/{userId}/categories
+    --Crear categoria (si no hubiese ninguna por defecto): POST /users/{userId}/categories
+
+    --Listar las categorias existentes: GET /users/{userId}/categories
 
     Ver un outfit (getOutfit) : GET /users/{userId}/outfits
 
