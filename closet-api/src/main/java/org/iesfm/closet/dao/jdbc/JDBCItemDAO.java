@@ -16,6 +16,9 @@ public class JDBCItemDAO implements ItemDAO {
 
     private NamedParameterJdbcTemplate jdbc;
 
+    public JDBCItemDAO(NamedParameterJdbcTemplate jdbc) {
+        this.jdbc = jdbc;
+    }
 
     private final static RowMapper<Item> ITEM_ROW_MAPPER =
             (rs, rowNum) -> new Item(
@@ -23,11 +26,7 @@ public class JDBCItemDAO implements ItemDAO {
                     rs.getString("item_type"),
                     rs.getString("imagename")
             );
-
-    public JDBCItemDAO(NamedParameterJdbcTemplate jdbc) {
-        this.jdbc = jdbc;
-    }
-
+    
     private final static String SELECT_ITEMS = "SELECT * FROM item";
     private static final String SELECT_ITEM_BY_ID = "SELECT * FROM item WHERE user_id = :id ";
 
