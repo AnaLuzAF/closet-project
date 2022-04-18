@@ -26,7 +26,7 @@ public class JDBCItemDAO implements ItemDAO {
                     rs.getString("item_type"),
                     rs.getString("imagename")
             );
-    
+
     private final static String SELECT_ITEMS = "SELECT * FROM item";
     private static final String SELECT_ITEM_BY_ID = "SELECT * FROM item WHERE user_id = :id ";
 

@@ -18,15 +18,13 @@ public class ItemController implements ItemsApi {
     @Autowired
     private ItemDAO itemDAO;
 
-
-    @Override
+    
     @RequestMapping(method = RequestMethod.GET, path = "/users/{userId}/items")
     public List<Item> listAll( @PathVariable ("user_id") int id) {
 
         return itemDAO.listAll();
     }
 
-    @Override
     @RequestMapping(method = RequestMethod.POST, path = "/users/{userId}/items")
     public void insert(@RequestBody Item item,
                        @PathVariable ("user_id") int id) {

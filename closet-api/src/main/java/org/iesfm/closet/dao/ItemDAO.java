@@ -10,7 +10,6 @@ public interface ItemDAO {
 
     List<Item> listAll();
 
-    public List<Item> listItemById(int id);
-
+    List<Item> listItemById(int id);
 
 }
