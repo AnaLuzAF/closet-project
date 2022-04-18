@@ -28,7 +28,7 @@ public class JDBCUserDAO implements UserDAO {
 
     private final static String SELECT_USERS = "SELECT * FROM user";
 
-    private final static String SELECT_USER_BY_NICKNAME = "SELECT * FROM user WHERE nickname = :nickname";
+    private final static String SELECT_USER_BY_ID = "SELECT * FROM user WHERE id = :id";
 
     private final static String SELECT_USER_ITEMS =
             "SELECT * FROM item WHERE user_id=:id";
@@ -37,7 +37,6 @@ public class JDBCUserDAO implements UserDAO {
             "SELECT * FROM outfit WHERE user_id=:id";
 
 
-    // TODO - hay que poner el id??
     private final static String INSERT_USER = "INSERT INTO user(" +
             " nickname, " +
             " password, " +
@@ -87,28 +86,32 @@ public class JDBCUserDAO implements UserDAO {
     // TODO - hacer pojosApi??? para que al seleccionar un usuario solo salgan
     //  los datos del usuario, no todas sus listas de items y outfits
 
-    /*
+
     @Override
-    public User getUser(String nickname) {
+    public User getUser(int id) {
         Map<String, Object> params = new HashMap<>();
-        params.put("nickname", nickname);
+        params.put("id", id);
 
         try {
             return jdbc.queryForObject(
-                    SELECT_USER_BY_NICKNAME,
+                    SELECT_USER_BY_ID,
                     params,
                     (rs, rowNum) -> new User(
+                            rs.getInt("id"),
                             rs.getString("nickname"),
                             rs.getString("password"),
-                            rs.getString("email")
+                            rs.getString("email"),
+                            new LinkedList<>(),
+                            new LinkedList<>()
                     )
             );
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
     }
-*/
 
+
+    // TODO - cambiar listas vacias o que no salgan esos campos directamente
    @Override
     public List<User> listAll() {
         return jdbc.query(

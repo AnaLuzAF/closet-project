@@ -25,11 +25,16 @@ public class UserController implements UsersApi {
         }
     }
 
-
     @RequestMapping(method = RequestMethod.GET, path = "/users")
     public List<User> listAll() {
 
         return userDAO.listAll();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/users/{id}")
+    public User getUser(@PathVariable("id") int id) {
+
+        return userDAO.getUser(id);
     }
 
 }
