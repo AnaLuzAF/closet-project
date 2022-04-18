@@ -11,6 +11,10 @@ password		    VARCHAR (20) NOT NULL,
 email 				VARCHAR (50) NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS item_type (
+type_name		         VARCHAR (50) NOT NULL PRIMARY KEY
+);
+
 CREATE TABLE IF NOT EXISTS item (
 id				    INT AUTO_INCREMENT PRIMARY KEY,
 item_type	        VARCHAR (40) NOT NULL,
@@ -29,9 +33,7 @@ ON DELETE CASCADE
 );
 
 
-CREATE TABLE IF NOT EXISTS item_type (
-type_name		         VARCHAR (50) NOT NULL PRIMARY KEY
-);
+
 
 CREATE TABLE IF NOT EXISTS category(
 id                  INT AUTO_INCREMENT PRIMARY KEY,
