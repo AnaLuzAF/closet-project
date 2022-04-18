@@ -63,9 +63,9 @@ REFERENCES user (id)
 INSERT INTO user(nickname,password,email) VALUES('UserTester','1234','usertester@gmail.com');
 
 
-INSERT INTO item(item_type,  imagename, user_id) VALUES('top','camisaUno', 1);
-INSERT INTO item(item_type,  imagename, user_id) VALUES('bottom', 'vaquerosUno', 1);
-INSERT INTO item(item_type,  imagename, user_id) VALUES('shoes' ,'zapatosUno', 1);
+INSERT INTO item(item_type,  imagename) VALUES('top','camisaUno');
+INSERT INTO item(item_type,  imagename) VALUES('bottom', 'vaquerosUno');
+INSERT INTO item(item_type,  imagename) VALUES('shoes' ,'zapatosUno');
 
 INSERT INTO item_type(type_name) VALUES('test_name');
 
