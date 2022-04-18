@@ -21,8 +21,7 @@ public class JDBCItemDAO implements ItemDAO {
             (rs, rowNum) -> new Item(
                     rs.getInt("id"),
                     rs.getString("item_type"),
-                    rs.getString("imagename"),
-                    rs.getInt("user_id")
+                    rs.getString("imagename")
             );
 
     public JDBCItemDAO(NamedParameterJdbcTemplate jdbc) {
@@ -30,29 +29,28 @@ public class JDBCItemDAO implements ItemDAO {
     }
 
     private final static String SELECT_ITEMS = "SELECT * FROM item";
-    private static final String SELECT_ITEM_BY_ID = "SELECT * FROM item WHERE id = :id ";
-    private final static String UPDATE_USER = "UPDATE user id SET  WHERE id = :id";
+    private static final String SELECT_ITEM_BY_ID = "SELECT * FROM item WHERE user_id = :id ";
+
     private final static String INSERT_ITEM = "INSERT INTO item(" +
-            "id, "+
+            " id, "+
             " item_type, " +
-            "imagename, " +
+            " imagename, " +
             " userId, " +
             ") " +
             "VALUES(" +
-            ":id, "+
+            " :id, "+
             " :item_type, " +
-            ":imagename, "+
+            " :imagename, "+
             " :user_id, " +
             ")";
 
     @Override
-    public boolean post(Item item) {
+    public boolean insert(Item item) {
         try {
             Map<String, Object> params = new HashMap<>();
             params.put("id",item.getId());
             params.put("item_type", item.getItem_type());
             params.put("imagename", item.getImagename());
-            //params.put("user_id", item.getUserId());
             return jdbc.update(INSERT_ITEM, params) == 1;
         } catch (DuplicateKeyException e) {
             return false;
@@ -62,7 +60,7 @@ public class JDBCItemDAO implements ItemDAO {
 
 
     @Override
-    public List<Item> listItem() {
+    public List<Item> listAll() {
         Map<String, Object> params = new HashMap<>();
         return jdbc.query(
                 SELECT_ITEMS,
@@ -70,8 +68,7 @@ public class JDBCItemDAO implements ItemDAO {
                         new Item(
                                 rs.getInt("id"),
                                 rs.getString("item_type"),
-                                rs.getString("imagename"),
-                                rs.getInt("user_id")
+                                rs.getString("imagename")
                         )
         );
     }
@@ -84,11 +81,6 @@ public class JDBCItemDAO implements ItemDAO {
     }
 
 
-    @Override
-    public boolean returnUser(int userId) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("id", userId);
-        return jdbc.update(UPDATE_USER, params) == 1;
-    }
+
 
 }

@@ -20,25 +20,17 @@ public class ItemController implements ItemsApi {
 
 
     @Override
-    @RequestMapping(method = RequestMethod.GET, path = "/items")
-    public List<Item> list() {
-        return itemDAO.listItem();
+    @RequestMapping(method = RequestMethod.GET, path = "/users/{userId}/items")
+    public List<Item> listAll( @PathVariable ("user_id") int id) {
+
+        return itemDAO.listAll();
     }
 
     @Override
-    @RequestMapping(method = RequestMethod.POST, path = "/items")
-    public void insert(@RequestBody Item item) {
-     itemDAO.post(item);
+    @RequestMapping(method = RequestMethod.POST, path = "/users/{userId}/items")
+    public void insert(@RequestBody Item item,
+                       @PathVariable ("user_id") int id) {
+     itemDAO.insert(item);
     }
-
-    @RequestMapping(method = RequestMethod.GET, path = "/users/{userId}/items")
-    public void getUserItems(@PathVariable ("userId") int userId){
-        if (!itemDAO.returnUser(userId)){
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "user not found"
-            );
-        }
-    }
-
 
 }

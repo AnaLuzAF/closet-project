@@ -6,12 +6,11 @@ import java.util.List;
 
 public interface ItemDAO {
 
-    boolean post(Item item);
+    boolean insert(Item item);
 
-    List<Item> listItem();
+    List<Item> listAll();
 
     public List<Item> listItemById(int id);
 
-    boolean returnUser(int userId);
 
 }
