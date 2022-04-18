@@ -9,10 +9,11 @@ public class ConsultasToDo {
 
     --Listar usuarios: GET /users
 
-    Eliminar usuario: DELETE /users/{id}
+    --Eliminar usuario: DELETE /users/{id}
 
     // ITEM
     // TODO - revisar que se añada el user_id automaticamente desde el path variable
+    // TODO -- meterlo en el pojo y que se rellene con lo del path variable??
     --Crear prenda/añadir prenda: POST /users/{userId}/items
 
     --Listar todas las prendas de un usuario: GET /users/{userId}/items

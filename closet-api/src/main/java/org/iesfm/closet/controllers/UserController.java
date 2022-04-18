@@ -36,4 +36,12 @@ public class UserController implements UsersApi {
 
         return userDAO.getUser(id);
     }
+
+    @RequestMapping(method = RequestMethod.DELETE, path = "/users/{id}")
+    public void deleteUser(@PathVariable("id") int id) {
+        if (userDAO.deleteUser(id) == 0) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "User not found");
+        }
+    }
 }

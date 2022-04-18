@@ -21,17 +21,13 @@ public class OutfitController implements OutfitsApi {
     /*
     Crear outfit (añadir un outfit a una categoria): POST /users/{userId}/outfits/{category}?? pueden ser varias --> PathVariable(“tags”) List<Tag> tags ???
 
-// TODO - crear category controller???:
-
-    Crear categoria (si no hubiese ninguna por defecto): POST /users/{userId}/categories
-
     Ver el outfit : GET /users/{userId}/outfits
 
     Ver los outfits de una categoria: GET /users/{userId}/outfits/{category}
     */
 
-    @RequestMapping(method = RequestMethod.POST, path = "/users/{userId}/outfits/{category}")
-    public void insert(@PathVariable("id") int userId, @PathVariable("category") String category, @RequestBody Outfit outfit) {
+    @RequestMapping(method = RequestMethod.POST, path = "/users/{userId}/categories/{name}/outfits")
+    public void insert(@PathVariable("id") int userId, @PathVariable("name") String name, @RequestBody Outfit outfit) {
 
 
         if (!outfitDAO.insert(outfit)) {
@@ -52,7 +48,14 @@ public class OutfitController implements OutfitsApi {
         return outfitDAO.listAll();
     }
 
-
-
+// get all outfits / outfits from selected category (puedes poner all o el nombre de la categoria)
+    @RequestMapping(method = RequestMethod.GET, path = "/users/{user_id}/categories/{name}/outfits")
+    public List<Outfit> listAll(@PathVariable("user_id") int user_id, @PathVariable("name") String name) {
+        if (name.equalsIgnoreCase("all")) {
+            return outfitDAO.listAll();
+        } else {
+            return outfitDAO.listOutfitsFromCategory(name);
+        }
+    }
 
 }

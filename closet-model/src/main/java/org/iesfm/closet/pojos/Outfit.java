@@ -12,8 +12,7 @@ public class Outfit {
     private String top;
     private String bottom;
     private String shoes;
-    // TODO - tags tendria que ser categories
-    List<String> tags;
+    private List<String> categories;
 
     @JsonCreator
     public Outfit(
@@ -21,12 +20,12 @@ public class Outfit {
             @JsonProperty("top") String top,
             @JsonProperty("bottom") String bottom,
             @JsonProperty("shoes") String shoes,
-            @JsonProperty("tags") List<String> tags) {
+            @JsonProperty("categories") List<String> categories) {
         this.id = id;
         this.top = top;
         this.bottom = bottom;
         this.shoes = shoes;
-        this.tags = tags;
+        this.categories = categories;
     }
 
     public int getId() {
@@ -61,12 +60,12 @@ public class Outfit {
         this.shoes = shoes;
     }
 
-    public List<String> getTags() {
-        return tags;
+    public List<String> getCategories() {
+        return categories;
     }
 
-    public void setTags(List<String> tags) {
-        this.tags = tags;
+    public void setCategories(List<String> categories) {
+        this.categories = categories;
     }
 
     @Override
@@ -78,12 +77,12 @@ public class Outfit {
                 Objects.equals(top, outfit.top) &&
                 Objects.equals(bottom, outfit.bottom) &&
                 Objects.equals(shoes, outfit.shoes) &&
-                Objects.equals(tags, outfit.tags);
+                Objects.equals(categories, outfit.categories);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, top, bottom, shoes, tags);
+        return Objects.hash(id, top, bottom, shoes, categories);
     }
 
     @Override
@@ -93,7 +92,7 @@ public class Outfit {
                 ", top='" + top + '\'' +
                 ", bottom='" + bottom + '\'' +
                 ", shoes='" + shoes + '\'' +
-                ", tags=" + tags +
+                ", categories=" + categories +
                 '}';
     }
 }

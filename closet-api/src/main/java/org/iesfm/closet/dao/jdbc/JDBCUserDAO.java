@@ -28,6 +28,8 @@ public class JDBCUserDAO implements UserDAO {
 
     private final static String SELECT_USERS = "SELECT * FROM user";
 
+    private final static String DELETE_USER = "DELETE FROM user WHERE id = :id";
+
     private final static String SELECT_USER_BY_ID = "SELECT * FROM user WHERE id = :id";
 
     private final static String SELECT_USER_ITEMS =
@@ -128,5 +130,12 @@ public class JDBCUserDAO implements UserDAO {
                                 new LinkedList<>()
                         )
         );
+    }
+
+    @Override
+    public int deleteUser(int id) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("id", id);
+        return jdbc.update(DELETE_USER, params);
     }
 }

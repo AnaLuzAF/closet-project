@@ -71,17 +71,15 @@ REFERENCES category(name)
     ON DELETE CASCADE
 );
 
-INSERT INTO user(nickname,password,email) VALUES('UserTester','1234','usertester@gmail.com');
+INSERT INTO user(nickname,password,email) VALUES('testUser','1234','testUser@gmail.com');
 
 INSERT INTO item_type(type_name) VALUES('top');
 INSERT INTO item_type(type_name) VALUES('bottom');
 INSERT INTO item_type(type_name) VALUES('shoes');
 
-INSERT INTO item(item_type,  imagename) VALUES('top','camisaUno');
-INSERT INTO item(item_type,  imagename) VALUES('bottom', 'vaquerosUno');
-INSERT INTO item(item_type,  imagename) VALUES('shoes' ,'zapatosUno');
-
-
+INSERT INTO item(item_type,  imagename) VALUES('top','shirt');
+INSERT INTO item(item_type,  imagename) VALUES('bottom', 'shorts');
+INSERT INTO item(item_type,  imagename) VALUES('shoes' ,'sneakers');
 
 
 INSERT INTO category(name) VALUES('sport');

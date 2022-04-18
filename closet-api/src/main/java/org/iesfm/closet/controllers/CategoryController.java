@@ -28,4 +28,13 @@ public class CategoryController implements CategoriesApi {
     public List<Category> listAll(@PathVariable("user_id") int user_id) {
         return categoryDAO.listAll();
     }
+
+    @RequestMapping(method = RequestMethod.DELETE, path = "/users/{user_id}/categories/{name}")
+    public void deleteCategory(@PathVariable("name") String name) {
+        if (categoryDAO.deleteCategory(name) == 0) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found");
+        }
+    }
+
+
 }

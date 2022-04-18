@@ -11,5 +11,7 @@ public interface OutfitDAO {
 
     List<Outfit> listAll();
 
+    List<Outfit> listOutfitsFromCategory(String name);
+
 
 }

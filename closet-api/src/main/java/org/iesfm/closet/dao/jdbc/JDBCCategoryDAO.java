@@ -22,6 +22,7 @@ public class JDBCCategoryDAO implements CategoryDAO {
 
     private static final String INSERT_CATEGORY = "INSERT INTO category(name) VALUES(:name)";
     private static final String SELECT_CATEGORIES = "SELECT * FROM category";
+    private static final String DELETE_CATEGORY = "DELETE FROM category WHERE name=:name";
 
     @Override
     public boolean addCategory(Category category) {
@@ -44,5 +45,13 @@ public class JDBCCategoryDAO implements CategoryDAO {
                                 rs.getString("name")
                         )
         );
+    }
+
+
+    @Override
+    public int deleteCategory(String name) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("name", name);
+        return jdbc.update(DELETE_CATEGORY, params);
     }
 }

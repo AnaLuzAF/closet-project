@@ -9,4 +9,7 @@ public interface CategoryDAO {
     boolean addCategory(Category category);
 
     List<Category> listAll();
+
+    int deleteCategory(String name);
+
 }
