@@ -21,8 +21,7 @@ public class JDBCItemDAO implements ItemDAO {
             (rs, rowNum) -> new Item(
                     rs.getInt("id"),
                     rs.getString("modeling"),
-                    rs.getString("name"),
-                    rs.getString("image"),
+                    rs.getString("imagename"),
                     rs.getInt("user_id")
             );
 
@@ -53,9 +52,8 @@ public class JDBCItemDAO implements ItemDAO {
         try {
             Map<String, Object> params = new HashMap<>();
             params.put("id",item.getId());
-            params.put("modeling", item.getModeling());
-            params.put("name", item.getName());
-            params.put("image", item.getName());
+            params.put("item_type", item.getItem_type());
+            params.put("imagename", item.getImagename());
             //params.put("user_id", item.getUserId());
             return jdbc.update(INSERT_ITEM, params) == 1;
         } catch (DuplicateKeyException e) {
@@ -74,8 +72,7 @@ public class JDBCItemDAO implements ItemDAO {
                         new Item(
                                 rs.getInt("id"),
                                 rs.getString("type"),
-                                rs.getString("name"),
-                                rs.getString("image"),
+                                rs.getString("imagename"),
                                 rs.getInt("user_id")
                         )
         );

@@ -7,24 +7,21 @@ import java.util.Objects;
 
 public class Item {
     private int id;
-    private String modeling;
-    private String name;
-    private String image;
+    private String item_type;
+    private String imagename;
     private Integer userId;
 
     @JsonCreator
     public Item(
            @JsonProperty(value = "id", required = true) int id,
-           @JsonProperty(value = "modeling",required = true) String modeling,
-           @JsonProperty(value = "name",required = true) String name,
-           @JsonProperty(value = "image",required = true) String image,
+           @JsonProperty(value = "item_type",required = true) String item_type,
+           @JsonProperty(value = "imagename",required = true) String imagename,
            @JsonProperty(value = "userId") Integer userId) {
         this.id = id;
-        this.modeling = modeling;
-        this.name = name;
+        this.item_type = item_type;
+        this.imagename=imagename;
         this.userId = userId;
     }
-
 
 
     public int getId() {
@@ -35,20 +32,20 @@ public class Item {
         this.id = id;
     }
 
-    public String getModeling() {
-        return modeling;
+    public String getItem_type() {
+        return item_type;
     }
 
-    public void setModeling(String type) {
-        this.modeling = type;
+    public void setItem_type(String item_type) {
+        this.item_type = item_type;
     }
 
-    public String getName() {
-        return name;
+    public String getImagename() {
+        return imagename;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setImagename(String imagename) {
+        this.imagename = imagename;
     }
 
     public Integer getUserId() {
@@ -59,35 +56,26 @@ public class Item {
         this.userId = userId;
     }
 
-    public String getImage() {
-        return image;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return id == item.id && Objects.equals(item_type, item.item_type) && Objects.equals(imagename, item.imagename) && Objects.equals(userId, item.userId);
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, item_type, imagename, userId);
     }
 
     @Override
     public String toString() {
         return "Item{" +
                 "id=" + id +
-                ", modeling='" + modeling + '\'' +
-                ", name='" + name + '\'' +
-                ", image='" + image + '\'' +
+                ", item_type='" + item_type + '\'' +
+                ", imagename='" + imagename + '\'' +
                 ", userId=" + userId +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Item item = (Item) o;
-        return id == item.id && Objects.equals(modeling, item.modeling) && Objects.equals(name, item.name) && Objects.equals(image, item.image) && Objects.equals(userId, item.userId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, modeling, name, image, userId);
     }
 }
