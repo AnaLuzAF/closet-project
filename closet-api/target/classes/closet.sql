@@ -11,21 +11,29 @@ password		    VARCHAR (20) NOT NULL,
 email 				VARCHAR (50) NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS item_type (
+type_name		         VARCHAR (50) NOT NULL PRIMARY KEY
+);
+
 CREATE TABLE IF NOT EXISTS item (
 id				    INT AUTO_INCREMENT PRIMARY KEY,
 item_type	        VARCHAR (40) NOT NULL,
 imagename		    VARCHAR (40) NOT NULL,
 user_id             INT,
-FOREIGN KEY(user_id) REFERENCES user(id)
+CONSTRAINT FK_ITEM_USER
+FOREIGN KEY(user_id)
+REFERENCES user(id)
+ON UPDATE CASCADE
+ON DELETE CASCADE,
+CONSTRAINT FK_ITEM_TYPE
+FOREIGN KEY(item_type)
+REFERENCES item_type(type_name)
+ON UPDATE CASCADE
+ON DELETE CASCADE
 );
 
 
-CREATE TABLE IF NOT EXISTS item_type (
-id				 INT AUTO_INCREMENT PRIMARY KEY,
-top		         VARCHAR (40) NOT NULL,
-bottom		     VARCHAR (40) NOT NULL,
-shoes		     VARCHAR (40) NOT NULL
-);
+
 
 CREATE TABLE IF NOT EXISTS category(
 id                  INT AUTO_INCREMENT PRIMARY KEY,
@@ -63,12 +71,15 @@ REFERENCES user (id)
 
 INSERT INTO user(nickname,password,email) VALUES('UserTester','1234','usertester@gmail.com');
 
+INSERT INTO item_type(type_name) VALUES('top');
+INSERT INTO item_type(type_name) VALUES('bottom');
+INSERT INTO item_type(type_name) VALUES('shoes');
 
-INSERT INTO item(item_type,  imagename, user_id) VALUES('top','camisaUno', 1);
-INSERT INTO item(item_type,  imagename, user_id) VALUES('bottom', 'vaquerosUno', 1);
-INSERT INTO item(item_type,  imagename, user_id) VALUES('shoes' ,'zapatosUno', 1);
+INSERT INTO item(item_type,  imagename) VALUES('top','camisaUno');
+INSERT INTO item(item_type,  imagename) VALUES('bottom', 'vaquerosUno');
+INSERT INTO item(item_type,  imagename) VALUES('shoes' ,'zapatosUno');
 
-INSERT INTO item_type(top, bottom, shoes) VALUES('top', 'bottom', 'shoes');
+
 
 
 INSERT INTO category(name) VALUES('sport');

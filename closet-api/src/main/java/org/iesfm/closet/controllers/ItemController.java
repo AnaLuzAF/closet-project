@@ -28,7 +28,13 @@ public class ItemController implements ItemsApi {
     @RequestMapping(method = RequestMethod.POST, path = "/users/{user_id}/items")
     public void insert(@RequestBody Item item,
                        @PathVariable ("user_id") int id) {
-     itemDAO.insert(item);
+
+     if(!itemDAO.insert(item)) {
+         // TODO - EXCEPTIONS ???
+         // lanzar las excepciones correspondientes
+         // user not found, bad request si esta mal el item_type
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+     }
     }
 
 }

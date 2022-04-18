@@ -36,7 +36,7 @@ public class JDBCItemDAO implements ItemDAO {
             ") " +
             "VALUES(" +
             " :item_type, " +
-            " :imagename "+
+            " :imagename " +
             ")";
 
     @Override
@@ -49,7 +49,6 @@ public class JDBCItemDAO implements ItemDAO {
         } catch (DuplicateKeyException e) {
             return false;
         }
-
     }
 
 
@@ -73,8 +72,4 @@ public class JDBCItemDAO implements ItemDAO {
         params.put("id", id);
         return jdbc.query(SELECT_ITEM_BY_ID, ITEM_ROW_MAPPER);
     }
-
-
-
-
 }
