@@ -20,7 +20,7 @@ public class JDBCItemDAO implements ItemDAO {
     private final static RowMapper<Item> ITEM_ROW_MAPPER =
             (rs, rowNum) -> new Item(
                     rs.getInt("id"),
-                    rs.getString("modeling"),
+                    rs.getString("item_type"),
                     rs.getString("imagename"),
                     rs.getInt("user_id")
             );
@@ -34,16 +34,14 @@ public class JDBCItemDAO implements ItemDAO {
     private final static String UPDATE_USER = "UPDATE user id SET  WHERE id = :id";
     private final static String INSERT_ITEM = "INSERT INTO item(" +
             "id, "+
-            " modeling, " +
-            " name, " +
-            "image, " +
+            " item_type, " +
+            "imagename, " +
             " userId, " +
             ") " +
             "VALUES(" +
             ":id, "+
-            " :modeling, " +
-            " :name, " +
-            ":image, "+
+            " :item_type, " +
+            ":imagename, "+
             " :user_id, " +
             ")";
 
@@ -71,7 +69,7 @@ public class JDBCItemDAO implements ItemDAO {
                 (rs, rowNum) ->
                         new Item(
                                 rs.getInt("id"),
-                                rs.getString("type"),
+                                rs.getString("item_type"),
                                 rs.getString("imagename"),
                                 rs.getInt("user_id")
                         )
