@@ -7,17 +7,17 @@ import java.util.Objects;
 
 public class Item {
     private int id;
-    private String item_type;
+    private String itemType;
     private String imagename;
 
     @JsonCreator
     public Item(
-           @JsonProperty(value = "id", required = true) int id,
-           @JsonProperty(value = "item_type",required = true) String item_type,
+           @JsonProperty(value = "id") int id,
+           @JsonProperty(value = "item_type",required = true) String itemType,
            @JsonProperty(value = "imagename",required = true) String imagename)
          {
         this.id = id;
-        this.item_type = item_type;
+        this.itemType = itemType;
         this.imagename=imagename;
     }
 
@@ -29,12 +29,12 @@ public class Item {
         this.id = id;
     }
 
-    public String getItem_type() {
-        return item_type;
+    public String getItemType() {
+        return itemType;
     }
 
-    public void setItem_type(String item_type) {
-        this.item_type = item_type;
+    public void setItemType(String itemType) {
+        this.itemType = itemType;
     }
 
     public String getImagename() {
@@ -50,19 +50,19 @@ public class Item {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Item item = (Item) o;
-        return id == item.id && Objects.equals(item_type, item.item_type) && Objects.equals(imagename, item.imagename);
+        return id == item.id && Objects.equals(itemType, item.itemType) && Objects.equals(imagename, item.imagename);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, item_type, imagename);
+        return Objects.hash(id, itemType, imagename);
     }
 
     @Override
     public String toString() {
         return "Item{" +
                 "id=" + id +
-                ", item_type='" + item_type + '\'' +
+                ", itemType='" + itemType + '\'' +
                 ", imagename='" + imagename + '\'' +
                 '}';
     }

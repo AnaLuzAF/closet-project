@@ -31,24 +31,19 @@ public class JDBCItemDAO implements ItemDAO {
     private static final String SELECT_ITEM_BY_ID = "SELECT * FROM item WHERE user_id = :id ";
 
     private final static String INSERT_ITEM = "INSERT INTO item(" +
-            " id, "+
             " item_type, " +
-            " imagename, " +
-            " userId, " +
+            " imagename " +
             ") " +
             "VALUES(" +
-            " :id, "+
             " :item_type, " +
-            " :imagename, "+
-            " :user_id, " +
+            " :imagename "+
             ")";
 
     @Override
     public boolean insert(Item item) {
         try {
             Map<String, Object> params = new HashMap<>();
-            params.put("id",item.getId());
-            params.put("item_type", item.getItem_type());
+            params.put("item_type", item.getItemType());
             params.put("imagename", item.getImagename());
             return jdbc.update(INSERT_ITEM, params) == 1;
         } catch (DuplicateKeyException e) {

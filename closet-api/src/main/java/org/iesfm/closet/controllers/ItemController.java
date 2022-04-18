@@ -19,13 +19,13 @@ public class ItemController implements ItemsApi {
     private ItemDAO itemDAO;
 
     
-    @RequestMapping(method = RequestMethod.GET, path = "/users/{userId}/items")
+    @RequestMapping(method = RequestMethod.GET, path = "/users/{user_id}/items")
     public List<Item> listAll( @PathVariable ("user_id") int id) {
 
         return itemDAO.listAll();
     }
 
-    @RequestMapping(method = RequestMethod.POST, path = "/users/{userId}/items")
+    @RequestMapping(method = RequestMethod.POST, path = "/users/{user_id}/items")
     public void insert(@RequestBody Item item,
                        @PathVariable ("user_id") int id) {
      itemDAO.insert(item);
