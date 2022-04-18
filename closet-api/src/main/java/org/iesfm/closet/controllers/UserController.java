@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @RestController
 public class UserController implements UsersApi {
 
@@ -21,6 +23,13 @@ public class UserController implements UsersApi {
         if(!userDAO.insert(user)) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "User already exists");
         }
+    }
+
+
+    @RequestMapping(method = RequestMethod.GET, path = "/users")
+    public List<User> listAll() {
+
+        return userDAO.listAll();
     }
 
 }

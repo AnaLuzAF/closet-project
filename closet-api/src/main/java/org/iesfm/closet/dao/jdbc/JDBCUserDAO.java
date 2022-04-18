@@ -1,6 +1,7 @@
 package org.iesfm.closet.dao.jdbc;
 
 import org.iesfm.closet.dao.UserDAO;
+import org.iesfm.closet.pojos.Item;
 import org.iesfm.closet.pojos.User;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -82,18 +83,17 @@ public class JDBCUserDAO implements UserDAO {
     }
 */
 
-   /* @Override
-    public List<User> list() {
+   @Override
+    public List<User> listAll() {
         return jdbc.query(
                 SELECT_USERS,
                 (rs, n) ->
                         new User(
+                                rs.getInt("id"),
                                 rs.getString("nickname"),
                                 rs.getString("password"),
-                                rs.getString("email")
+                                rs.getString("email"),
                         )
         );
-    }*/
-
-
+    }
 }
