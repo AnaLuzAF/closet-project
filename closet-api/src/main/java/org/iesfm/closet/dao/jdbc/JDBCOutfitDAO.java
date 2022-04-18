@@ -1,6 +1,7 @@
 package org.iesfm.closet.dao.jdbc;
 
 import org.iesfm.closet.dao.OutfitDAO;
+import org.iesfm.closet.pojos.Category;
 import org.iesfm.closet.pojos.Outfit;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -42,6 +43,8 @@ public class JDBCOutfitDAO implements OutfitDAO {
 
 
     // IMPLEMENTACION DE LAS QUERIES
+
+
 
     @Override
     public boolean insert(Outfit outfit) {

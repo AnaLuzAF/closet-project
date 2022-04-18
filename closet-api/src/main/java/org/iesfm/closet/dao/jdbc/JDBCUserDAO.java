@@ -86,6 +86,7 @@ public class JDBCUserDAO implements UserDAO {
     // TODO - hacer pojosApi??? para que al seleccionar un usuario solo salgan
     //  los datos del usuario, no todas sus listas de items y outfits
 
+    // TODO - alternativa: consulta de SELECT nickname, password y email
 
     @Override
     public User getUser(int id) {
@@ -112,7 +113,8 @@ public class JDBCUserDAO implements UserDAO {
 
 
     // TODO - cambiar listas vacias o que no salgan esos campos directamente
-   @Override
+
+    @Override
     public List<User> listAll() {
         return jdbc.query(
                 SELECT_USERS,

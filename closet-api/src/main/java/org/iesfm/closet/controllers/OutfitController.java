@@ -2,6 +2,7 @@ package org.iesfm.closet.controllers;
 
 import org.iesfm.closet.client.OutfitsApi;
 import org.iesfm.closet.dao.OutfitDAO;
+import org.iesfm.closet.pojos.Category;
 import org.iesfm.closet.pojos.Outfit;
 import org.iesfm.closet.pojos.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,8 @@ public class OutfitController implements OutfitsApi {
     public List<Outfit> getOutfits(@PathVariable("id") int userId) {
         return outfitDAO.listAll();
     }
+
+
 
 
 }

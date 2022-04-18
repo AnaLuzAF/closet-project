@@ -33,14 +33,11 @@ ON DELETE CASCADE
 );
 
 
-
-
-CREATE TABLE IF NOT EXISTS category(
-id                  INT AUTO_INCREMENT PRIMARY KEY,
-name                VARCHAR (50) NOT NULL
+CREATE TABLE IF NOT EXISTS category (
+name                VARCHAR (50) NOT NULL PRIMARY KEY
 );
 
-CREATE TABLE IF NOT EXISTS outfit(
+CREATE TABLE IF NOT EXISTS outfit (
 id                                INT AUTO_INCREMENT PRIMARY KEY,
 top_id                              INT NOT NULL,
 bottom_id                            INT NOT NULL,
@@ -66,6 +63,11 @@ CONSTRAINT FK_OUTFIT_USER
 FOREIGN KEY (user_id)
 REFERENCES user (id)
 	ON UPDATE CASCADE
+    ON DELETE CASCADE,
+CONSTRAINT FK_OUTFIT_CATEGORY
+FOREIGN KEY(categories)
+REFERENCES category(name)
+    ON UPDATE CASCADE
     ON DELETE CASCADE
 );
 
