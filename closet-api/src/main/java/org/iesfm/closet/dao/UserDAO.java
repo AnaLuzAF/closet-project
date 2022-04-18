@@ -1,13 +1,9 @@
 package org.iesfm.closet.dao;
 
+import org.iesfm.closet.pojos.User;
+
 public interface UserDAO {
 
-    // METODOS PARA HACER LAS CONSULTAS DE LA BBDD
-
-    /*
-    List<Book> bookListByYear(int year);
-
-    boolean bookModify(Book book);
-     */
+    boolean insert(User user);
 
 }
