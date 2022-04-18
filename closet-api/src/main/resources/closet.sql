@@ -17,14 +17,13 @@ item_type	        VARCHAR (40) NOT NULL,
 imagename		    VARCHAR (40) NOT NULL,
 user_id             INT,
 FOREIGN KEY(user_id) REFERENCES user(id)
+FOREIGN KEY(item_type) REFERENCES item_type(type_name)
+
 );
 
 
 CREATE TABLE IF NOT EXISTS item_type (
-id				 INT AUTO_INCREMENT PRIMARY KEY,
-top		         VARCHAR (40) NOT NULL,
-bottom		     VARCHAR (40) NOT NULL,
-shoes		     VARCHAR (40) NOT NULL
+type_name		         VARCHAR (50) NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE IF NOT EXISTS category(
