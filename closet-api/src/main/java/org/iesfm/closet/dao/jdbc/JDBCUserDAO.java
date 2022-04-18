@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +30,11 @@ public class JDBCUserDAO implements UserDAO {
 
     private final static String SELECT_USER_BY_NICKNAME = "SELECT * FROM user WHERE nickname = :nickname";
 
+    private final static String SELECT_USER_ITEMS =
+            "SELECT * FROM item WHERE user_id=:id";
+
+    private final static String SELECT_USER_OUTFITS =
+            "SELECT * FROM outfit WHERE user_id=:id";
 
 
     // TODO - hay que poner el id??
@@ -57,6 +63,26 @@ public class JDBCUserDAO implements UserDAO {
             return false;
         }
     }
+
+    /*
+    private List<String> selectUserItems(int id) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("user_id", id);
+        return jdbc.query(SELECT_USER_ITEMS, params,
+                (rs, rownum) ->
+                        rs.getString("items")
+        );
+    }
+
+    private List<String> selectUserOutfits(String nif) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("nif", nif);
+        return jdbc.query(SELECT_USER_OUTFITS, params,
+                (rs, rownum) ->
+                        rs.getString("role")
+        );
+    }
+    */
 
     // TODO - hacer pojosApi??? para que al seleccionar un usuario solo salgan
     //  los datos del usuario, no todas sus listas de items y outfits
@@ -93,6 +119,8 @@ public class JDBCUserDAO implements UserDAO {
                                 rs.getString("nickname"),
                                 rs.getString("password"),
                                 rs.getString("email"),
+                                new LinkedList<>(),
+                                new LinkedList<>()
                         )
         );
     }

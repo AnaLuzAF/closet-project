@@ -8,16 +8,12 @@ import java.util.Objects;
 
 public class User {
 
-    // POJOS CON LOS CAMPOS
-    // EL CONSTRUCTOR TIENE QUE LLEVAR EL JSONCREATOR Y LAS JSONPROPERTIES
-    // CONSTRUCTOR, GETTER Y SETTERS, HASHCODE Y EQUALS, TOSTRING
-
     private int id;
     private String nickname;
     private String password;
     private String email;
-    List<Item> items;
-    List<Outfit> outfits;
+    private List<Item> items;
+    private List<Outfit> outfits;
 
     @JsonCreator
     public User(
