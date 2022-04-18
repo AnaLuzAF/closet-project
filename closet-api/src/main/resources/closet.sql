@@ -39,19 +39,19 @@ bottom_id                            INT NOT NULL,
 shoes_id                            INT NOT NULL,
 categories                        VARCHAR (50) NOT NULL,
 user_id                           INT NOT NULL,
-CONSTRAINT FK_OUTFIT_ITEM_ONE
+CONSTRAINT FK_OUTFIT_TOP
 FOREIGN KEY (top_id)
-REFERENCES item_type (id)
+REFERENCES item (id)
 	ON UPDATE CASCADE
     ON DELETE CASCADE,
-CONSTRAINT FK_OUTFIT_ITEM_TWO
+CONSTRAINT FK_OUTFIT_BOTTOM
 FOREIGN KEY (bottom_id)
-REFERENCES item_type (id)
+REFERENCES item (id)
 	ON UPDATE CASCADE
     ON DELETE CASCADE,
-CONSTRAINT FK_OUTFIT_ITEM_THREE
+CONSTRAINT FK_OUTFIT_SHOES
 FOREIGN KEY (shoes_id)
-REFERENCES item_type (id)
+REFERENCES item (id)
 	ON UPDATE CASCADE
     ON DELETE CASCADE,
 CONSTRAINT FK_OUTFIT_USER
@@ -74,4 +74,4 @@ INSERT INTO item_type(top, bottom, shoes) VALUES('top', 'bottom', 'shoes');
 INSERT INTO category(name) VALUES('sport');
 
 
-INSERT INTO outfit(top_id, bottom_id, shoes_id,categories, user_id) VALUES(1, 2, 3,'sport',1);
+INSERT INTO outfit(top_id, bottom_id, shoes_id, categories, user_id) VALUES(1, 2, 3,'sport',1);
