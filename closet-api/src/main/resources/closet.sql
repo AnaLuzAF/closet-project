@@ -16,9 +16,16 @@ id				    INT AUTO_INCREMENT PRIMARY KEY,
 item_type	        VARCHAR (40) NOT NULL,
 imagename		    VARCHAR (40) NOT NULL,
 user_id             INT,
-FOREIGN KEY(user_id) REFERENCES user(id),
-FOREIGN KEY(item_type) REFERENCES item_type(type_name)
-
+CONSTRAINT FK_ITEM_USER
+FOREIGN KEY(user_id)
+REFERENCES user(id)
+ON UPDATE CASCADE
+ON DELETE CASCADE,
+CONSTRAINT FK_ITEM_TYPE
+FOREIGN KEY(item_type)
+REFERENCES item_type(type_name)
+ON UPDATE CASCADE
+ON DELETE CASCADE
 );
 
 
