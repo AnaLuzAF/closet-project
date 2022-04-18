@@ -34,24 +34,24 @@ name                VARCHAR (50) NOT NULL
 
 CREATE TABLE IF NOT EXISTS outfit(
 id                                INT AUTO_INCREMENT PRIMARY KEY,
-categories                        VARCHAR (50) NOT NULL,
 top_id                              INT NOT NULL,
 bottom_id                            INT NOT NULL,
 shoes_id                            INT NOT NULL,
+categories                        VARCHAR (50) NOT NULL,
 user_id                           INT NOT NULL,
-CONSTRAINT FK_OUTFIT_ITEM_ONE
+CONSTRAINT FK_OUTFIT_TOP
 FOREIGN KEY (top_id)
-REFERENCES item_type (id)
+REFERENCES item (id)
 	ON UPDATE CASCADE
     ON DELETE CASCADE,
-CONSTRAINT FK_OUTFIT_ITEM_TWO
+CONSTRAINT FK_OUTFIT_BOTTOM
 FOREIGN KEY (bottom_id)
-REFERENCES item_type (id)
+REFERENCES item (id)
 	ON UPDATE CASCADE
     ON DELETE CASCADE,
-CONSTRAINT FK_OUTFIT_ITEM_THREE
+CONSTRAINT FK_OUTFIT_SHOES
 FOREIGN KEY (shoes_id)
-REFERENCES item_type (id)
+REFERENCES item (id)
 	ON UPDATE CASCADE
     ON DELETE CASCADE,
 CONSTRAINT FK_OUTFIT_USER
@@ -64,14 +64,14 @@ REFERENCES user (id)
 INSERT INTO user(nickname,password,email) VALUES('UserTester','1234','usertester@gmail.com');
 
 
-INSERT INTO item(item_type, name, imagename, user_id) VALUES('top', 'camisa de cuadros', 'camisaUno', 1);
-INSERT INTO item(item_type, name, imagename, user_id) VALUES('bottom', 'vaqueros','vaquerosUno', 1);
-INSERT INTO item(item_type, name, imagename, user_id) VALUES('shoes', 'tacones rojos','zapatosUno', 1);
+INSERT INTO item(item_type,  imagename, user_id) VALUES('top','camisaUno', 1);
+INSERT INTO item(item_type,  imagename, user_id) VALUES('bottom', 'vaquerosUno', 1);
+INSERT INTO item(item_type,  imagename, user_id) VALUES('shoes' ,'zapatosUno', 1);
 
-INSERT INTO item_type(top_id, bottom_id, shoes_id) VALUES('top', 'bottom', 'shoes');
+INSERT INTO item_type(top, bottom, shoes) VALUES('top', 'bottom', 'shoes');
 
 
 INSERT INTO category(name) VALUES('sport');
 
 
-INSERT INTO outfit(top_id, bottom_id, shoes_id, categories, user_id) VALUES(1, 2, 3, 'sport',1);
+INSERT INTO outfit(top_id, bottom_id, shoes_id, categories, user_id) VALUES(1, 2, 3,'sport',1);

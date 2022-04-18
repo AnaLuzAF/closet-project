@@ -12,8 +12,6 @@ public interface ItemsApi {
     //Inserta un nuevo item si no existe.
     void insert(Item item);
 
-    //Muestra los datos de un item dado un id.
-    List<Item> listById(int id);
 
     //Devolver un user a través del id del usuario
     void getUserItems(int userId);

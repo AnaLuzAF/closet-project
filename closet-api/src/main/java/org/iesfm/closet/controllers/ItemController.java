@@ -40,12 +40,5 @@ public class ItemController implements ItemsApi {
         }
     }
 
-    @Override
-    @RequestMapping(method = RequestMethod.GET, path = "/users/{userId}/items")
-    public List<Item> listById(@PathVariable(value = "id") int id) {
-        return itemDAO.listItemById(id);
-    }
-
-
 
 }
