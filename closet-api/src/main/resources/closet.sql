@@ -16,7 +16,7 @@ id				    INT AUTO_INCREMENT PRIMARY KEY,
 item_type	        VARCHAR (40) NOT NULL,
 imagename		    VARCHAR (40) NOT NULL,
 user_id             INT,
-FOREIGN KEY(user_id) REFERENCES user(id)
+FOREIGN KEY(user_id) REFERENCES user(id),
 FOREIGN KEY(item_type) REFERENCES item_type(type_name)
 
 );
@@ -67,7 +67,7 @@ INSERT INTO item(item_type,  imagename, user_id) VALUES('top','camisaUno', 1);
 INSERT INTO item(item_type,  imagename, user_id) VALUES('bottom', 'vaquerosUno', 1);
 INSERT INTO item(item_type,  imagename, user_id) VALUES('shoes' ,'zapatosUno', 1);
 
-INSERT INTO item_type(top, bottom, shoes) VALUES('top', 'bottom', 'shoes');
+INSERT INTO item_type(type_name) VALUES('test_name');
 
 
 INSERT INTO category(name) VALUES('sport');
