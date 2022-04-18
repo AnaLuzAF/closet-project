@@ -8,7 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class ItemController implements ItemsApi {
@@ -29,9 +31,8 @@ public class ItemController implements ItemsApi {
      itemDAO.post(item);
     }
 
-    @Override
-    @RequestMapping(method = RequestMethod.POST, path = "/users/{userId}/items")
-    public void returnUser(@PathVariable ("userId") int userId){
+    @RequestMapping(method = RequestMethod.GET, path = "/users/{userId}/items")
+    public void getUserItems(@PathVariable ("userId") int userId){
         if (!itemDAO.returnUser(userId)){
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "user not found"
@@ -44,5 +45,7 @@ public class ItemController implements ItemsApi {
     public List<Item> listById(@PathVariable(value = "id") int id) {
         return itemDAO.listItemById(id);
     }
+
+
 
 }

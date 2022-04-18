@@ -28,6 +28,8 @@ public class JDBCUserDAO implements UserDAO {
 
     private final static String SELECT_USER_BY_NICKNAME = "SELECT * FROM user WHERE nickname = :nickname";
 
+
+
     // TODO - hay que poner el id??
     private final static String INSERT_USER = "INSERT INTO user(" +
             " nickname, " +
@@ -92,5 +94,6 @@ public class JDBCUserDAO implements UserDAO {
                         )
         );
     }*/
+
 
 }

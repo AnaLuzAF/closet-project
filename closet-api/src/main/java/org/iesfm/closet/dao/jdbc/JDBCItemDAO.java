@@ -83,12 +83,12 @@ public class JDBCItemDAO implements ItemDAO {
         return jdbc.query(SELECT_ITEM_BY_ID, ITEM_ROW_MAPPER);
     }
 
+
     @Override
     public boolean returnUser(int userId) {
         Map<String, Object> params = new HashMap<>();
         params.put("id", userId);
         return jdbc.update(UPDATE_USER, params) == 1;
     }
-
 
 }

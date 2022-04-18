@@ -16,6 +16,6 @@ public interface ItemsApi {
     List<Item> listById(int id);
 
     //Devolver un user a través del id del usuario
-    void returnUser(int userId);
+    void getUserItems(int userId);
 
 }
