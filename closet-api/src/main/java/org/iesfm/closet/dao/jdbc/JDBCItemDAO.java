@@ -29,7 +29,9 @@ public class JDBCItemDAO implements ItemDAO {
 
     private final static String SELECT_ITEMS = "SELECT * FROM item";
     private static final String SELECT_ITEM_BY_ID = "SELECT * FROM item WHERE user_id = :id ";
-
+    //no funciona
+    private static final String SELECT_ITEM_BY_ITEM_TYPE = "SELECT * FROM item WHERE itemType = :item_type ";
+    private static final String DELETE_ITEM="DELETE FROM item WHERE id = :id";
     private final static String INSERT_ITEM = "INSERT INTO item(" +
             " item_type, " +
             " imagename " +
@@ -67,9 +69,42 @@ public class JDBCItemDAO implements ItemDAO {
     }
 
     @Override
-    public List<Item> listItemById(int id) {
+    public List<Item> listItemById(int id){
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
         return jdbc.query(SELECT_ITEM_BY_ID, ITEM_ROW_MAPPER);
+    }
+
+    @Override
+    public int deleteItem(int id) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("id", id);
+        return jdbc.update(DELETE_ITEM, params);
+
+    }
+
+    @Override
+    public boolean listItemByType(String itemType) {
+        return false;
+    }
+
+    @Override
+    public List<Item> listByType(String itemType) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("item_type", itemType);
+        return jdbc.query(
+                SELECT_ITEM_BY_ITEM_TYPE,
+                (rs, rowNum) ->
+                        new Item(
+                                rs.getInt("id"),
+                                rs.getString("item_type"),
+                                rs.getString("imagename")
+                        )
+        );
+    }
+
+    @Override
+    public boolean listItem(int id) {
+        return false;
     }
 }
