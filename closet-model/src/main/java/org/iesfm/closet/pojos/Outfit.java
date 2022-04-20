@@ -14,22 +14,16 @@ public class Outfit {
     private String top;
     private String bottom;
     private String shoes;
-
-    //cambiar
     private String category;
+    private int user_id;
 
-    @JsonCreator
-    public Outfit(
-            @JsonProperty("id") int id,
-            @JsonProperty("top_id") String top,
-            @JsonProperty("bottom_id") String bottom,
-            @JsonProperty("shoes_id") String shoes,
-            @JsonProperty("categories") List<String> categories) {
+    public Outfit(int id, String top, String bottom, String shoes, String category, int user_id) {
         this.id = id;
         this.top = top;
         this.bottom = bottom;
         this.shoes = shoes;
-        this.categories = categories;
+        this.category = category;
+        this.user_id = user_id;
     }
 
     public int getId() {
@@ -64,12 +58,20 @@ public class Outfit {
         this.shoes = shoes;
     }
 
-    public List<String> getCategories() {
-        return categories;
+    public String getCategory() {
+        return category;
     }
 
-    public void setCategories(List<String> categories) {
-        this.categories = categories;
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     @Override
@@ -77,16 +79,12 @@ public class Outfit {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Outfit outfit = (Outfit) o;
-        return id == outfit.id &&
-                Objects.equals(top, outfit.top) &&
-                Objects.equals(bottom, outfit.bottom) &&
-                Objects.equals(shoes, outfit.shoes) &&
-                Objects.equals(categories, outfit.categories);
+        return id == outfit.id && user_id == outfit.user_id && Objects.equals(top, outfit.top) && Objects.equals(bottom, outfit.bottom) && Objects.equals(shoes, outfit.shoes) && Objects.equals(category, outfit.category);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, top, bottom, shoes, categories);
+        return Objects.hash(id, top, bottom, shoes, category, user_id);
     }
 
     @Override
@@ -96,7 +94,8 @@ public class Outfit {
                 ", top='" + top + '\'' +
                 ", bottom='" + bottom + '\'' +
                 ", shoes='" + shoes + '\'' +
-                ", categories=" + categories +
+                ", category='" + category + '\'' +
+                ", user_id=" + user_id +
                 '}';
     }
 }
