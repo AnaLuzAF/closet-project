@@ -1,6 +1,6 @@
 package org.iesfm.closet.controllers;
 
-import org.iesfm.closet.client.UsersApi;
+import org.iesfm.closet.controllers.pojosApi.UserApi;
 import org.iesfm.closet.dao.UserDAO;
 import org.iesfm.closet.pojos.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +11,10 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-public class UserController implements UsersApi {
+public class UserController {
 
     @Autowired
     private UserDAO userDAO;
-
 
     @RequestMapping(method = RequestMethod.POST, path = "/users")
     public void insert(@RequestBody UserApi user) {

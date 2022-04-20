@@ -1,6 +1,5 @@
 package org.iesfm.closet.controllers;
 
-import org.iesfm.closet.client.OutfitsApi;
 import org.iesfm.closet.controllers.pojosApi.OutfitApi;
 import org.iesfm.closet.dao.OutfitDAO;
 import org.iesfm.closet.dao.UserDAO;
@@ -13,7 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-public class OutfitController implements OutfitsApi {
+public class OutfitController {
 
     @Autowired
     private OutfitDAO outfitDAO;
@@ -28,15 +27,18 @@ public class OutfitController implements OutfitsApi {
     Ver los outfits de una categoria: GET /users/{userId}/outfits/{category}
     */
 
+    /*
     @RequestMapping(method = RequestMethod.POST, path = "/users/{user_id}/categories/{category}/outfits")
     public void insert(@PathVariable("user_id") int user_id, @PathVariable("category") String category, @RequestBody OutfitApi outfit) {
 
         /* if userdao.userexists.. hacer consultas a parte */
+
+    /*
         if(!userDAO.userExists(user_id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         }
 
-        if (!outfitDAO.insert(outfit /* outfitapi convertido */) {
+        if (!outfitDAO.insert(outfitApi) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bad request");
 
             // lanzar excepciones segun el error:
@@ -58,5 +60,5 @@ public class OutfitController implements OutfitsApi {
             return outfitDAO.listUserOutfitsFromCategory(category);
         }
     }
-
+*/
 }

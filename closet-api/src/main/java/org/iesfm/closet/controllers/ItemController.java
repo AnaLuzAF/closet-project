@@ -1,6 +1,5 @@
 package org.iesfm.closet.controllers;
 
-import org.iesfm.closet.client.ItemsApi;
 import org.iesfm.closet.dao.ItemDAO;
 import org.iesfm.closet.pojos.Item;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +10,12 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-public class ItemController implements ItemsApi {
+public class ItemController {
 
     @Autowired
     private ItemDAO itemDAO;
 
-
+/*
     @RequestMapping(method = RequestMethod.GET, path = "/users/{user_id}/items/{item_type}")
     public List<Item> listUserItems(
             @PathVariable("user_id") int user_id,
@@ -56,5 +55,5 @@ public class ItemController implements ItemsApi {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Item not found");
         }
-    }
+    }*/
 }
