@@ -72,6 +72,7 @@ public class JDBCOutfitDAO implements OutfitDAO {
                                 rs.getString("top_id"),
                                 rs.getString("bottom_id"),
                                 rs.getString("shoes_id"),
+                                // consulta que dado un outfit id saque los tags - ver SHOPREST
                                 Arrays.asList(rs.getString("categories"))
                         )
         );

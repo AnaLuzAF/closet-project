@@ -19,17 +19,20 @@ public class OutfitController implements OutfitsApi {
     private OutfitDAO outfitDAO;
 
     /*
-    Crear outfit (añadir un outfit a una categoria): POST /users/{userId}/outfits/{category}?? pueden ser varias --> PathVariable(“tags”) List<Tag> tags ???
+    Crear outfit (añadir un outfit a una categoria): POST /users/{userId}/outfits/{category}??
 
     Ver el outfit : GET /users/{userId}/outfits
 
     Ver los outfits de una categoria: GET /users/{userId}/outfits/{category}
     */
 
-    @RequestMapping(method = RequestMethod.POST, path = "/users/{user_id}/categories/{name}/outfits")
-    public void insert(@PathVariable("user_id") int user_id, @PathVariable("name") String name, @RequestBody Outfit outfit) {
+    @RequestMapping(method = RequestMethod.POST, path = "/users/{user_id}/categories/{category}/outfits")
+    public void insert(@PathVariable("user_id") int user_id, @PathVariable("category") String category, @RequestBody OutfitApi outfit) {
 
-        if (!outfitDAO.insert(name, outfit)) {
+        /* if userdao.userexists..*/
+
+
+        if (!outfitDAO.insert(category, outfit)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bad request");
 
             // lanzar excepciones segun el error:

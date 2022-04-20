@@ -18,41 +18,40 @@ public class ItemController implements ItemsApi {
     private ItemDAO itemDAO;
 
 
-    
     @RequestMapping(method = RequestMethod.GET, path = "/users/{user_id}/items")
-    public List<Item> listAll( @PathVariable ("user_id") int id) {
-
+    public List<Item> listAll(@PathVariable("user_id") int id) {
+    // select * from items where user_id=:id
         return itemDAO.listAll();
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/users/{user_id}/items")
     public void insert(@RequestBody Item item,
-                       @PathVariable ("user_id") int id) {
+                       @PathVariable("user_id") int id) {
 
-     if(!itemDAO.insert(item)) {
-         // lanzar las excepciones correspondientes
-         // user not found, bad request si esta mal el item_type
-      throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-     }
+        if (!itemDAO.insert(item)) {
+            // lanzar las excepciones correspondientes
+            // user not found, bad request si esta mal el item_type
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
 
-     }
+    }
 
-     //no funciona
+    //no funciona
     //Listar las prendas de un tipo (top/bottom/shoes): GET /users/{userId}/items/{item_type}
     @RequestMapping(method = RequestMethod.GET, path = "/users/{user_id}/items/{item_type}")
-    public List <Item> listItem(
+    public List<Item> listItem(
             @PathVariable("user_id") int id,
             @PathVariable("item_type") String itemType
-    ){
+    ) {
         itemDAO.listItem(id);
-        if (!itemDAO.listItem(id)){
+        if (!itemDAO.listItem(id)) {
             // user not found
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             //bad request si esta mal el item_type
-        }else if (!itemDAO.listItemByType(itemType)){
+        } else if (!itemDAO.listItemByType(itemType)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 
-        }else{
+        } else {
             return itemDAO.listByType(itemType);
         }
     }

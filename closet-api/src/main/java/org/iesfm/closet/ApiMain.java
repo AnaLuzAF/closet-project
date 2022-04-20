@@ -13,7 +13,6 @@ public class ApiMain {
         //crear la carpeta imagenes y una vez creada comprobar si existe un usuario, y si existe crear su carpeta.
         //para comprobar si un user existe hago un select name from user where id :=id; llamada a JDBuserDAO
 
-
     }
 
 }
