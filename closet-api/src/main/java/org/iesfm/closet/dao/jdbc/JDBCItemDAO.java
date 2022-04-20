@@ -24,21 +24,20 @@ public class JDBCItemDAO implements ItemDAO {
             (rs, rowNum) -> new Item(
                     rs.getInt("id"),
                     rs.getString("item_type"),
-                    rs.getString("imagename")
+                    rs.getInt("user_id")
             );
 
     private final static String SELECT_ITEMS = "SELECT * FROM item";
     private static final String SELECT_ITEM_BY_ID = "SELECT * FROM item WHERE user_id = :id ";
-    //no funciona
     private static final String SELECT_ITEM_BY_ITEM_TYPE = "SELECT * FROM item WHERE itemType = :item_type ";
     private static final String DELETE_ITEM="DELETE FROM item WHERE id = :id";
     private final static String INSERT_ITEM = "INSERT INTO item(" +
-            " item_type, " +
-            " imagename " +
+            " itemType, " +
+            " userId" +
             ") " +
             "VALUES(" +
             " :item_type, " +
-            " :imagename " +
+            " :user_id"+
             ")";
 
     @Override
@@ -46,7 +45,7 @@ public class JDBCItemDAO implements ItemDAO {
         try {
             Map<String, Object> params = new HashMap<>();
             params.put("item_type", item.getItemType());
-            params.put("imagename", item.getImagename());
+            params.put("user_id",item.getUserId());
             return jdbc.update(INSERT_ITEM, params) == 1;
         } catch (DuplicateKeyException e) {
             return false;
@@ -63,7 +62,7 @@ public class JDBCItemDAO implements ItemDAO {
                         new Item(
                                 rs.getInt("id"),
                                 rs.getString("item_type"),
-                                rs.getString("imagename")
+                                rs.getInt("user_id")
                         )
         );
     }
@@ -98,7 +97,7 @@ public class JDBCItemDAO implements ItemDAO {
                         new Item(
                                 rs.getInt("id"),
                                 rs.getString("item_type"),
-                                rs.getString("imagename")
+                                rs.getInt("user_id")
                         )
         );
     }

@@ -6,7 +6,6 @@ import org.iesfm.closet.pojos.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -18,9 +17,19 @@ public class ItemController implements ItemsApi {
     private ItemDAO itemDAO;
 
 
-    @RequestMapping(method = RequestMethod.GET, path = "/users/{user_id}/items")
-    public List<Item> listAll(@PathVariable("user_id") int id) {
-    // select * from items where user_id=:id
+    @RequestMapping(method = RequestMethod.GET, path = "/users/{user_id}/items/{item_type}")
+    public List<Item> listAll(
+            @PathVariable("user_id") int user_id,
+            @RequestParam("item_type") String itemType) {
+
+        if (!itemDAO.listItem(user_id)){
+            // user not found
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            //bad request si esta mal el item_type
+        }else if (!itemDAO.listItemByType(itemType)){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        //si es not null
         return itemDAO.listAll();
     }
 
@@ -36,25 +45,6 @@ public class ItemController implements ItemsApi {
 
     }
 
-    //no funciona
-    //Listar las prendas de un tipo (top/bottom/shoes): GET /users/{userId}/items/{item_type}
-    @RequestMapping(method = RequestMethod.GET, path = "/users/{user_id}/items/{item_type}")
-    public List<Item> listItem(
-            @PathVariable("user_id") int id,
-            @PathVariable("item_type") String itemType
-    ) {
-        itemDAO.listItem(id);
-        if (!itemDAO.listItem(id)) {
-            // user not found
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-            //bad request si esta mal el item_type
-        } else if (!itemDAO.listItemByType(itemType)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-
-        } else {
-            return itemDAO.listByType(itemType);
-        }
-    }
 
     //Eliminar una prenda: DELETE /users/{userId}/items/{id}
     @RequestMapping(method = RequestMethod.DELETE, path = "/users/{user_id}/items/{id}")
