@@ -28,15 +28,12 @@ public class JDBCUserDAO implements UserDAO {
 
     // QUERIES MYSQL
 
-    // TODO - quitar el linkedlist - sustituir por?...
     private final static RowMapper<User> USER_ROW_MAPPER =
             (rs, rowNum) -> new User(
                     rs.getInt("id"),
                     rs.getString("nickname"),
                     rs.getString("password"),
-                    rs.getString("email"),
-                    new LinkedList<>(),
-                    new LinkedList<>()
+                    rs.getString("email")
             );
 
     private final static String SELECT_USERS = "SELECT * FROM user";
@@ -103,10 +100,6 @@ public class JDBCUserDAO implements UserDAO {
     }
     */
 
-    // TODO - hacer pojosApi??? para que al seleccionar un usuario solo salgan
-    //  los datos del usuario, no todas sus listas de items y outfits
-
-    // TODO - alternativa: consulta de SELECT nickname, password y email
 
     @Override
     public User getUser(int id) {
@@ -125,7 +118,7 @@ public class JDBCUserDAO implements UserDAO {
 
     private List<Item> getUserItems(int id) {
         Map<String, Object> params = new HashMap<>();
-        // TODO - cambiar por id a secas?
+        // TODO - cambiar por id?
         params.put("user_id", id);
         return new LinkedList<>(
                 jdbc.query(
@@ -147,16 +140,18 @@ public class JDBCUserDAO implements UserDAO {
                 jdbc.query(
                         SELECT_OUTFITS_BY_USER_ID,
                         params,
-                        (rs, rowNum) -> new Item(
+                        (rs, rowNum) -> new Outfit(
                                 rs.getInt("id"),
-                                rs.getString("item_type"),
+                                rs.getString("top_id"),
+                                rs.getString("bottom_id"),
+                                rs.getString("shoes_id"),
+                                rs.getString("category"),
                                 rs.getInt("user_id")
                         )
                 )
         );
     }
 
-    // TODO - cambiar listas vacias o que no salgan esos campos directamente
 
     @Override
     public List<User> listAll() {

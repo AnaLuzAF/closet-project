@@ -18,12 +18,15 @@ public class UserController implements UsersApi {
 
 
     @RequestMapping(method = RequestMethod.POST, path = "/users")
-    public void insert(@RequestBody User user) {
+    public void insert(@RequestBody UserApi user) {
+
+        // convertir y usar el user convertido
 
         if(!userDAO.insert(user)) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "User already exists");
         }
     }
+
 
     @RequestMapping(method = RequestMethod.GET, path = "/users")
     public List<User> listAll() {

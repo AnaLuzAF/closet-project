@@ -9,16 +9,14 @@ public class User {
     private String nickname;
     private String password;
     private String email;
-    private List<Item> items;
-    private List<Outfit> outfits;
 
-    public User(int id, String nickname, String password, String email, List<Item> items, List<Outfit> outfits) {
+
+    public User(int id, String nickname, String password, String email) {
         this.id = id;
         this.nickname = nickname;
         this.password = password;
         this.email = email;
-        this.items = items;
-        this.outfits = outfits;
+
     }
 
     public int getId() {
@@ -53,38 +51,17 @@ public class User {
         this.email = email;
     }
 
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
-
-    public List<Outfit> getOutfits() {
-        return outfits;
-    }
-
-    public void setOutfits(List<Outfit> outfits) {
-        this.outfits = outfits;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id &&
-                Objects.equals(nickname, user.nickname) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(email, user.email) &&
-                Objects.equals(items, user.items) &&
-                Objects.equals(outfits, user.outfits);
+        return id == user.id && Objects.equals(nickname, user.nickname) && Objects.equals(password, user.password) && Objects.equals(email, user.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nickname, password, email, items, outfits);
+        return Objects.hash(id, nickname, password, email);
     }
 
     @Override
@@ -94,8 +71,6 @@ public class User {
                 ", nickname='" + nickname + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", items=" + items +
-                ", outfits=" + outfits +
                 '}';
     }
 }
