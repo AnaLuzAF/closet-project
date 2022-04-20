@@ -18,7 +18,7 @@ public class ItemController implements ItemsApi {
 
 
     @RequestMapping(method = RequestMethod.GET, path = "/users/{user_id}/items/{item_type}")
-    public List<Item> listAll(
+    public List<Item> listUserItems(
             @PathVariable("user_id") int user_id,
             @RequestParam("item_type") String itemType) {
 
@@ -26,7 +26,7 @@ public class ItemController implements ItemsApi {
             // user not found
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             //bad request si esta mal el item_type
-        }else if (!itemDAO.listItemByType(itemType)){
+        }else if (!itemDAO.listUserItemsByType(itemType)){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         //si es not null

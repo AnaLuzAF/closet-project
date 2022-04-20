@@ -14,10 +14,10 @@ public interface ItemDAO {
 
     int deleteItem (int id);
 
-    boolean listItemByType(String itemType);
-
-    List<Item> listByType(String itemType);
+    List<Item> listUserItemsByType(String itemType);
 
     //no funciona
     boolean listItem(int id);
+
+    List<Item> listItemsByUserId(int user_id);
 }

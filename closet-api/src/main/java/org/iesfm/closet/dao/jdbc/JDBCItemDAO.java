@@ -28,7 +28,7 @@ public class JDBCItemDAO implements ItemDAO {
             );
 
     private final static String SELECT_ITEMS = "SELECT * FROM item";
-    private static final String SELECT_ITEM_BY_ID = "SELECT * FROM item WHERE user_id = :id ";
+    private static final String SELECT_ITEMS_BY_USER_ID = "SELECT * FROM item WHERE user_id = :user_id ";
     private static final String SELECT_ITEM_BY_ITEM_TYPE = "SELECT * FROM item WHERE itemType = :item_type ";
     private static final String DELETE_ITEM="DELETE FROM item WHERE id = :id";
     private final static String INSERT_ITEM = "INSERT INTO item(" +
@@ -68,10 +68,10 @@ public class JDBCItemDAO implements ItemDAO {
     }
 
     @Override
-    public List<Item> listItemById(int id){
+    public List<Item> listItemsByUserId(int user_id){
         Map<String, Object> params = new HashMap<>();
-        params.put("id", id);
-        return jdbc.query(SELECT_ITEM_BY_ID, ITEM_ROW_MAPPER);
+        params.put("user_id", user_id);
+        return jdbc.query(SELECT_ITEMS_BY_USER_ID, ITEM_ROW_MAPPER);
     }
 
     @Override
@@ -82,13 +82,10 @@ public class JDBCItemDAO implements ItemDAO {
 
     }
 
-    @Override
-    public boolean listItemByType(String itemType) {
-        return false;
-    }
+
 
     @Override
-    public List<Item> listByType(String itemType) {
+    public List<Item> listUserItemsByType(String itemType) {
         Map<String, Object> params = new HashMap<>();
         params.put("item_type", itemType);
         return jdbc.query(
