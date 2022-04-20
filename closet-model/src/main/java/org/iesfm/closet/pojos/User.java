@@ -1,8 +1,5 @@
 package org.iesfm.closet.pojos;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -15,14 +12,7 @@ public class User {
     private List<Item> items;
     private List<Outfit> outfits;
 
-    @JsonCreator
-    public User(
-            @JsonProperty("id") int id,
-            @JsonProperty("nickname") String nickname,
-            @JsonProperty("password") String password,
-            @JsonProperty("email") String email,
-            @JsonProperty("items") List<Item> items,
-            @JsonProperty("outfits") List<Outfit> outfits) {
+    public User(int id, String nickname, String password, String email, List<Item> items, List<Outfit> outfits) {
         this.id = id;
         this.nickname = nickname;
         this.password = password;

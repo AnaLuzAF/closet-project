@@ -4,6 +4,8 @@ public class ConsultasToDo {
 
 /*
 
+    // TODO - BORRAR CLASES CATEGORY E INSERTAR CATEGORIAS FIJAS - ESO SERA UNA FUNCIONALIDAD FUTURA
+
     // USER
     --Crear usuario: POST /users
 

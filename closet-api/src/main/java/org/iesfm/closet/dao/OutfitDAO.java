@@ -1,6 +1,5 @@
 package org.iesfm.closet.dao;
 
-import org.iesfm.closet.pojos.Category;
 import org.iesfm.closet.pojos.Outfit;
 
 import java.util.List;
@@ -9,9 +8,9 @@ public interface OutfitDAO {
 
     boolean insert(String name, Outfit outfit);
 
-    List<Outfit> listAll();
+    List<Outfit> listUserOutfits();
 
-    List<Outfit> listOutfitsFromCategory(String name);
+    List<Outfit> listUserOutfitsFromCategory(String name);
 
 
 }

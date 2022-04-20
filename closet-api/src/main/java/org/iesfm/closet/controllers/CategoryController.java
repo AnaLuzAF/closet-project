@@ -1,6 +1,5 @@
 package org.iesfm.closet.controllers;
 
-import org.iesfm.closet.client.CategoriesApi;
 import org.iesfm.closet.dao.CategoryDAO;
 import org.iesfm.closet.pojos.Category;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-public class CategoryController implements CategoriesApi {
+public class CategoryController {
 
     @Autowired
     private CategoryDAO categoryDAO;

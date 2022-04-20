@@ -8,16 +8,9 @@ public interface ItemDAO {
 
     boolean insert(Item item);
 
-    List<Item> listAll();
-
-    List listItemById(int id);
-
     int deleteItem (int id);
 
     List<Item> listUserItemsByType(String itemType);
 
-    //no funciona
-    boolean listItem(int id);
-
-    List<Item> listItemsByUserId(int user_id);
+    List<Item> listUserItems(int user_id);
 }

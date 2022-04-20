@@ -22,15 +22,19 @@ public class ItemController implements ItemsApi {
             @PathVariable("user_id") int user_id,
             @RequestParam("item_type") String itemType) {
 
-        if (!itemDAO.listItem(user_id)){
+        if (!userDAO.existsUser(user_id)){
             // user not found
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             //bad request si esta mal el item_type
-        }else if (!itemDAO.listUserItemsByType(itemType)){
+        }else if (!itemDAO.existsItemType(itemType)){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        //si es not null
-        return itemDAO.listAll();
+
+        if(itemType == null) {
+            return itemDAO.listUserItems(user_id);
+        } else {
+            return itemDAO.listUserItemsByType(itemType);
+        }
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/users/{user_id}/items")
@@ -44,7 +48,6 @@ public class ItemController implements ItemsApi {
         }
 
     }
-
 
     //Eliminar una prenda: DELETE /users/{userId}/items/{id}
     @RequestMapping(method = RequestMethod.DELETE, path = "/users/{user_id}/items/{id}")

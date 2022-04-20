@@ -81,6 +81,7 @@ INSERT INTO item(item_type,  imagename) VALUES('bottom', 'shorts');
 INSERT INTO item(item_type,  imagename) VALUES('shoes' ,'sneakers');
 
 
+INSERT INTO category(name) VALUES('all');
 INSERT INTO category(name) VALUES('sport');
 
 

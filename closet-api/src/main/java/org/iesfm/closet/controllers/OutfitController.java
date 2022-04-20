@@ -3,9 +3,8 @@ package org.iesfm.closet.controllers;
 import org.iesfm.closet.client.OutfitsApi;
 import org.iesfm.closet.controllers.pojosApi.OutfitApi;
 import org.iesfm.closet.dao.OutfitDAO;
-import org.iesfm.closet.pojos.Category;
+import org.iesfm.closet.dao.UserDAO;
 import org.iesfm.closet.pojos.Outfit;
-import org.iesfm.closet.pojos.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +17,8 @@ public class OutfitController implements OutfitsApi {
 
     @Autowired
     private OutfitDAO outfitDAO;
+    @Autowired
+    private UserDAO userDAO;
 
     /*
     Crear outfit (añadir un outfit a una categoria): POST /users/{userId}/outfits/{category}??
@@ -31,9 +32,11 @@ public class OutfitController implements OutfitsApi {
     public void insert(@PathVariable("user_id") int user_id, @PathVariable("category") String category, @RequestBody OutfitApi outfit) {
 
         /* if userdao.userexists.. hacer consultas a parte */
+        if(!userDAO.userExists(user_id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
+        }
 
-
-        if (!outfitDAO.insert(outfitapi convertido)) {
+        if (!outfitDAO.insert(outfit /* outfitapi convertido */) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bad request");
 
             // lanzar excepciones segun el error:
@@ -46,19 +49,13 @@ public class OutfitController implements OutfitsApi {
         }
     }
 
-   /* @RequestMapping(method = RequestMethod.GET, path = "/users/{userId}/outfits")
-    public List<Outfit> getOutfits(@PathVariable("id") int userId) {
-        return outfitDAO.listAll();
-    }
-*/
 
-// get all outfits / outfits from selected category (puedes poner all o el nombre de la categoria)
-    @RequestMapping(method = RequestMethod.GET, path = "/users/{user_id}/categories/{name}/outfits")
-    public List<Outfit> listAll(@PathVariable("user_id") int user_id, @PathVariable("name") String name) {
-        if (name.equalsIgnoreCase("all")) {
-            return outfitDAO.listAll();
+    @RequestMapping(method = RequestMethod.GET, path = "/users/{user_id}/categories/{category}/outfits")
+    public List<Outfit> listUserOutfits(@PathVariable("user_id") int user_id, @PathVariable("category") String category) {
+        if (category.equalsIgnoreCase("all")) {
+            return outfitDAO.listUserOutfits();
         } else {
-            return outfitDAO.listOutfitsFromCategory(name);
+            return outfitDAO.listUserOutfitsFromCategory(category);
         }
     }
 

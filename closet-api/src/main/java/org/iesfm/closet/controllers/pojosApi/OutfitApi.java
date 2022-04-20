@@ -1,13 +1,24 @@
 package org.iesfm.closet.controllers.pojosApi;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.Objects;
+
 public class OutfitApi {
 
-    private int id;
     private String top;
     private String bottom;
     private String shoes;
-    // category no porque viene en el path?
 
-
+    @JsonCreator
+    public OutfitApi(
+            @JsonProperty("top_id") String top,
+            @JsonProperty("bottom_id") String bottom,
+            @JsonProperty("shoes_id") String shoes) {
+        this.top = top;
+        this.bottom = bottom;
+        this.shoes = shoes;
+    }
 
 }

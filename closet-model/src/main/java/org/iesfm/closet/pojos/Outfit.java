@@ -8,8 +8,6 @@ import java.util.Objects;
 
 public class Outfit {
 
-    // todos los campos de la bbdd
-    // json aqui no, json en pojosapi
     private int id;
     private String top;
     private String bottom;
