@@ -47,7 +47,6 @@ public class JDBCCategoryDAO implements CategoryDAO {
         );
     }
 
-
     @Override
     public int deleteCategory(String name) {
         Map<String, Object> params = new HashMap<>();

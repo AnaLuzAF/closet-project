@@ -15,7 +15,7 @@ public class CategoryController {
     @Autowired
     private CategoryDAO categoryDAO;
 
-
+/*
     @RequestMapping(method = RequestMethod.POST, path = "/users/{user_id}/categories")
     public void addCategory(@PathVariable("user_id") int user_id, @RequestBody Category category) {
         if (!categoryDAO.addCategory(category)) {
@@ -35,5 +35,5 @@ public class CategoryController {
         }
     }
 
-
+*/
 }

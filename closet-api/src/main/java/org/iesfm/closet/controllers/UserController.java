@@ -15,7 +15,7 @@ public class UserController {
 
     @Autowired
     private UserDAO userDAO;
-
+/*
     @RequestMapping(method = RequestMethod.POST, path = "/users")
     public void insert(@RequestBody UserApi user) {
 
@@ -45,5 +45,5 @@ public class UserController {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "User not found");
         }
-    }
+    }*/
 }
