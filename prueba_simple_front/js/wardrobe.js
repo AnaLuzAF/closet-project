@@ -2,7 +2,7 @@ function loadWardrobe() {
     var wardrobeStructure = $('#main');
     wardrobeStructure.empty();
 
-    var form = `  <div class="item-container">
+    var form = `<div class="item-container">
            
            <div class=types>
                <ul>
@@ -12,7 +12,7 @@ function loadWardrobe() {
                </ul>
            </div>
            <div class="items">
-               <div class="item-box">item</div>
+               <div class="item-box">+</div>
                <div class="item-box">item</div>
                <div class="item-box">item</div>
                <div class="item-box">item</div>
