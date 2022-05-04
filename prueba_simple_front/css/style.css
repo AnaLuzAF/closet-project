@@ -56,8 +56,12 @@ header {
   display: block;
   padding: 5px 10px;
   border-radius: 6px;
-  background-color: #A9B6AD;
+  background-color: #4F504E;
   color: #fff;
+}
+
+.types a:hover {
+    background-color: #A9B6AD;
 }
 
 .items {
