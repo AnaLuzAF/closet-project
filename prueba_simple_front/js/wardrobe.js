@@ -1,37 +1,36 @@
-function addBookDialog() {
-    var booksDiv = $('#main');
-    booksDiv.empty();
+function loadWardrobe() {
+    var wardrobeStructure = $('#main');
+    wardrobeStructure.empty();
 
-    var form = `<div>
-                  <div >
-                    <div >
-                      <div >
-                        <h5 >Añadir libro</h5>
-                      </div>
-                      <div >
-                        <label for="isbn">ISBN</label>
+    var form = `  <div class="item-container">
+           
+           <div class=types>
+               <ul>
+                  <li><a onclick="getTops()">Top</a></li>
+                  <li><a onclick="getBottoms()">Bottom</a></li>
+                  <li><a onclick="getShoes()">Shoes</a></li>
+               </ul>
+           </div>
+           <div class="items">
+               <div class="item-box">item</div>
+               <div class="item-box">item</div>
+               <div class="item-box">item</div>
+               <div class="item-box">item</div>
+               <div class="item-box">item</div>
+               <div class="item-box">item</div>
+               <div class="item-box">item</div>
+               <div class="item-box">item</div>
+           </div>
+       </div>
+       
+       <div class="outfit-container">
+           <div class="outfit-parts">
+               <div class="outfit-box">item</div>
+               <div class="outfit-box">item</div>
+               <div class="outfit-box">item</div>
+           </div>
+       </div>
+       `;
 
-                        <input type="text" id="isbn" name="isbn" required>
-                        <br>
-                        <label for="title">Título</label>
-                        <input type="text" id="title" name="title" required>
-                        <br>
-                        <label for="author">Autor</label>
-                        <input type="text" id="author" name="author" required>
-                        <br>
-                        <label for="year">Año de publicación</label>
-                        <input type="text" id="year" name="year" required>
-                        <br>
-                        <label for="image">Portada</label>
-                        <input type="file" id="image" name="image">
-                      </div>
-                      <div >
-                        <button type="button" class="btn btn-secondary-dark" >Cancelar</button>
-                        <button type="button" class="btn btn-dark" onclick="createBook()">Añadir</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>`;
-
-     booksDiv.append(form);
+     wardrobeStructure.append(form);
 }
