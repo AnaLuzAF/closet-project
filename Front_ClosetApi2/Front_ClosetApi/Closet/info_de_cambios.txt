@@ -1,0 +1,9 @@
+para lograr el ancho completo me fui al codigo del style.css, a la línea 312 y le añadí un max-width para que creciera a lo ancho.
+Luego en la línea 303 cambié el top de la section para que quedara nivelado con el nav y en bottom para que quedara pegado al final de la página.
+Lo siguiente que realicé fue el copiado de la parte del filtrado de la section outfit y su modificación en id´s y demás estilos necesarios para su funcionamiento(css líneas 581-608; main.js líneas 187-212).
+Por último añadí un apartado personalizado para desplazar y colocar la sección a la izquierda (css líneas 610-614).
+Agregué para que se viera también unos div para su visualización más clara.
+He dejado comentado en el index.html todo el código de los carruseles.
+A partir de la línea 233 se crea el div para añadir las imágenes en grandes a la derecha.
+He probado a darle funcionalidad mediante JavaScript para lograr que se agrandesn las imágenes(las líneas que ocupan de la 219-237 del main.js), no he logrado que funcione al 100% (pendiente preguntar a Mikel). 
+Aunque no tenga funcionalidad, he preferido darle estilo para que se vea cómo va a quedar y dejarlo bien cuadrado (las líneas 679-697 de style.css).

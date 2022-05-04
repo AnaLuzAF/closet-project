@@ -18,8 +18,7 @@ type_name		         VARCHAR (50) NOT NULL PRIMARY KEY
 CREATE TABLE IF NOT EXISTS item (
 id				    INT AUTO_INCREMENT PRIMARY KEY,
 item_type	        VARCHAR (40) NOT NULL,
-imagename		    VARCHAR (40) NOT NULL,
-user_id             INT,
+user_id             INT NOT NULL,
 CONSTRAINT FK_ITEM_USER
 FOREIGN KEY(user_id)
 REFERENCES user(id)
@@ -42,8 +41,8 @@ id                                INT AUTO_INCREMENT PRIMARY KEY,
 top_id                              INT NOT NULL,
 bottom_id                            INT NOT NULL,
 shoes_id                            INT NOT NULL,
-categories                        VARCHAR (50) NOT NULL,
-user_id                           INT,
+category                        VARCHAR (50) NOT NULL,
+user_id                           INT NOT NULL,
 CONSTRAINT FK_OUTFIT_TOP
 FOREIGN KEY (top_id)
 REFERENCES item (id)
@@ -65,7 +64,7 @@ REFERENCES user (id)
 	ON UPDATE CASCADE
     ON DELETE CASCADE,
 CONSTRAINT FK_OUTFIT_CATEGORY
-FOREIGN KEY(categories)
+FOREIGN KEY(category)
 REFERENCES category(name)
     ON UPDATE CASCADE
     ON DELETE CASCADE
@@ -82,6 +81,7 @@ INSERT INTO item(item_type,  imagename) VALUES('bottom', 'shorts');
 INSERT INTO item(item_type,  imagename) VALUES('shoes' ,'sneakers');
 
 
+INSERT INTO category(name) VALUES('all');
 INSERT INTO category(name) VALUES('sport');
 
 
