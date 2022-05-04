@@ -1,4 +1,3 @@
-
 function addBookDialog() {
     var booksDiv = $('#main');
     booksDiv.empty();

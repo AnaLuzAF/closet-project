@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">    
 
-  <title>Personal Bootstrap Template</title>
+  <title>Online Closet</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -20,10 +20,15 @@
   <link href="css/style.css" rel="stylesheet">
     
     <!-- Javascript files -->
+    <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/wardrobe.js"></script>
-
+    <script type="text/javascript" src="js/outfits.js"></script>
+    <script type="text/javascript" src="js/home.js"></script>
 </head>
 
+<!-- descomentar en el futuro -->
+<!-- <body onload="loadHome()"> -->
 <body>
 
   <!-- ======= Header ======= -->
@@ -31,35 +36,28 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link active" href="#header">Home</a></li>
-          <li><a class="nav-link" href="#info">About</a></li>
-          <li><a class="nav-link" href="#carousel">Carrousels</a></li>
+          <li><a class="nav-link active" href="#" onclick="loadHome()">Home</a></li>
+          <li><a class="nav-link" href="#">About</a></li>
+          <li><a class="nav-link" href="#">Carrousels</a></li>
           <li><a class="nav-link" href="#" onclick="wardrobe()">Wardrobe</a></li>
-          <li><a class="nav-link" href="#outfit">My outfits</a></li>
-          <li><a class="nav-link" href="#contacto">Contact us</a></li>
+          <li><a class="nav-link" href="#" onclick="outfits()">My outfits</a></li>
+          <li><a class="nav-link" href="#">Contact us</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+      </nav>
+      <!-- .navbar -->
     
   </header>
   <!-- End Header -->
     
     <!-- en el main ir cargando las cosas, solo queda el nav arriba, tienen que quedar como dos secciones separadas -->
-    <!-- inicio meterlo en el js de home, aqui el main queda vacio -->
-    <main id="main" onload="js/home.js">
-        
-          <div class="inicio">
-        <h1><a href="index.html">Online Closet</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a> -->
-        
-        <h2>Plan your <span>best outfits</span> ahead</h2>
-            <br>
-      <h2>Formulario inicio</h2>
-        </div>
-  
+    <main id="main">
+       
+       <div>
+           <h1>HOLAAAAA</h1>
+       </div>
+       
     </main>
-    
     
 </body>
 </html>
