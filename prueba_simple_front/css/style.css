@@ -14,8 +14,61 @@ header {
 # Outfits
 --------------------------------------------------------------*/
 
+.types-outfit {
+    width: 70%;
+    margin: 3% 40%;
+    float: left;
+}
 
+.types-outfit ul {
+  padding: 0;
+  margin: 0;
+  display: inline;
+  list-style: none;
+  align-items: center;
+}
 
+.types-outfit li {
+  float: left;
+  margin: 0 1%;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.types-outfit a {
+  display: block;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background-color: #4F504E;
+  color: #fff;
+}
+
+.types-outfit a:hover {
+    background-color: #A9B6AD;
+}
+
+.outfit-main {
+    width: 116%;
+    float: left;
+}
+
+.outfits {
+    width: 60%;
+    margin: 0 15%;
+    float: left;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.outfit-div {
+    width: 28%;
+    height: 200px;
+    margin: 1% 2%;
+    padding: 5px;
+    float: left;
+    background-color: #A9B6AD;
+}
 
 
 /*--------------------------------------------------------------

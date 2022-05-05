@@ -1,13 +1,29 @@
-function loadHome() {
-    var homeStructure = $('#main');
-    homeStructure.empty();
+function loadOutfits(){
+    var outfitStructure = $('#main');
+    outfitStructure.empty();
 
-    var home = `<div class="inicio">
-                    <h1><a href="index.html">Online Closet</a></h1>
-                    <h2>Plan your <span>best outfits</span> ahead</h2>
-                    <br>
-                    <h2>Formulario inicio</h2>
+    var outfits = `<div class="outfit">
+
+                    <div class=types-outfit>
+                       <ul>
+                          <li><a onclick="all()">All</a></li>
+                          <li><a onclick="sport()">Sport</a></li>
+                          <li><a onclick="classy()">Classy</a></li>
+                          <li><a onclick="casual()">Casual</a></li>
+                       </ul>
+                    </div>
+
+                    <div class="outfit-main">
+                        <div class="outfits">
+                            <div class="outfit-div"></div>
+                            <div class="outfit-div"></div>
+                            <div class="outfit-div"></div>
+                            <div class="outfit-div"></div>
+                            <div class="outfit-div"></div>
+                            <div class="outfit-div"></div>
+                        </div>
+                    </div>
                 </div>`;
 
-     homeStructure.append(home);
+     outfitStructure.append(outfits);
 }
