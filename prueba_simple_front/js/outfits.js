@@ -21,6 +21,8 @@ function loadOutfits(){
                             <div class="outfit-div"></div>
                             <div class="outfit-div"></div>
                             <div class="outfit-div"></div>
+                            <div class="outfit-div"></div>
+                            <div class="outfit-div"></div>
                         </div>
                     </div>
                 </div>`;
