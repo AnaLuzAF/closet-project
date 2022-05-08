@@ -11,12 +11,40 @@ header {
 }
 
 /*--------------------------------------------------------------
+# Formulario
+--------------------------------------------------------------*/
+.inicio {
+    width: 90%;
+    margin: 80px 5% 0 5%;
+    float: left;
+}
+.formulario{
+        width: 16%;
+        margin: 0 4%;
+        height: 309px;
+        float: left;
+        background-color: #fff;
+        border-radius: 17px;
+}
+.formulario form{
+    margin: 20px 26px;
+}
+.formulario form label{
+    color: black;
+    padding:10px;
+}
+.formulario form input{
+    padding:10px;
+    margin: 6px -6px;
+}
+
+/*--------------------------------------------------------------
 # Outfits
 --------------------------------------------------------------*/
 
 .types-outfit {
     width: 70%;
-    margin: 3% 15%;
+    margin: 3% 40%;
     float: left;
 }
 
@@ -56,7 +84,7 @@ header {
 .outfits {
     width: 70%;
     margin: 0 15%;
-    height: 729px;
+    height: 533px;
     float: left;
     background-color: #fff;
     border-radius: 5px;
@@ -64,7 +92,7 @@ header {
 
 .outfit-div {
     width: 19%;
-    height: 46%;
+    height: 43%;
     margin: 1% 2%;
     padding: 8px;
     float: left;
@@ -260,11 +288,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
-.inicio {
-    width: 90%;
-    margin: 0 5%;
-    float: left;
-}
+
 
 span {
 color: green;  

@@ -79,6 +79,8 @@ public class ItemController {
 
     /*
 
+
+
     private Item convertToModel(ItemRest item, int userId) {
         return new Item(
                 // !!!! new item id?
