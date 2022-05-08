@@ -40,6 +40,7 @@ public class JDBCItemDAO implements ItemDAO {
             " :user_id"+
             ")";
 
+    /*
     @Override
     public boolean insert(Item item) {
         try {
@@ -64,14 +65,17 @@ public class JDBCItemDAO implements ItemDAO {
                         )
         );
     }
+    */
 
+    // Get items by userId
     @Override
-    public List<Item> listUserItems(int user_id){
+    public List<Item> listUserItems(int userId){
         Map<String, Object> params = new HashMap<>();
-        params.put("user_id", user_id);
+        params.put("user_id", userId);
         return jdbc.query(SELECT_ITEMS_BY_USER_ID, ITEM_ROW_MAPPER);
     }
 
+    /*
     @Override
     public int deleteItem(int id) {
         Map<String, Object> params = new HashMap<>();
@@ -79,11 +83,9 @@ public class JDBCItemDAO implements ItemDAO {
         return jdbc.update(DELETE_ITEM, params);
 
     }
-
-
-
+*/
     @Override
-    public List<Item> listUserItemsByType(String itemType) {
+    public List<Item> listUserItemsByType(int userId, String itemType) {
         Map<String, Object> params = new HashMap<>();
         params.put("item_type", itemType);
         return jdbc.query(

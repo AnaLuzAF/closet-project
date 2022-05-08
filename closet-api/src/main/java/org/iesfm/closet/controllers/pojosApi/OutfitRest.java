@@ -5,14 +5,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 
-public class OutfitApi {
+public class OutfitRest {
 
     private String top;
     private String bottom;
     private String shoes;
 
     @JsonCreator
-    public OutfitApi(
+    public OutfitRest(
             @JsonProperty("top_id") String top,
             @JsonProperty("bottom_id") String bottom,
             @JsonProperty("shoes_id") String shoes) {
@@ -49,10 +49,10 @@ public class OutfitApi {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        OutfitApi outfitApi = (OutfitApi) o;
-        return Objects.equals(top, outfitApi.top) &&
-                Objects.equals(bottom, outfitApi.bottom) &&
-                Objects.equals(shoes, outfitApi.shoes);
+        OutfitRest outfitRest = (OutfitRest) o;
+        return Objects.equals(top, outfitRest.top) &&
+                Objects.equals(bottom, outfitRest.bottom) &&
+                Objects.equals(shoes, outfitRest.shoes);
     }
 
     @Override

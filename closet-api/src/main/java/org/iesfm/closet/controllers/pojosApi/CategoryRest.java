@@ -1,6 +1,6 @@
 package org.iesfm.closet.controllers.pojosApi;
 
-public class CategoryApi {
+public class CategoryRest {
 
     private String name;
 

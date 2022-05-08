@@ -5,19 +5,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 
-public class UserApi {
+public class UserRest {
 
     private String nickname;
-    private String password;
     private String email;
 
     @JsonCreator
-    public UserApi(
+    public UserRest(
             @JsonProperty("nickname") String nickname,
-            @JsonProperty("password") String password,
             @JsonProperty("email") String email) {
         this.nickname = nickname;
-        this.password = password;
         this.email = email;
     }
 
@@ -29,42 +26,32 @@ public class UserApi {
         this.nickname = nickname;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserApi userApi = (UserApi) o;
-        return Objects.equals(nickname, userApi.nickname) && Objects.equals(password, userApi.password) && Objects.equals(email, userApi.email);
+        UserRest userRest = (UserRest) o;
+        return Objects.equals(nickname, userRest.nickname) &&
+                Objects.equals(email, userRest.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nickname, password, email);
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-
-
+        return Objects.hash(nickname, email);
     }
 
     @Override
     public String toString() {
-        return "UserApi{" +
+        return "UserRest{" +
                 "nickname='" + nickname + '\'' +
-                ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }

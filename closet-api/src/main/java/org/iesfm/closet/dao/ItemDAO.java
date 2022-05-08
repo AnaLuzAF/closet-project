@@ -10,7 +10,7 @@ public interface ItemDAO {
 
     int deleteItem (int id);
 
-    List<Item> listUserItemsByType(String itemType);
+    List<Item> listUserItemsByType(int userId, String itemType);
 
-    List<Item> listUserItems(int user_id);
+    List<Item> listUserItems(int userId);
 }

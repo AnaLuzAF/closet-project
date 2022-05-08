@@ -1,5 +1,6 @@
 package org.iesfm.closet.controllers;
 
+import org.iesfm.closet.controllers.pojosApi.ItemRest;
 import org.iesfm.closet.dao.ItemDAO;
 import org.iesfm.closet.pojos.Item;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @RestController
 public class ItemController {
@@ -15,12 +18,13 @@ public class ItemController {
     @Autowired
     private ItemDAO itemDAO;
 
-/*
+
     @RequestMapping(method = RequestMethod.GET, path = "/users/{user_id}/items/{item_type}")
     public List<Item> listUserItems(
-            @PathVariable("user_id") int user_id,
+            @PathVariable("user_id") int userId,
             @RequestParam("item_type") String itemType) {
 
+        /*
         if (!userDAO.existsUser(user_id)){
             // user not found
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
@@ -28,14 +32,16 @@ public class ItemController {
         }else if (!itemDAO.existsItemType(itemType)){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
+        */
 
         if(itemType == null) {
-            return itemDAO.listUserItems(user_id);
+            return itemDAO.listUserItems(userId);
         } else {
-            return itemDAO.listUserItemsByType(itemType);
+            return itemDAO.listUserItemsByType(userId, itemType);
         }
     }
 
+/*
     @RequestMapping(method = RequestMethod.POST, path = "/users/{user_id}/items")
     public void insert(@RequestBody Item item,
                        @PathVariable("user_id") int id) {
@@ -56,4 +62,38 @@ public class ItemController {
                     HttpStatus.NOT_FOUND, "Item not found");
         }
     }*/
+
+
+
+
+
+
+
+        //////////////// conversores de tipos ////////////////
+
+    private ItemRest convertToApi(Item item) {
+        return new ItemRest(
+                item.getItemType()
+        );
+    }
+
+    /*
+
+    private Item convertToModel(ItemRest item, int userId) {
+        return new Item(
+                // !!!! new item id?
+                item.getItemType(),
+                userId
+        );
+    }
+*/
+
+    // Conversor generico de tipos:
+    public  <T1, T2> List<T2> convert(List<T1> list, Function<T1, T2> fn) {
+        return list
+                .stream() // stream(t1)
+                .map(t1 -> fn.apply(t1)) // stream de t2
+                .collect(Collectors.toList()); // vuelves a convertir en una lista (de stream a list)
+    }
+
 }
