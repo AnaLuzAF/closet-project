@@ -52,6 +52,7 @@ public class JDBCOutfitDAO implements OutfitDAO {
 
     // IMPLEMENTACION DE LAS QUERIES
 
+    /*
     @Override
     public boolean insert(Outfit outfit) {
         try {
@@ -88,4 +89,6 @@ public class JDBCOutfitDAO implements OutfitDAO {
                 OUTFIT_ROW_MAPPER
         );
     }
+
+     */
 }

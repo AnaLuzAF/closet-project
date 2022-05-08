@@ -24,6 +24,7 @@ public class JDBCCategoryDAO implements CategoryDAO {
     private static final String SELECT_CATEGORIES = "SELECT * FROM category";
     private static final String DELETE_CATEGORY = "DELETE FROM category WHERE name=:name";
 
+    /*
     @Override
     public boolean addCategory(Category category) {
         try {
@@ -53,4 +54,6 @@ public class JDBCCategoryDAO implements CategoryDAO {
         params.put("name", name);
         return jdbc.update(DELETE_CATEGORY, params);
     }
+
+     */
 }

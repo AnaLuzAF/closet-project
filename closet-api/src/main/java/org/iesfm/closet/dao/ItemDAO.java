@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface ItemDAO {
 
-    boolean insert(Item item);
+    //boolean insert(Item item);
 
-    int deleteItem (int id);
+    //int deleteItem (int id);
 
     List<Item> listUserItemsByType(int userId, String itemType);
 

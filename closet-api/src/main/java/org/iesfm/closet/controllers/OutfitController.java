@@ -28,7 +28,7 @@ public class OutfitController {
     */
 
     /*
-    @RequestMapping(method = RequestMethod.POST, path = "/users/{user_id}/categories/{category}/outfits")
+    @RequestMapping(method = RequestMethod.POST, path = "/users/{userId}/categories/{category}/outfits")
     public void insert(@PathVariable("user_id") int user_id, @PathVariable("category") String category, @RequestBody OutfitApi outfit) {
 
         /* if userdao.userexists.. hacer consultas a parte */
@@ -52,8 +52,8 @@ public class OutfitController {
     }
 
 
-    @RequestMapping(method = RequestMethod.GET, path = "/users/{user_id}/categories/{category}/outfits")
-    public List<Outfit> listUserOutfits(@PathVariable("user_id") int user_id, @PathVariable("category") String category) {
+    @RequestMapping(method = RequestMethod.GET, path = "/users/{userId}/categories/{category}/outfits")
+    public List<Outfit> listUserOutfits(@PathVariable("user_id") int userId, @PathVariable("category") String category) {
         if (category.equalsIgnoreCase("all")) {
             return outfitDAO.listUserOutfits();
         } else {

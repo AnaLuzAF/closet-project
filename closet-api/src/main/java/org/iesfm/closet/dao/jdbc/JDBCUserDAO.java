@@ -67,6 +67,7 @@ public class JDBCUserDAO implements UserDAO {
 
     // IMPLEMENTACION DE LAS QUERIES
 
+    /*
     @Override
     public boolean insert(User user) {
         try {
@@ -80,7 +81,7 @@ public class JDBCUserDAO implements UserDAO {
         }
     }
 
-    /*
+
     private List<String> selectUserItems(int id) {
         Map<String, Object> params = new HashMap<>();
         params.put("user_id", id);
@@ -98,7 +99,7 @@ public class JDBCUserDAO implements UserDAO {
                         rs.getString("role")
         );
     }
-    */
+
 
 
     @Override
@@ -171,4 +172,6 @@ public class JDBCUserDAO implements UserDAO {
     public boolean userExists(int id) {
         return false;
     }
+
+     */
 }
