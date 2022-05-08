@@ -4,14 +4,14 @@ function loadWardrobe() {
 
     var form = `<div class="item-container">
            
-           <div class=types>
+           <div class="types">
                <ul>
-                  <li><a onclick="getTops()">Top</a></li>
+                  <li><a onclick="printItems()" onload="printItems()">Top</a></li>
                   <li><a onclick="getBottoms()">Bottom</a></li>
                   <li><a onclick="getShoes()">Shoes</a></li>
                </ul>
            </div>
-           <div class="items">
+           <div class="items" id="items">
 
                <div class="item-box">+</div>
 
@@ -28,14 +28,13 @@ function loadWardrobe() {
        `;
 
      wardrobeStructure.append(form);
-
      printItems();
 }
 
 
 function printItems() {
-    $.get("/users/{user_id}/items/{item_type}", function(items, itemType) {
-        var itemsDiv = $('.items');
+    $.get("/users/1/items?itemType=top", function(items, itemType) {
+        var itemsDiv = $('#items');
         itemsDiv.empty();
 
         for (item of items) {
@@ -45,7 +44,7 @@ function printItems() {
 }
 
 function itemDiv(item) {
-    return $("<div class='outfit-box'>")
-        .append($("<h1>").text(item.id))
+    return $("<div class='item-box'>")
+        .append($("<h1>").text("FUNCIONA"));
 }
 

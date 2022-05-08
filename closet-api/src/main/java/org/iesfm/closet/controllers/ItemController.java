@@ -19,7 +19,7 @@ public class ItemController {
     private ItemDAO itemDAO;
 
 
-    @RequestMapping(method = RequestMethod.GET, path = "/users/{userId}/items/{itemType}")
+    @RequestMapping(method = RequestMethod.GET, path = "/users/{userId}/items")
     public List<Item> listUserItems(
             @PathVariable("user_id") int userId,
             @RequestParam("item_type") String itemType) {
