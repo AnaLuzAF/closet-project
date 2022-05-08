@@ -76,10 +76,9 @@ INSERT INTO item_type(type_name) VALUES('top');
 INSERT INTO item_type(type_name) VALUES('bottom');
 INSERT INTO item_type(type_name) VALUES('shoes');
 
-INSERT INTO item(item_type,  imagename) VALUES('top','shirt');
-INSERT INTO item(item_type,  imagename) VALUES('bottom', 'shorts');
-INSERT INTO item(item_type,  imagename) VALUES('shoes' ,'sneakers');
-
+INSERT INTO item(item_type) VALUES('top');
+INSERT INTO item(item_type) VALUES('bottom');
+INSERT INTO item(item_type) VALUES('shoes');
 
 INSERT INTO category(name) VALUES('all');
 INSERT INTO category(name) VALUES('sport');
