@@ -11,18 +11,49 @@ header {
 }
 
 /*--------------------------------------------------------------
+# Formulario
+--------------------------------------------------------------*/
+.inicio {
+    width: 90%;
+    margin: 80px 5% 0 5%;
+    float: left;
+}
+.formulario{
+        width: 16%;
+        margin: 0 4%;
+        height: 310px;
+        float: left;
+        background-color: #fff;
+        border-radius: 20px;
+}
+.formulario form{
+    margin: 20px 26px;
+}
+.formulario form label{
+    color: black;
+    padding:10px;
+}
+.formulario form input{
+    padding:10px;
+    margin: 6px -6px;
+}
+
+/*--------------------------------------------------------------
 # Outfits
 --------------------------------------------------------------*/
 
 .types-outfit {
-    width: 70%;
-    margin: 3% 15%;
+    width: 26%;
+    margin:0 39%;
+    margin-top:80px;
+    margin-bottom: 40px;
     float: left;
 }
 
 .types-outfit ul {
   padding: 0;
   margin: 0;
+  width:70%;
   display: inline;
   list-style: none;
   align-items: center;
@@ -30,7 +61,8 @@ header {
 
 .types-outfit li {
   float: left;
-  margin: 0 1%;
+  /*margin: 0 1%;*/
+  margin-right: 6%;
   font-family: "Poppins", sans-serif;
   font-size: 15px;
   font-weight: 400;
@@ -48,24 +80,21 @@ header {
     background-color: #A9B6AD;
 }
 
-.outfit-main {
-    width: 100%;
-    float: left;
-}
 
 .outfits {
     width: 70%;
     margin: 0 15%;
-    height: 729px;
+    margin-bottom:50px;
     float: left;
     background-color: #fff;
     border-radius: 5px;
+    padding: 10px 0;
 }
 
 .outfit-div {
-    width: 19%;
-    height: 46%;
-    margin: 1% 2%;
+    width: 21%;
+    height: 350px;
+    margin: 10px 1%;
     padding: 8px;
     float: left;
     background-color: #A9B6AD;
@@ -95,7 +124,7 @@ header {
   margin: 0;
   display: inline;
   list-style: none;
-  align-items: center;  
+  align-items: center;
 }
 
 .types li {
@@ -103,7 +132,7 @@ header {
   margin: 0 1%;
   font-family: "Poppins", sans-serif;
   font-size: 15px;
-  font-weight: 400; 
+  font-weight: 400;
 }
 
 .types a {
@@ -121,9 +150,7 @@ header {
 .items {
     width: 70%;
     margin: 0 15%;
-    margin-bottom: 50px;
     float: left;
-    padding: 10px 0;
     padding-left: .5%;
     background-color: #fff;
     border-radius: 5px;
@@ -200,7 +227,7 @@ h1, h2, h3, h4, h5, h6 {
 # Navigation Menu
 --------------------------------------------------------------*/
 /**
-* Desktop Navigation 
+* Desktop Navigation
 */
 .navbar {
   padding-left: 0;
@@ -208,12 +235,12 @@ h1, h2, h3, h4, h5, h6 {
     width: 32%;
 }
 .navbar ul {
-  
+
   padding: 0;
   display: flex;
   list-style: none;
-  align-items: center;  
-   
+  align-items: center;
+
 }
 
 .navbar li {
@@ -262,11 +289,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
-.inicio {
-    width: 90%;
-    margin: 0 5%;
-    float: left;
-}
+
 
 span {
 color: green;  

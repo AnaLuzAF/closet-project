@@ -12,8 +12,6 @@ function loadOutfits(){
                           <li><a onclick="casual()">Casual</a></li>
                        </ul>
                     </div>
-
-                    <div class="outfit-main">
                         <div class="outfits">
                             <div class="outfit-div"></div>
                             <div class="outfit-div"></div>
@@ -23,7 +21,7 @@ function loadOutfits(){
                             <div class="outfit-div"></div>
                             <div class="outfit-div"></div>
                             <div class="outfit-div"></div>
-                        </div>
+                            <div class="outfit-div"></div>
                     </div>
                 </div>`;
 
