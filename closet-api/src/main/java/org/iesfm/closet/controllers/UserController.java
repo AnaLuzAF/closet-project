@@ -56,6 +56,7 @@ public class UserController {
     private UserRest convertToApi(User user) {
         return new UserRest(
                 user.getNickname(),
+                user.getPassword(),
                 user.getEmail()
         );
     }

@@ -121,7 +121,9 @@ header {
 .items {
     width: 70%;
     margin: 0 15%;
+    margin-bottom: 50px;
     float: left;
+    padding: 10px 0;
     padding-left: .5%;
     background-color: #fff;
     border-radius: 5px;

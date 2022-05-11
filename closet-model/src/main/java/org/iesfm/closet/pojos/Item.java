@@ -4,18 +4,20 @@ package org.iesfm.closet.pojos;
 import java.util.Objects;
 
 public class Item {
+
     private int id;
     private String itemType;
     private int userId;
 
-
-    public Item(
-            int id,
-            String itemType,
-           int user_id){
+    public Item(int id, String itemType, int userId) {
         this.id = id;
         this.itemType = itemType;
-        this.userId =user_id;
+        this.userId = userId;
+    }
+
+    public Item(String itemType, int userId) {
+        this.itemType = itemType;
+        this.userId = userId;
     }
 
     public int getId() {
@@ -33,7 +35,6 @@ public class Item {
     public void setItemType(String itemType) {
         this.itemType = itemType;
     }
-
 
 
     public int getUserId() {

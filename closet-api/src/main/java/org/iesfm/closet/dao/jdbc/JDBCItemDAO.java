@@ -28,19 +28,24 @@ public class JDBCItemDAO implements ItemDAO {
             );
 
     private final static String SELECT_ALL_ITEMS = "SELECT * FROM item";
-    private static final String SELECT_ITEMS_BY_USER_ID = "SELECT * FROM item WHERE user_id = :user_id ";
-    private static final String SELECT_ITEM_BY_ITEM_TYPE = "SELECT * FROM item WHERE itemType = :item_type ";
-    private static final String DELETE_ITEM="DELETE FROM item WHERE id = :id";
+    private static final String SELECT_ITEMS_BY_USER_ID = "SELECT * FROM item WHERE user_id = :user_id";
+
+
+    // todo --------
+    private static final String SELECT_ITEM_BY_ITEM_TYPE = "SELECT * FROM item WHERE item_type = :item_type AND user_id= :user_id";
+
+
+    private static final String DELETE_ITEM = "DELETE FROM item WHERE id = :id";
     private final static String INSERT_ITEM = "INSERT INTO item(" +
-            " itemType, " +
-            " userId" +
+            " item_type, " +
+            " user_id" +
             ") " +
             "VALUES(" +
             " :item_type, " +
-            " :user_id"+
+            " :user_id" +
             ")";
 
-    /*
+
     @Override
     public boolean insert(Item item) {
         try {
@@ -52,6 +57,9 @@ public class JDBCItemDAO implements ItemDAO {
             return false;
         }
     }
+
+
+    /*
 
     public List<Item> listAllItems() {
         Map<String, Object> params = new HashMap<>();
@@ -69,10 +77,10 @@ public class JDBCItemDAO implements ItemDAO {
 
     // Get items by userId
     @Override
-    public List<Item> listUserItems(int userId){
+    public List<Item> listUserItems(int userId) {
         Map<String, Object> params = new HashMap<>();
         params.put("user_id", userId);
-        return jdbc.query(SELECT_ITEMS_BY_USER_ID, ITEM_ROW_MAPPER);
+        return jdbc.query(SELECT_ITEMS_BY_USER_ID, params, ITEM_ROW_MAPPER);
     }
 
     /*
@@ -87,9 +95,10 @@ public class JDBCItemDAO implements ItemDAO {
     @Override
     public List<Item> listUserItemsByType(int userId, String itemType) {
         Map<String, Object> params = new HashMap<>();
+        params.put("user_id", userId);
         params.put("item_type", itemType);
         return jdbc.query(
-                SELECT_ITEM_BY_ITEM_TYPE,
+                SELECT_ITEM_BY_ITEM_TYPE, params,
                 (rs, rowNum) ->
                         new Item(
                                 rs.getInt("id"),
@@ -98,5 +107,4 @@ public class JDBCItemDAO implements ItemDAO {
                         )
         );
     }
-
 }

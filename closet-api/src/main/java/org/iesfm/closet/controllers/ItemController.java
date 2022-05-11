@@ -1,5 +1,7 @@
 package org.iesfm.closet.controllers;
 
+import org.iesfm.closet.client.ItemsApi;
+import org.iesfm.closet.controllers.mappers.ItemMapper;
 import org.iesfm.closet.controllers.pojosApi.ItemRest;
 import org.iesfm.closet.dao.ItemDAO;
 import org.iesfm.closet.pojos.Item;
@@ -13,46 +15,49 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @RestController
-public class ItemController {
+public class ItemController implements ItemsApi {
 
     @Autowired
     private ItemDAO itemDAO;
 
+    @Autowired
+    private ItemMapper itemMapper;
 
-    @RequestMapping(method = RequestMethod.GET, path = "/users/{userId}/items")
-    public List<Item> listUserItems(
+
+    @RequestMapping(method = RequestMethod.GET, path = "/users/{user_id}/items")
+    public List<ItemRest> listUserItems(
             @PathVariable("user_id") int userId,
-            @RequestParam("item_type") String itemType) {
+            @RequestParam(name = "item_type", required = false) String itemType) {
 
         /*
         if (!userDAO.existsUser(user_id)){
             // user not found
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             //bad request si esta mal el item_type
-        }else if (!itemDAO.existsItemType(itemType)){
+        } else if (!itemDAO.existsItemType(itemType)){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         */
 
         if(itemType == null) {
-            return itemDAO.listUserItems(userId);
+            return itemMapper.convert(itemDAO.listUserItems(userId),
+                    item -> itemMapper.convertToApi(item));
         } else {
-            return itemDAO.listUserItemsByType(userId, itemType);
+            return itemMapper.convert(itemDAO.listUserItemsByType(userId, itemType),
+                    item -> itemMapper.convertToApi(item));
         }
     }
 
-/*
-    @RequestMapping(method = RequestMethod.POST, path = "/users/{userId}/items")
-    public void insert(@RequestBody Item item,
-                       @PathVariable("user_id") int id) {
 
-        if (!itemDAO.insert(item)) {
-            // lanzar las excepciones correspondientes
-            // user not found, bad request si esta mal el item_type
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
+    @RequestMapping(method = RequestMethod.POST, path = "/users/{user_id}/items")
+    public boolean insert(@RequestBody ItemRest item,
+                       @PathVariable("user_id") int userId) {
 
+        return itemDAO.insert(itemMapper.convertToModel(item, userId));
     }
+
+
+    /*
 
     //Eliminar una prenda: DELETE /users/{userId}/items/{id}
     @RequestMapping(method = RequestMethod.DELETE, path = "/users/{user_id}/items/{id}")
@@ -64,38 +69,5 @@ public class ItemController {
     }*/
 
 
-
-
-
-
-
-        //////////////// conversores de tipos ////////////////
-
-    private ItemRest convertToApi(Item item) {
-        return new ItemRest(
-                item.getItemType()
-        );
-    }
-
-    /*
-
-
-
-    private Item convertToModel(ItemRest item, int userId) {
-        return new Item(
-                // !!!! new item id?
-                item.getItemType(),
-                userId
-        );
-    }
-*/
-
-    // Conversor generico de tipos:
-    public  <T1, T2> List<T2> convert(List<T1> list, Function<T1, T2> fn) {
-        return list
-                .stream() // stream(t1)
-                .map(t1 -> fn.apply(t1)) // stream de t2
-                .collect(Collectors.toList()); // vuelves a convertir en una lista (de stream a list)
-    }
 
 }
