@@ -230,7 +230,7 @@ header {
   background-color: #fff;
   color: #4F504E;
   padding: 10px;
-  padding-right: 60px;
+  padding-right: 50px;
   font-size: 16px;
 
   border: none;
@@ -256,12 +256,12 @@ header {
 
 /* Links inside the dropdown */
 .dropdown-content a {
-   display: block;
+    display: block;
     width: inherit;
-  padding: 10px 10%;
+    padding: 10px 10%;
     background-color: #fff;
-  color: #4F504E;
-  font-family: "Poppins", sans-serif;
+    color: #4F504E;
+    font-family: "Poppins", sans-serif;
     font-size: 15px;
     font-weight: 400;
 }
