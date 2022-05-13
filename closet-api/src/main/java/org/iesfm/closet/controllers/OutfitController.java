@@ -18,8 +18,6 @@ public class OutfitController implements OutfitsApi {
 
     @Autowired
     private OutfitDAO outfitDAO;
-    @Autowired
-    private UserDAO userDAO;
 
     @Autowired
     private OutfitMapper outfitMapper;
@@ -86,30 +84,18 @@ public class OutfitController implements OutfitsApi {
     //listar todos los outfits
     @RequestMapping(method = RequestMethod.GET, path = "/users/{user_id}/outfits")
     public List <OutfitRest> listUserOutfits(
-            @PathVariable("user_id")int userId) {
+            @PathVariable("user_id")int userId,
+            @RequestParam(name = "category", required = false) String category) {
 
-        return outfitMapper.convert(outfitDAO.listUserOutfits(userId),
-                outfit -> outfitMapper.convertToApi(outfit));
-
-    }
-
-
-
-
-    //listar un outfit por categoria
-
-    @RequestMapping(method = RequestMethod.GET, path = "/users/{user_id}/outfits/{category}")
-    public List<OutfitRest> listUserOutfitsByCategory(@PathVariable("user_id")int userId,
-                                                      @PathVariable("category") String category) {
-        if (category != null){
-            return outfitMapper.convert(outfitDAO.listUserOutfitsByCategory(userId,category),
+        if (category == null){
+            return outfitMapper.convert(outfitDAO.listUserOutfits(userId),
                     outfit -> outfitMapper.convertToApi(outfit));
-        }else{
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Category Not Found"
-            );
+        } else {
+            return outfitMapper.convert(outfitDAO.listUserOutfitsByCategory(userId, category),
+                    outfit -> outfitMapper.convertToApi(outfit));
         }
+
     }
 
+    }
 
-}

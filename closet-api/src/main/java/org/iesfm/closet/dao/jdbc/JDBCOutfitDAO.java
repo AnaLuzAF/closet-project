@@ -46,7 +46,7 @@ public class JDBCOutfitDAO implements OutfitDAO {
 
     private static final String SELECT_OUTFITS = "SELECT * FROM outfit WHERE user_id=:user_id";
 
-    private static final String SELECT_USER_OUTFITS_FROM_CATEGORY = "SELECT * FROM outfit WHERE category=:category AND userId=:user_id";
+    private static final String SELECT_USER_OUTFITS_FROM_CATEGORY = "SELECT * FROM outfit WHERE category=:category AND user_id=:user_id";
 
     @Override
     public List<Outfit> listUserOutfits(int userId) {

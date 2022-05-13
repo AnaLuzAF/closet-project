@@ -27,26 +27,19 @@ public class OutfitClient implements OutfitsApi{
         this.host = host;
     }
 
-    //listar todos los outfits
+    //listar todos los outfits y por categoria
     @Override
-    public List<OutfitRest> listUserOutfits(int userId) {
+    public List<OutfitRest> listUserOutfits(int userId,String category) {
+        HashMap<String, Object> params = new HashMap<>();
+        if (category!=null){
+            params.put("category",category);
+        }else{
+            params.put("user_id",userId);
+        }
         Outfit[] outfits = restTemplate
                 .getForObject(host + "/users/{user_id}/outfits", Outfit[].class);
         return outfitMapper.convert(List.of(outfits),
                 outfit -> outfitMapper.convertToApi(outfit));
     }
 
-
-
-
-    //listar outfit por una categoría
-    @Override
-    public List<OutfitRest> listUserOutfitsByCategory(int userId, String category) {
-        HashMap<String, Object> params = new HashMap<>();
-        params.put("user_id",userId);
-        params.put("category",category);
-        Outfit[] outfits = restTemplate.getForObject(host + "/users/{user_id}/outfits/{category}", Outfit[].class, params);
-        return outfitMapper.convert(List.of(outfits),
-                outfit -> outfitMapper.convertToApi(outfit));
-    }
 }
