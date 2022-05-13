@@ -7,18 +7,29 @@ import java.util.Objects;
 
 public class OutfitRest {
 
+    private  int id;
     private String top;
     private String bottom;
     private String shoes;
 
     @JsonCreator
     public OutfitRest(
+            @JsonProperty("id") int id,
             @JsonProperty("top_id") String top,
             @JsonProperty("bottom_id") String bottom,
             @JsonProperty("shoes_id") String shoes) {
+        this.id =id;
         this.top = top;
         this.bottom = bottom;
         this.shoes = shoes;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTop() {
@@ -49,21 +60,20 @@ public class OutfitRest {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        OutfitRest outfitRest = (OutfitRest) o;
-        return Objects.equals(top, outfitRest.top) &&
-                Objects.equals(bottom, outfitRest.bottom) &&
-                Objects.equals(shoes, outfitRest.shoes);
+        OutfitRest that = (OutfitRest) o;
+        return id == that.id && Objects.equals(top, that.top) && Objects.equals(bottom, that.bottom) && Objects.equals(shoes, that.shoes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(top, bottom, shoes);
+        return Objects.hash(id, top, bottom, shoes);
     }
 
     @Override
     public String toString() {
-        return "OutfitApi{" +
-                "top='" + top + '\'' +
+        return "OutfitRest{" +
+                "id=" + id +
+                ", top='" + top + '\'' +
                 ", bottom='" + bottom + '\'' +
                 ", shoes='" + shoes + '\'' +
                 '}';

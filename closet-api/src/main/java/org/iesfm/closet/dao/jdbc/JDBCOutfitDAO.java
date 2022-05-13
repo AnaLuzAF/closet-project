@@ -2,7 +2,6 @@ package org.iesfm.closet.dao.jdbc;
 
 import org.iesfm.closet.dao.OutfitDAO;
 import org.iesfm.closet.pojos.Outfit;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -45,9 +44,24 @@ public class JDBCOutfitDAO implements OutfitDAO {
             " :user_id" +
             ")";
 
-    private static final String SELECT_OUTFITS = "SELECT * FROM outfit";
+    private static final String SELECT_OUTFITS = "SELECT * FROM outfit WHERE user_id=:user_id";
 
-    private static final String SELECT_USER_OUTFITS_FROM_CATEGORY = "SELECT * FROM outfit WHERE category=:category AND user_id=:user_id";
+    private static final String SELECT_USER_OUTFITS_FROM_CATEGORY = "SELECT * FROM outfit WHERE category=:category AND userId=:user_id";
+
+    @Override
+    public List<Outfit> listUserOutfits(int userId) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("user_id",userId);
+        return jdbc.query(SELECT_OUTFITS, params, OUTFIT_ROW_MAPPER);
+    }
+
+    @Override
+    public List<Outfit> listUserOutfitsByCategory(int userId, String category) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("user_id",userId);
+        params.put("category",category);
+        return jdbc.query(SELECT_USER_OUTFITS_FROM_CATEGORY ,params,OUTFIT_ROW_MAPPER);
+    }
 
 
     // IMPLEMENTACION DE LAS QUERIES

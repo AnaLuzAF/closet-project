@@ -29,3 +29,27 @@ function loadOutfits(){
 
      outfitStructure.append(outfits);
 }
+
+function printOutfits() {
+    $.get("/users/{user_id}/outfits", function(outfits) {
+        var outfitsDiv = $('.outfits');
+        outfitsDiv.empty();
+
+        for (outfit of outfits) {
+            outfitsDiv.append(outfitsDiv(outfit));
+        }
+  });
+  }
+
+
+  function printOutfitsCategories() {
+      $.get("/users/{user_id}/outfits/{category}", function(userId,category) {
+          var categoriesDiv = $('.category');
+           categoriesDiv.empty();
+
+
+          for (categories of category) {
+               categoriesDiv.append(categoriesDiv(categories));
+          }
+    });
+}

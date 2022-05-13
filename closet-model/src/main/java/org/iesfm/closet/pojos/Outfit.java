@@ -1,9 +1,5 @@
 package org.iesfm.closet.pojos;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.List;
 import java.util.Objects;
 
 public class Outfit {
@@ -13,15 +9,23 @@ public class Outfit {
     private String bottom;
     private String shoes;
     private String category;
-    private int user_id;
+    private int userId;
 
-    public Outfit(int id, String top, String bottom, String shoes, String category, int user_id) {
+    public Outfit(int id, String top, String bottom, String shoes, String category, int userId) {
         this.id = id;
         this.top = top;
         this.bottom = bottom;
         this.shoes = shoes;
         this.category = category;
-        this.user_id = user_id;
+        this.userId = userId;
+    }
+
+    public Outfit(String top, String bottom, String shoes, String category, int userId) {
+        this.top = top;
+        this.bottom = bottom;
+        this.shoes = shoes;
+        this.category = category;
+        this.userId = userId;
     }
 
     public int getId() {
@@ -64,12 +68,12 @@ public class Outfit {
         this.category = category;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Override
@@ -77,12 +81,12 @@ public class Outfit {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Outfit outfit = (Outfit) o;
-        return id == outfit.id && user_id == outfit.user_id && Objects.equals(top, outfit.top) && Objects.equals(bottom, outfit.bottom) && Objects.equals(shoes, outfit.shoes) && Objects.equals(category, outfit.category);
+        return id == outfit.id && userId == outfit.userId && Objects.equals(top, outfit.top) && Objects.equals(bottom, outfit.bottom) && Objects.equals(shoes, outfit.shoes) && Objects.equals(category, outfit.category);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, top, bottom, shoes, category, user_id);
+        return Objects.hash(id, top, bottom, shoes, category, userId);
     }
 
     @Override
@@ -93,7 +97,7 @@ public class Outfit {
                 ", bottom='" + bottom + '\'' +
                 ", shoes='" + shoes + '\'' +
                 ", category='" + category + '\'' +
-                ", user_id=" + user_id +
+                ", user_id=" + userId +
                 '}';
     }
 }
