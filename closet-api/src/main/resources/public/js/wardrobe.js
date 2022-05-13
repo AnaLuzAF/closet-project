@@ -17,8 +17,24 @@ function loadWardrobe() {
 
            </div>
        </div>
-       
+
        <div class="outfit-container">
+           
+           <div class= "outfit-menu">
+               
+               <div class="dropdown">
+                  <button class="dropbtn">Choose category...</button>
+                  <div class="dropdown-content">
+                    <a href="#">Sport</a>
+                    <a href="#">Classy</a>
+                    <a href="#">Casual</a>
+                  </div>
+                </div>
+               
+                  <div class="saveButton"><a onclick="postOutfit()">Save</a></div>
+               
+           </div>    
+           
            <div class="outfit-parts">
                <div class="outfit-box">item</div>
                <div class="outfit-box">item</div>

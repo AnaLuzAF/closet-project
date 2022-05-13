@@ -15,18 +15,6 @@ function loadWardrobe() {
 
                <div class="item-box">+</div>
 
-// getItems
-
-/*
-               <div class="item-box">item</div>
-               <div class="item-box">item</div>
-               <div class="item-box">item</div>
-               <div class="item-box">item</div>
-               <div class="item-box">item</div>
-               <div class="item-box">item</div>
-               <div class="item-box">item</div>
-*/
-
            </div>
        </div>
        
