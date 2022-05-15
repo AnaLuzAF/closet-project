@@ -163,6 +163,11 @@ header {
     float: left;
     background-color: #A9B6AD;
 }
+/*Ajustar tamaño de las imagenes al item-box*/
+.item-box .clothes{
+    width: 100%;
+    height:200px;
+}
 
 .outfit-container {
     width: 50%;
@@ -183,10 +188,14 @@ header {
 
 .outfit-box {
     width: 96%;
-    height: 200px;
+    height: 500px;
     margin: 10px 2%;
     float: left;
     background-color: #A9B6AD;
+}
+.outfit-box .clothes{
+    width: 100%;
+    height: 500px;
 }
 
 

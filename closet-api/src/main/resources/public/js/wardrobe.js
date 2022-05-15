@@ -36,9 +36,9 @@ function loadWardrobe() {
            </div>    
            
            <div class="outfit-parts">
-               <div class="outfit-box">item</div>
-               <div class="outfit-box">item</div>
-               <div class="outfit-box">item</div>
+               <div class="outfit-box" id="outfit-box-top"></div>
+               <div class="outfit-box" id="outfit-box-bottom">item</div>
+               <div class="outfit-box" id="outfit-box-shoes">item</div>
            </div>
        </div>
        `;
@@ -61,10 +61,26 @@ function printItems(userId, itemType) {
 }
 
 function itemDiv(item) {
-    return $("<div class='item-box'>")
-        .append($("<h1>").text(item.id));
+    var itemString=JSON.stringify(item);
+    return $("<div class='item-box' onclick= 'outfitBoxItem(" + itemString+ ")'>")
+        .append($("<img src="+ item.imageItem + " alt= 'clothe' class='clothes'>"));
 }
+function outfitBoxItem(itemString){
+    var top=$("#outfit-box-top");
+    var bottom=$("#outfit-box-bottom");
+    var shoes=$("#outfit-box-shoes");
+    if(itemString.itemType=="top"){
+        top.empty();
+        top.append($("<img src="+ itemString.imageItem + " alt= 'clothe' class='clothes'>"));
+    }else if(itemString.itemType=="bottom"){
+        bottom.empty();
+        bottom.append($("<img src="+ itemString.imageItem + " alt= 'clothe' class='clothes'>"));
+    }else{
+        shoes.empty();
+        shoes.append($("<img src="+ itemString.imageItem + " alt= 'clothe' class='clothes'>"));
+    }
 
+}
 function insertItem(userId, itemType) {
     var item = {
             "user_id": userId,
