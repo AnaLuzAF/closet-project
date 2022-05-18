@@ -77,34 +77,14 @@ INSERT INTO item_type(type_name) VALUES('top');
 INSERT INTO item_type(type_name) VALUES('bottom');
 INSERT INTO item_type(type_name) VALUES('shoes');
 
-INSERT INTO item(item_type,image_item, user_id) VALUES('top','https://m.media-amazon.com/images/I/41AJRi4twYS._SL500_.jpg', 1);
-INSERT INTO item(item_type, image_item ,user_id) VALUES('bottom','https://www.emp-online.es/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dwa79c0133/images/5/0/8/2/508208a.jpg?sw=1000&sh=800&sm=fit&sfrm=png', 1);
-INSERT INTO item(item_type,image_item, user_id) VALUES('shoes','https://www.emp-online.es/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dw839947bd/images/4/9/9/5/499553a.jpg?sw=1000&sh=800&sm=fit&sfrm=png', 1);
-
-INSERT INTO item(item_type,image_item, user_id) VALUES('top','https://b2c-media.maxmara.com/sys-master/m0/MM/2022/1/5111122106/001/s3details/5111122106001-y-lord_thumbnail.jpg', 1);
-INSERT INTO item(item_type, image_item ,user_id) VALUES('bottom','https://cdn.fashiola.es/L592917803/sandro-pantalones-de-vestir-anchos.jpg', 1);
-INSERT INTO item(item_type,image_item, user_id) VALUES('shoes','https://m.media-amazon.com/images/I/41xjpblvwqL._SL500_.jpg', 1);
-
-INSERT INTO item(item_type,image_item, user_id) VALUES('top','https://m.media-amazon.com/images/I/517Z9hJSamL._AC_SX425_.jpg', 1);
-INSERT INTO item(item_type, image_item ,user_id) VALUES('bottom','https://m.media-amazon.com/images/I/61ee-M+J9QL._AC_UL320_.jpg', 1);
-INSERT INTO item(item_type,image_item, user_id) VALUES('shoes','https://images-na.ssl-images-amazon.com/images/I/71k7Gfw1mAL._AC_UY395_.jpg', 1);
-
-INSERT INTO item(item_type,image_item, user_id) VALUES('top','https://cdn.fashiola.es/L574473267/wowsome-unicornio-levantamiento-de-pesas-camisa-deadlift-fitness-gym-mujeres-camiseta-sin-mangas.jpg', 1);
-INSERT INTO item(item_type, image_item ,user_id) VALUES('bottom','https://s3-eu-west-1.amazonaws.com/images.linnlive.com/3f25aa9d1567d021dac96f3dcb03559f/548427a7-27d4-4902-b7a0-0bfe6b0499b2.jpg', 1);
-INSERT INTO item(item_type,image_item, user_id) VALUES('shoes','https://m.media-amazon.com/images/I/417jrvIMh8L.jpg', 1);
-
-INSERT INTO item(item_type,image_item, user_id) VALUES('top','https://ae01.alicdn.com/kf/HTB1a1hhcBWD3KVjSZFsq6AqkpXaE/Camisetas-de-vendaje-cruzado-para-mujer-Top-corto-camiseta-de-manga-corta-para-mujer-ropa-femenina.jpg_q50.jpg', 1);
-INSERT INTO item(item_type, image_item ,user_id) VALUES('bottom','https://www.redvalentino.com/13/13454411rg_22_a.jpg', 1);
-INSERT INTO item(item_type,image_item, user_id) VALUES('shoes','https://cdn.grupoelcorteingles.es/SGFM/dctm/MEDIA03/201907/05/00182368201552____7__516x640.jpg', 1);
-
-
-
+INSERT INTO item(item_type, user_id) VALUES('top', 1);
+INSERT INTO item(item_type, user_id) VALUES('bottom', 1);
+INSERT INTO item(item_type, user_id) VALUES('shoes', 1);
 
 INSERT INTO category(name) VALUES('all');
 INSERT INTO category(name) VALUES('sport');
 INSERT INTO category(name) VALUES('classy');
 INSERT INTO category(name) VALUES('casual');
-
 
 INSERT INTO outfit(top_id, bottom_id, shoes_id, category, user_id) VALUES(1, 2, 3,'sport',1);
 INSERT INTO outfit(top_id, bottom_id, shoes_id, category, user_id) VALUES(1, 2, 3,'classy',1);

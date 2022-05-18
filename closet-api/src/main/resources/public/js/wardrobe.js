@@ -63,24 +63,26 @@ function printItems(userId, itemType) {
 function itemDiv(item) {
     var itemString=JSON.stringify(item);
     return $("<div class='item-box' onclick= 'outfitBoxItem(" + itemString+ ")'>")
-        .append($("<img src="+ item.imageItem + " alt= 'clothe' class='clothes'>"));
+        .append($("<img src= '/images/"+ item.id + ".jpg' alt= 'item' class='clothes'>"));
 }
+
 function outfitBoxItem(itemString){
     var top=$("#outfit-box-top");
     var bottom=$("#outfit-box-bottom");
     var shoes=$("#outfit-box-shoes");
+
     if(itemString.itemType=="top"){
         top.empty();
-        top.append($("<img src="+ itemString.imageItem + " alt= 'clothe' class='clothes'>"));
+        top.append($("<img src='/images/"+ itemString.id + ".jpg' alt= 'topImg' class='clothes'>"));
     }else if(itemString.itemType=="bottom"){
         bottom.empty();
-        bottom.append($("<img src="+ itemString.imageItem + " alt= 'clothe' class='clothes'>"));
+        top.append($("<img src='/images/"+ itemString.id + ".jpg' alt= 'bottomImg' class='clothes'>"));
     }else{
         shoes.empty();
-        shoes.append($("<img src="+ itemString.imageItem + " alt= 'clothe' class='clothes'>"));
+        top.append($("<img src='/images/"+ itemString.id + ".jpg' alt= 'shoesImg' class='clothes'>"));
     }
-
 }
+
 function insertItem(userId, itemType) {
     var item = {
             "user_id": userId,
@@ -88,23 +90,6 @@ function insertItem(userId, itemType) {
         };
 
         postItem("/users/" + userId + "/items", item);
-
-        /*if() {
-                printItems(userId, itemType);
-        }
-*/
-          /*
-        $.post(
-            {
-                url:"/users/" + userId + "/items",
-                data: JSON.stringify(item),
-                contentType: 'application/json; charset=utf-8'
-            }
-        ).done(
-            printItems(userId, itemType)
-
-        );
-        */
 }
 
 function postItem(url, item) {
@@ -125,3 +110,76 @@ function postItem(url, item) {
     );
  }
 
+/* post copiado de imageupload */
+
+createUser(user, image, callback) {
+        $.post(
+                {
+                    url:"/users",
+                    data: JSON.stringify(user),
+                    contentType: 'application/json; charset=utf-8',
+                    success: function(data) {
+                        // Una vez se ha creado el usuario subimos la imagen haciendo otro POST
+                        var fd = new FormData();
+                        fd.append( 'image', image );
+
+                        $.ajax({
+                            url:  '/users/'+user.username+"/image",
+                            data: fd,
+                            processData: false,
+                            contentType: false,
+                            type: 'POST',
+                            success: callback
+                        });
+                    },
+                    error: function(jqXHR, exception) {
+                        if(jqXHR.status == 409) {
+                            alert("Ya existe un usuario con el username " + user.username)
+                        } else {
+                            alert("Error " +  jqXHR.status);
+                        }
+                    }
+                }
+            );
+    }
+
+
+    /* POST BOOK DE LIBRARY */
+
+function createBook() {
+    var book = {
+        "isbn": $("#isbn").val(),
+        "author": $("#author").val(),
+        "title": $("#title").val(),
+        year: $("#year").val()
+    };
+    $.post(
+        {
+            url:"/books",
+            data: JSON.stringify(book),
+            contentType: 'application/json; charset=utf-8'
+        }
+    ).done(
+        function(nothing, status) {
+              upload($("#isbn").val());
+        }
+    );
+}
+
+function upload(isbn) {
+    var fd = new FormData();
+    // Selecciono el input cuyo id es image
+    var input = $('#image')[0];
+    fd.append( 'image', input.files[0] );
+
+    $.ajax({
+         url: '/books/'+isbn+"/image",
+         data: fd,
+         processData: false,
+         contentType: false,
+         type: 'POST',
+         success: function(data){
+             alert(data);
+        }
+    });
+}
