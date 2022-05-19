@@ -37,8 +37,8 @@ function loadWardrobe() {
            
            <div class="outfit-parts">
                <div class="outfit-box" id="outfit-box-top"></div>
-               <div class="outfit-box" id="outfit-box-bottom">item</div>
-               <div class="outfit-box" id="outfit-box-shoes">item</div>
+               <div class="outfit-box" id="outfit-box-bottom"></div>
+               <div class="outfit-box" id="outfit-box-shoes"></div>
            </div>
        </div>
        `;
