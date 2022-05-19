@@ -35,4 +35,10 @@ public class ItemClient implements ItemsApi {
         return itemMapper.convert(List.of(items),
                 item -> itemMapper.convertToApi(item));
     }
+
+    @Override
+    public int insert(ItemRest item, int userId) {
+        return restTemplate.postForObject(host + "/users/{user_id}/items", item, int.class);
+    }
+
 }

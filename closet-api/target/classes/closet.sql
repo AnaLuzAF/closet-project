@@ -18,7 +18,6 @@ type_name		         VARCHAR (50) NOT NULL PRIMARY KEY
 CREATE TABLE IF NOT EXISTS item (
 id				    INT AUTO_INCREMENT PRIMARY KEY,
 item_type	        VARCHAR (40) NOT NULL,
-image_item          VARCHAR (9900) NOT NULL,
 user_id             INT NOT NULL,
 CONSTRAINT FK_ITEM_USER
 FOREIGN KEY(user_id)

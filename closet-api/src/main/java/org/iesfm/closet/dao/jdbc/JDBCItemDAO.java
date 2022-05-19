@@ -4,7 +4,10 @@ import org.iesfm.closet.dao.ItemDAO;
 import org.iesfm.closet.pojos.Item;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -28,6 +31,7 @@ public class JDBCItemDAO implements ItemDAO {
             );
 
     private final static String SELECT_ALL_ITEMS = "SELECT * FROM item";
+
     private static final String SELECT_ITEMS_BY_USER_ID = "SELECT * FROM item WHERE user_id = :user_id";
 
 
@@ -35,27 +39,32 @@ public class JDBCItemDAO implements ItemDAO {
 
 
     private static final String DELETE_ITEM = "DELETE FROM item WHERE id = :id";
+
     private final static String INSERT_ITEM = "INSERT INTO item(" +
             " item_type, " +
-            " image_item, "+
             " user_id" +
             ") " +
             "VALUES(" +
             " :item_type, " +
-            " :image_item, " +
             " :user_id" +
             ")";
 
 
+
     @Override
-    public boolean insert(Item item) {
+    public int insert(Item item) {
+        final KeyHolder holder = new GeneratedKeyHolder();
         try {
-            Map<String, Object> params = new HashMap<>();
-            params.put("item_type", item.getItemType());
-            params.put("user_id",item.getUserId());
-            return jdbc.update(INSERT_ITEM, params) == 1;
+            MapSqlParameterSource params = new MapSqlParameterSource();
+            params.addValue("item_type", item.getItemType());
+            params.addValue("user_id",item.getUserId());
+            jdbc.update(INSERT_ITEM, params, holder, new String[] {"id"});
+
+            Number generatedId = holder.getKey();
+            return generatedId.intValue();
+
         } catch (DuplicateKeyException e) {
-            return false;
+            return -1;
         }
     }
 

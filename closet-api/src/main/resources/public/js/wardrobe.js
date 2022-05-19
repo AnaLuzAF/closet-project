@@ -52,7 +52,7 @@ function printItems(userId, itemType) {
         var itemsDiv = $('#items');
         itemsDiv.empty();
 
-        itemsDiv.append("<div class='item-box' onclick=insertItem(" + userId + "," + "'" + itemType + "'" + ")><h1 class='add-icon'>+</h1></div>");
+        itemsDiv.append("<div class='item-box'><h1 class='add-icon' onclick=insertItem(" + userId + "," + "'" + itemType + "'" + ")>Add item</h1><input type='file' id='image' name='image'></div>");
 
         for (item of items) {
             itemsDiv.append(itemDiv(item));
@@ -62,8 +62,8 @@ function printItems(userId, itemType) {
 
 function itemDiv(item) {
     var itemString=JSON.stringify(item);
-    return $("<div class='item-box' onclick= 'outfitBoxItem(" + itemString+ ")'>")
-        .append($("<img src= '/images/"+ item.id + ".jpg' alt= 'item' class='clothes'>"));
+    return $("<div class='item-box' onclick= 'outfitBoxItem(" + itemString + ")'>")
+        .append($("<img src= '/images/" + item.id + ".jpg' alt= " + item.id + " class='clothes'>"));
 }
 
 function outfitBoxItem(itemString){
@@ -76,12 +76,13 @@ function outfitBoxItem(itemString){
         top.append($("<img src='/images/"+ itemString.id + ".jpg' alt= 'topImg' class='clothes'>"));
     }else if(itemString.itemType=="bottom"){
         bottom.empty();
-        top.append($("<img src='/images/"+ itemString.id + ".jpg' alt= 'bottomImg' class='clothes'>"));
+        bottom.append($("<img src='/images/"+ itemString.id + ".jpg' alt= 'bottomImg' class='clothes'>"));
     }else{
         shoes.empty();
-        top.append($("<img src='/images/"+ itemString.id + ".jpg' alt= 'shoesImg' class='clothes'>"));
+        shoes.append($("<img src='/images/"+ itemString.id + ".jpg' alt= 'shoesImg' class='clothes'>"));
     }
 }
+
 
 function insertItem(userId, itemType) {
     var item = {
@@ -93,14 +94,17 @@ function insertItem(userId, itemType) {
 }
 
 function postItem(url, item) {
+
     $.post(
         {
             url: url,
             data: JSON.stringify(item),
             contentType: 'application/json; charset=utf-8',
-            success: function (data) {
-                if(data == true) {
-                printItems(item.user_id, item.item_type);
+            success: function (itemId) {
+                if(itemId != null) {
+
+                    upload(item.user_id, itemId, item.item_type);
+
                 } else {
                     alert("There's been a problem trying to insert your item")
                 }
@@ -110,76 +114,24 @@ function postItem(url, item) {
     );
  }
 
-/* post copiado de imageupload */
-
-createUser(user, image, callback) {
-        $.post(
-                {
-                    url:"/users",
-                    data: JSON.stringify(user),
-                    contentType: 'application/json; charset=utf-8',
-                    success: function(data) {
-                        // Una vez se ha creado el usuario subimos la imagen haciendo otro POST
-                        var fd = new FormData();
-                        fd.append( 'image', image );
-
-                        $.ajax({
-                            url:  '/users/'+user.username+"/image",
-                            data: fd,
-                            processData: false,
-                            contentType: false,
-                            type: 'POST',
-                            success: callback
-                        });
-                    },
-                    error: function(jqXHR, exception) {
-                        if(jqXHR.status == 409) {
-                            alert("Ya existe un usuario con el username " + user.username)
-                        } else {
-                            alert("Error " +  jqXHR.status);
-                        }
-                    }
-                }
-            );
-    }
 
 
-    /* POST BOOK DE LIBRARY */
 
-function createBook() {
-    var book = {
-        "isbn": $("#isbn").val(),
-        "author": $("#author").val(),
-        "title": $("#title").val(),
-        year: $("#year").val()
-    };
-    $.post(
-        {
-            url:"/books",
-            data: JSON.stringify(book),
-            contentType: 'application/json; charset=utf-8'
-        }
-    ).done(
-        function(nothing, status) {
-              upload($("#isbn").val());
-        }
-    );
-}
+function upload(userId, itemId, itemType) {
 
-function upload(isbn) {
     var fd = new FormData();
-    // Selecciono el input cuyo id es image
+
     var input = $('#image')[0];
     fd.append( 'image', input.files[0] );
 
     $.ajax({
-         url: '/books/'+isbn+"/image",
+         url: "/users/" + userId + "/items/" + itemId + "/image",
          data: fd,
          processData: false,
          contentType: false,
          type: 'POST',
          success: function(data){
-             alert(data);
+             printItems(userId, itemType);
         }
     });
 }
