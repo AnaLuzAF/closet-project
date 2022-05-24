@@ -1,0 +1,20 @@
+Primero ponemos la ruta deseada 
+cd hasta la carpeta js
+Se hace mediante la consola: npm init -y (crea el package.json)
+Package.json (para que tenga todas las propiedades de node y de todos los paquetes a instalar posteriormente)
+Se cambia el name y se pone el nombre deseado en este caso "name": "closet-project" y el   "main": "home.js"
+touch server.js (para crear el archivo js del server)
+1.Instalar mediante consola de IntelliJ el npm install express nodemailer nodemailer-mailgun-transport -S (instalar para permitir mandar mensajes a gmail). 
+2.Una vez instalados comenzamos a redactar el server.js
+3.mkdir views 
+4.touch views/ index.html (será donde estará creado el formulario de contacto).
+Ejecutar el server
+5.abrir el terminar de intelliJ y poner nodemon server.js
+ Node.js
+https://github.com/accimeesterlin/nodemailer-examples/tree/master/sendFormEmail
+
+Primero he creado una cuenta de gmail llamada closetproject2022@gmail.com
+Registrarme en la web de mailGun con ese correo de la cuál obtendremos el domain y la api_key privada que lanzaremos más adelante.
+touch mail.js donde crearemos la estructura del email y emplearemos el nodemailer y el transporter.
+Mediante html en una etiqueta <a href="localhost del server 3238">
+En el index.html de views en las etiquetas <a> del navbar se han redireccionado al localhost 8080.
