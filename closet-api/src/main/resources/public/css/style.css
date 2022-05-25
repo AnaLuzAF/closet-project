@@ -163,19 +163,33 @@ header {
     float: left;
     background-color: #A9B6AD;
 }
+
+.item-box h1 {
+    font-size: 25px;
+    font-family: "Poppins", sans-serif;
+    padding-left: 10px;
+}
+
+.item-box input {
+    padding-left: 10px;
+}
+
+.add-item{
+    padding-top: 20px;
+}
+
+
+.submit:hover {
+      color: #4F504E;
+}
+
+
 /*Ajustar tamaño de las imagenes al item-box*/
 .item-box .clothes{
     width: 100%;
     height:200px;
 }
 
-.add-item {
-    margin-left: 20px;
-}
-
-.add-item:hover {
-      color: #4F504E;
-}
 
 .outfit-container {
     width: 50%;

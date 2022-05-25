@@ -61,7 +61,7 @@ function printItems(userId, itemType) {
         var itemsDiv = $('#items');
         itemsDiv.empty();
 
-        itemsDiv.append("<div class='item-box'><h1>Add new item</h1><input type='file' id='image' name='image'><h1 class='add-item' onclick=insertItem(" + userId + "," + "'" + itemType + "'" + ")>Submit</h1></div>");
+        itemsDiv.append("<div class='item-box'><h1 id='add-item'>Add new item</h1><input type='file' id='image' name='image'><h1 class='submit' onclick=insertItem(" + userId + "," + "'" + itemType + "'" + ")>Submit</h1></div>");
 
         for (item of items) {
             itemsDiv.append(itemDiv(item));
