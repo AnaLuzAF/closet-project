@@ -174,13 +174,24 @@ header {
     padding-left: 10px;
 }
 
-.add-item{
-    padding-top: 20px;
+#add-item{
+    padding-top: 15px;
 }
 
+.saveButton.submit{
+    margin-top: 20px;
+    padding: 5px 15px;
+    margin-left: 10px;
+}
 
-.submit:hover {
-      color: #4F504E;
+.saveButton.submit a:hover {
+    background-color: #fff;
+    color: #4F504E;
+}
+
+.saveButton.submit:hover {
+    background-color: #fff;
+    color: #4F504E;
 }
 
 
