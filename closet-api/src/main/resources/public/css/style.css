@@ -114,7 +114,7 @@ header {
 .types {
     width: 70%;
     margin: 0 15%;
-    margin-top: 80px;
+    margin-top: 60px;
     margin-bottom: 15px;
     float: left;
 }
@@ -169,33 +169,42 @@ header {
     height:200px;
 }
 
+.add-item {
+    margin-left: 20px;
+}
+
+.add-item:hover {
+      color: #4F504E;
+}
+
 .outfit-container {
     width: 50%;
     float: left;
-    /* background-color: palevioletred; */
 }
 
 .outfit-parts {
-    width: 60%;
-    margin: 0 15%;
+    width: 33%;
+    /*margin: 0 15%;*/
     float: left;
     padding-left: .5%;
     background-color: #fff;
     border-radius: 5px;
-    margin-top: 15px;
+    margin-top: 60px;
     margin-bottom: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .outfit-box {
     width: 96%;
-    height: 500px;
-    margin: 10px 2%;
+    height: 280px;
+    margin: 2px 2%;
     float: left;
     background-color: #A9B6AD;
 }
 .outfit-box .clothes{
     width: 100%;
-    height: 500px;
+    height: 280px;
 }
 
 
@@ -204,13 +213,23 @@ header {
 --------------------------------------------------------------*/
 
 .outfit-menu {
-    width: 100%;
+    width: 25%;
     float:left;
-    width: 70%;
-    margin: 0 15%;
-    margin-top: 80px;
+    margin-right: 5%;
+    /*margin: 0 15%;*/
+    margin-top: 60px;
     margin-bottom: 0px;
     float: left;
+}
+
+.wardrobeTitle {
+  font-family: "Poppins", sans-serif;
+  font-size: 25px;
+  font-weight: 400;
+    color: #4F504E;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 20px;
 }
 
 .saveButton {
@@ -218,30 +237,33 @@ header {
   background-color: #4F504E;   
   color: white;
   float: left;
-  margin: 0 1%;
+  margin: 0 10%;
   margin-top: 2px;
+  margin-left: 0;
   font-family: "Poppins", sans-serif;
   font-size: 15px;
-  padding: 5px 20px;
+  padding: 5px 30px;
   border-radius: 6px;
-  font-weight: 400;
+  font-weight: 400; 
+    color: #fff;
 }
 
 .saveButton a {
-    display: block;
-
-  background-color: #4F504E;
-  color: #fff;
+        color: #fff;
 }
+
+.saveButton:hover{
+    background-color: #A9B6AD;
+}
+
 
 /* Dropdown Button */
 .dropbtn {
   background-color: #fff;
   color: #4F504E;
   padding: 10px;
-  padding-right: 50px;
+  padding-right: 70px;
   font-size: 16px;
-
   border: none;
 }
 
@@ -250,7 +272,9 @@ header {
   position: relative;
   display: inline-block;
     float: left;
-    margin-right: 5%;
+    margin-bottom: 20px;
+    margin-top: 0;
+    width: 100%;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -258,7 +282,7 @@ header {
   display: none;
   position: absolute;
   background-color: #f1f1f1;
-  min-width: 202px;
+  min-width: 212px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
@@ -334,6 +358,7 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 34%;
     width: 32%;
 }
+
 .navbar ul {
 
   padding: 0;

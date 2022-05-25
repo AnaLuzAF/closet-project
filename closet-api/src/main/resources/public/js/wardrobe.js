@@ -5,8 +5,12 @@ function loadWardrobe() {
     var form = `<div class="item-container">
 
            <script> window.onload = printItems(1, 'top')</script>
+          
+          
 
            <div class="types">
+               <h1 class="wardrobeTitle">Item categories</h1>
+               
                <ul>
                   <li><a onclick="printItems(1, 'top')">Top</a></li>
                   <li><a onclick="printItems(1, 'bottom')">Bottom</a></li>
@@ -20,8 +24,10 @@ function loadWardrobe() {
 
        <div class="outfit-container">
            
-           <div class= "outfit-menu">
-               
+             <div class= "outfit-menu">
+                 
+                 <h1 class="wardrobeTitle">Make your outfit</h1>
+                 
                <div class="dropdown">
                   <button class="dropbtn">Choose category...</button>
                   <div class="dropdown-content">
@@ -33,13 +39,16 @@ function loadWardrobe() {
                
                   <div class="saveButton"><a onclick="postOutfit()">Save</a></div>
                
-           </div>    
+           </div>   
            
            <div class="outfit-parts">
                <div class="outfit-box" id="outfit-box-top"></div>
                <div class="outfit-box" id="outfit-box-bottom"></div>
                <div class="outfit-box" id="outfit-box-shoes"></div>
            </div>
+           
+          
+           
        </div>
        `;
 
@@ -52,7 +61,7 @@ function printItems(userId, itemType) {
         var itemsDiv = $('#items');
         itemsDiv.empty();
 
-        itemsDiv.append("<div class='item-box'><h1 class='add-icon' onclick=insertItem(" + userId + "," + "'" + itemType + "'" + ")>Add item</h1><input type='file' id='image' name='image'></div>");
+        itemsDiv.append("<div class='item-box'><h1>Add new item</h1><input type='file' id='image' name='image'><h1 class='add-item' onclick=insertItem(" + userId + "," + "'" + itemType + "'" + ")>Submit</h1></div>");
 
         for (item of items) {
             itemsDiv.append(itemDiv(item));
