@@ -31,9 +31,9 @@ function loadWardrobe() {
                <div class="dropdown">
 
 <select class="dropbtn" name="select">
-  <option value="value1" selected>Value 1</option>
-  <option value="value2">Value 2</option>
-  <option value="value3">Value 3</option>
+  <option value="sport" selected>Sport</option>
+  <option value="classy">Classy</option>
+  <option value="casual">Casual</option>
 </select>
 
 </div>

@@ -240,7 +240,8 @@ header {
 .outfit-menu {
     width: 30%;
     float:left;
-    margin-right: 5%;
+    margin-right: 2%;
+    margin-left: 5%;
     /*margin: 0 15%;*/
     margin-top: 60px;
     margin-bottom: 0px;
@@ -299,12 +300,20 @@ header {
     float: left;
     margin-bottom: 20px;
     margin-top: 0;
+      border: none;
+
     width: 100%;
+}
+
+select option {
+    padding: 10px 0;
 }
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
+      border: none;
+
   position: absolute;
   background-color: #f1f1f1;
   min-width: 212px;
@@ -316,7 +325,9 @@ header {
 .dropdown-content a {
     display: block;
     width: inherit;
-    padding: 10px 10%;
+      border: none;
+
+    padding: 15px 10%;
     background-color: #fff;
     color: #4F504E;
     font-family: "Poppins", sans-serif;
