@@ -35,11 +35,13 @@ function loadWardrobe() {
   <option value="value2" selected>Value 2</option>
   <option value="value3">Value 3</option>
 </select>
+
 </div>
+                        <div class="saveButton" onclick=insertOutfit(" + topId + "," + "'" + bottomId + "," + "'" + shoesId + "'" + ")><a>Submit</a>
                     </div>
-                  <div class="saveButton"><a onclick=insertOutfit(" + topId + "," + "'" + bottomId + "," + "'" + shoesId + "'" + ")>Submit</a>
+
 </div>
-</div>
+                    
                
 
            
