@@ -29,17 +29,19 @@ function loadWardrobe() {
                  <h1 class="wardrobeTitle">Make your outfit</h1>
                  
                <div class="dropdown">
-                  <button class="dropbtn">Choose category...</button>
-                  <div class="dropdown-content">
-                    <a href="#">Sport</a>
-                    <a href="#">Classy</a>
-                    <a href="#">Casual</a>
-                  </div>
-                </div>
+
+<select class="dropbtn" name="select">
+  <option value="value1">Value 1</option>
+  <option value="value2" selected>Value 2</option>
+  <option value="value3">Value 3</option>
+</select>
+</div>
+                    </div>
+                  <div class="saveButton"><a onclick=insertOutfit(" + topId + "," + "'" + bottomId + "," + "'" + shoesId + "'" + ")>Submit</a>
+</div>
+</div>
                
-                  <div class="saveButton"><a onclick=insertOutfit(" + topId + "," + "'" + bottomId + "," + "'" + shoesId + "'" + ")>Submit</a></div>
-               
-           </div>   
+
            
            <div class="outfit-parts">
                <div class="outfit-box" id="outfit-box-top"></div>
