@@ -1,7 +1,13 @@
-main {
-    width: 100%;
-    background-color: antiquewhite;
-    float: left;
+main::before {
+  content: "";
+  position: fixed;
+  background: #040404 url("https://img.freepik.com/foto-gratis/ropa-verano-mujer-foto-plana-moda-tejanos-sombrero-sol-fondo-madera-copia-espacio_78677-1080.jpg") top right no-repeat;
+  background-size: cover;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  z-index: -1;
 }
 header {
     float: left;
@@ -148,8 +154,8 @@ header {
 --------------------------------------------------------------*/
 
 .contact .form-contact{
-    width:750px;
-    height:600px;
+    width:950px;
+    height:650px;
     margin:auto;
     background:#7E807B;
     padding:10px 20px;
@@ -179,7 +185,7 @@ header {
 }
 
 .form-contact textarea{
-    min-height: 100px;
+    min-height: 160px;
     max-height: 200px;
     max-width: 100%;
     font-family: Roboto;
