@@ -41,18 +41,12 @@ function loadWardrobe() {
                     </div>
 
 </div>
-                    
-               
-
-           
            <div class="outfit-parts">
                <div class="outfit-box" id="outfit-box-top"></div>
                <div class="outfit-box" id="outfit-box-bottom"></div>
                <div class="outfit-box" id="outfit-box-shoes"></div>
            </div>
-           
-          
-           
+
        </div>
        `;
 

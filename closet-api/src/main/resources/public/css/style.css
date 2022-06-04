@@ -93,8 +93,8 @@ header {
 
 .outfit-div {
     width: 21%;
-    height: 615PX;
-    margin: 10px 1%;
+    height: 620px;
+    margin: 0px 1%;
     padding: 0px;
     float: left;
     background-color: #A9B6AD;
@@ -107,6 +107,10 @@ header {
     background-color: aqua;
     margin: 0;
     padding: 0;
+}
+
+.outfit-items img {
+    width: 100%;
 }
 
 #outfitBottom {

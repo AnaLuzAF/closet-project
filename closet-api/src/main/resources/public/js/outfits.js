@@ -43,18 +43,48 @@ function printOutfits(userId) {
 
         for (outfit of outfits) {
             outfitsDiv.append(outfitDiv(outfit));
+            addImages(outfit);
+            //var outfitDiv = $('#outfit-div');
+         }
+
+         // todo - esta cogiendo todo el rato el primer div de outfit, no salta a los otros
+
+        /*
+        var outfitImages = $('.outfit-div');
+                    outfitImages.empty();
+                    outfitImages.append(addImages(outfit));
+                    */
+/*
+        var outfitImages = $('.outfit-div');
+        outfitImages.empty();
+        for (outfit of outfits) {
+            outfitImages.append(addImages(outfit));
         }
+*/
   });
   }
 
 
 function outfitDiv(outfit) {
     
-    var outfitStructure = `<div class='outfit-div'>
-<div class="outfit-items" id="outfitTop"><img src= '' alt= "imgprueba" class=''></div>
-<div class="outfit-items" id="outfitBottom"><img src= '' alt= "imgprueba" class=''></div>
-<div class="outfit-items" id="outfitShoes"><img src= '' alt= "imgprueba" class=''></div>`;
-    
-    return $("<div class='outfit-div'>").append(outfitStructure);
-        //.append($("<h1>").text(outfit.id));
+    var outfitStructure = `
+        <div class="outfit-items" id="outfitTop"></div>
+        <div class="outfit-items" id="outfitBottom"></div>
+        <div class="outfit-items" id="outfitShoes"></div>
+`;
+
+
+     return $("<div class='outfit-div'>").append(outfitStructure);
+}
+
+function addImages(outfit) {
+
+            var topItem = $('#outfitTop');
+            topItem.append($("<img src= '/images/" + outfit.top + ".jpg' alt= " + outfit.id + " class=''>"));
+
+            var bottomItem = $('#outfitBottom');
+            bottomItem.append($("<img src= '/images/" + outfit.bottom + ".jpg' alt= " + outfit.id + " class=''>"));
+
+            var shoesItem = $('#outfitShoes');
+            shoesItem.append($("<img src= '/images/" + outfit.shoes + ".jpg' alt= " + outfit.id + " class=''>"));
 }
