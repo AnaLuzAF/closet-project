@@ -14,6 +14,8 @@ function loadOutfits(){
                        </ul>
                     </div>
                         <div class="outfits" id= "outfits">
+
+                            </div>
                         </div>
                     </div>
 
@@ -47,6 +49,12 @@ function printOutfits(userId) {
 
 
 function outfitDiv(outfit) {
-    return $("<div class='outfit-div'>")
-        .append($("<h1>").text(outfit.id));
+    
+    var outfitStructure = `<div class='outfit-div'>
+<div class="outfit-items" id="outfitTop"><img src= '' alt= "imgprueba" class=''></div>
+<div class="outfit-items" id="outfitBottom"><img src= '' alt= "imgprueba" class=''></div>
+<div class="outfit-items" id="outfitShoes"><img src= '' alt= "imgprueba" class=''></div>`;
+    
+    return $("<div class='outfit-div'>").append(outfitStructure);
+        //.append($("<h1>").text(outfit.id));
 }

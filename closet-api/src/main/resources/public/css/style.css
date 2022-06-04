@@ -93,13 +93,25 @@ header {
 
 .outfit-div {
     width: 21%;
-    height: 350px;
+    height: 615PX;
     margin: 10px 1%;
-    padding: 8px;
+    padding: 0px;
     float: left;
     background-color: #A9B6AD;
 }
 
+.outfit-items {
+    width: 100%;
+    float: left;
+    height: 205px;
+    background-color: aqua;
+    margin: 0;
+    padding: 0;
+}
+
+#outfitBottom {
+    margin: 3px 0;
+}
 
 /*--------------------------------------------------------------
 # Wardrobe
