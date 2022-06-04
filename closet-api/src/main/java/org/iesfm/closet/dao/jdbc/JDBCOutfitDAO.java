@@ -1,9 +1,14 @@
 package org.iesfm.closet.dao.jdbc;
 
 import org.iesfm.closet.dao.OutfitDAO;
+import org.iesfm.closet.pojos.Item;
 import org.iesfm.closet.pojos.Outfit;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -66,23 +71,29 @@ public class JDBCOutfitDAO implements OutfitDAO {
 
     // IMPLEMENTACION DE LAS QUERIES
 
-    /*
     @Override
-    public boolean insert(Outfit outfit) {
-        try {
-            Map<String, Object> params = new HashMap<>();
-            params.put("top_id", outfit.getTop());
-            params.put("bottom_id", outfit.getBottom());
-            params.put("shoes_id", outfit.getShoes());
-            params.put("category", outfit.getCategory());
+    public int insert(int userId, Outfit outfit) {
+        final KeyHolder holder = new GeneratedKeyHolder();
 
-            return jdbc.update(INSERT_OUTFIT, params) == 1;
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource();
+            params.addValue("top_id", outfit.getTop());
+            params.addValue("bottom_id", outfit.getBottom());
+            params.addValue("shoes_id", outfit.getShoes());
+            params.addValue("category", outfit.getCategory());
+            params.addValue("user_id", userId);
+            jdbc.update(INSERT_OUTFIT, params, holder, new String[] {"id"});
+
+            Number generatedId = holder.getKey();
+            return generatedId.intValue();
+
         } catch (DuplicateKeyException e) {
-            return false;
+            return -1;
         }
     }
 
 
+/*
     // listar outfits de una categoria
     @Override
     public List<Outfit> listUserOutfitsFromCategory(String name) {

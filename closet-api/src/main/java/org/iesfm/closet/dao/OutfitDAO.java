@@ -6,10 +6,11 @@ import java.util.List;
 
 public interface OutfitDAO {
 
-    List<Outfit> listUserOutfits(int userId);
-    List<Outfit> listUserOutfitsByCategory(int userId, String category);
+    int insert(int userId, Outfit outfit);
 
-    //boolean insert(String name, Outfit outfit);
+    List<Outfit> listUserOutfits(int userId);
+
+    List<Outfit> listUserOutfitsByCategory(int userId, String category);
 
     //List<Outfit> listUserOutfits();
 

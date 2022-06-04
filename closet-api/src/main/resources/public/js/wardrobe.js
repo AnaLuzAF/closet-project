@@ -37,7 +37,8 @@ function loadWardrobe() {
 </select>
 
 </div>
-                        <div class="saveButton" onclick=insertOutfit(" + topId + "," + "'" + bottomId + "," + "'" + shoesId + "'" + ")><a>Submit</a>
+                        <div class="saveButton" onclick=insertOutfit()><a>Submit</a>
+
                     </div>
 
 </div>
@@ -121,9 +122,6 @@ function postItem(url, item) {
     );
  }
 
-
-
-
 function upload(userId, itemId, itemType) {
 
     var fd = new FormData();
@@ -142,3 +140,43 @@ function upload(userId, itemId, itemType) {
         }
     });
 }
+
+// todo - Post outfit
+
+function insertOutfit() {
+
+    // recuperar category y userId
+    var userId = 1;
+    var category = /* La opcion que este marcada en el select */;
+
+    var outfit = {
+            "top": top,
+            "bottom": bottom,
+            "shoes": shoes,
+            "category": category,
+            "user_id": userId
+        };
+
+        postOutfit("/users/" + userId + "/outfits", outfit);
+}
+
+function postOutfit(url, outfit) {
+
+    $.post(
+        {
+            url: url,
+            data: JSON.stringify(outfit),
+            contentType: 'application/json; charset=utf-8',
+            success: function (outfitId) {
+                if(outfitId != null) {
+
+                    // cargar outfits de nuevo
+
+                } else {
+                    alert("There's been a problem trying to insert your outfit")
+                }
+            }
+        }
+    ).done(
+    );
+ }

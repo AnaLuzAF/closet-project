@@ -2,6 +2,7 @@ package org.iesfm.closet.client;
 
 
 import org.iesfm.closet.controllers.mappers.OutfitMapper;
+import org.iesfm.closet.controllers.pojosApi.ItemRest;
 import org.iesfm.closet.controllers.pojosApi.OutfitRest;
 
 import org.iesfm.closet.pojos.Outfit;
@@ -29,7 +30,7 @@ public class OutfitClient implements OutfitsApi{
 
     //listar todos los outfits y por categoria
     @Override
-    public List<OutfitRest> listUserOutfits(int userId,String category) {
+    public List<OutfitRest> listUserOutfits(int userId, String category) {
         HashMap<String, Object> params = new HashMap<>();
         if (category!=null){
             params.put("category",category);
@@ -40,6 +41,11 @@ public class OutfitClient implements OutfitsApi{
                 .getForObject(host + "/users/{user_id}/outfits", Outfit[].class);
         return outfitMapper.convert(List.of(outfits),
                 outfit -> outfitMapper.convertToApi(outfit));
+    }
+
+    @Override
+    public int insert(int userId, String category, OutfitRest outfit) {
+        return restTemplate.postForObject(host + "/users/{userId}/outfits", outfit, int.class);
     }
 
 }

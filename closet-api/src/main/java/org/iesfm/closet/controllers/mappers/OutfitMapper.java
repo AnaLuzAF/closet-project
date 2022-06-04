@@ -22,7 +22,7 @@ public class OutfitMapper {
     }
 
 
-    public Outfit convertToModel(OutfitRest outfit,String category,int userId) {
+    public Outfit convertToModel(int userId, String category, OutfitRest outfit) {
         return new Outfit(
                 outfit.getTop(),
                 outfit.getBottom(),
