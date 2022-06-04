@@ -21,6 +21,12 @@ function loadWardrobe() {
        </div>
 
        <div class="outfit-container">
+
+             <div class="outfit-parts">
+                      <div class="outfit-box" id="outfit-box-top"></div>
+                      <div class="outfit-box" id="outfit-box-bottom"></div>
+                      <div class="outfit-box" id="outfit-box-shoes"></div>
+             </div>
            
              <div class= "outfit-menu">
                  
@@ -38,13 +44,6 @@ function loadWardrobe() {
                 <div class="saveButton" onclick=insertOutfit()><a>Submit</a></div>
 
                 </div>
-
-           <div class="outfit-parts">
-               <div class="outfit-box" id="outfit-box-top"></div>
-               <div class="outfit-box" id="outfit-box-bottom"></div>
-               <div class="outfit-box" id="outfit-box-shoes"></div>
-           </div>
-
        </div>
        `;
 
