@@ -145,15 +145,16 @@ function upload(userId, itemId, itemType) {
 
 function insertOutfit() {
 
-    // recuperar category y userId
+    var outfitOptions = getSelectedOptions();
+
+    // recuperar outfit y userId
     var userId = 1;
-    var category = /* La opcion que este marcada en el select */;
 
     var outfit = {
-            "top": top,
-            "bottom": bottom,
-            "shoes": shoes,
-            "category": category,
+            "top": outfit.top,
+            "bottom": outfit.bottom,
+            "shoes": outfit.shoes,
+            "category": outfit.category,
             "user_id": userId
         };
 
