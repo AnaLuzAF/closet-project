@@ -5,8 +5,6 @@ function loadWardrobe() {
     var form = `<div class="item-container">
 
            <script> window.onload = printItems(1, 'top')</script>
-          
-          
 
            <div class="types">
                <h1 class="wardrobeTitle">Item categories</h1>
@@ -30,7 +28,7 @@ function loadWardrobe() {
                  
                <div class="dropdown">
 
-<select class="dropbtn" name="select">
+<select class="dropbtn" id="selectCategory" name="select">
   <option value="sport" selected>Sport</option>
   <option value="classy">Classy</option>
   <option value="casual">Casual</option>
@@ -60,7 +58,7 @@ function printItems(userId, itemType) {
         var itemsDiv = $('#items');
         itemsDiv.empty();
 
-        itemsDiv.append("<div class='item-box'><h1 id='add-item'>Add new item</h1><input type='file' id='image' name='image'><div class='saveButton submit'><a onclick=insertItem(" + userId + "," + "'" + itemType + "'" + ")>Submit</a></div></div>");
+        itemsDiv.append("<div class='item-box' id='add-item-box'><h1 id='add-item'>Add new item</h1><input type='file' id='image' name='image'><div class='saveButton submit'><a onclick=insertItem(" + userId + "," + "'" + itemType + "'" + ")>Submit</a></div></div>");
 
         for (item of items) {
             itemsDiv.append(itemDiv(item));
@@ -81,13 +79,13 @@ function outfitBoxItem(itemString){
 
     if(itemString.itemType=="top"){
         top.empty();
-        top.append($("<img src='/images/"+ itemString.id + ".jpg' alt= 'topImg' class='clothes'>"));
+        top.append($("<img id='topImg' src='/images/"+ itemString.id + ".jpg' alt= 'topImg' class='clothes'>"));
     }else if(itemString.itemType=="bottom"){
         bottom.empty();
-        bottom.append($("<img src='/images/"+ itemString.id + ".jpg' alt= 'bottomImg' class='clothes'>"));
+        bottom.append($("<img id='bottomImg' src='/images/"+ itemString.id + ".jpg' alt= 'bottomImg' class='clothes'>"));
     }else{
         shoes.empty();
-        shoes.append($("<img src='/images/"+ itemString.id + ".jpg' alt= 'shoesImg' class='clothes'>"));
+        shoes.append($("<img id='shoesImg' src='/images/"+ itemString.id + ".jpg' alt= 'shoesImg' class='clothes'>"));
     }
 }
 
@@ -143,18 +141,35 @@ function upload(userId, itemId, itemType) {
 
 // todo - Post outfit
 
+function getImageName(src) {
+    var attr = src.split('/');      // ["static","images","banner","blue.jpg"]
+    var file = attr[attr.length-1]; // "blue.jpg"
+    var name = file.split('.')[0];  // "blue"
+    return name;
+}
+
 function insertOutfit() {
 
-    var outfitOptions = getSelectedOptions();
+    var srcTop = $('#topImg').attr('src'); // "static/images/banner/blue.jpg"
+    var top = getImageName(srcTop);
 
-    // recuperar outfit y userId
+    var srcBottom = $('#bottomImg').attr('src');
+    var bottom = getImageName(srcBottom);
+
+    alert(top);
+
+    var srcShoes = $('#shoesImg').attr('src');
+    var shoes = getImageName(srcShoes);
+
+    var category = $('#selectCategory').val();
+
     var userId = 1;
 
     var outfit = {
-            "top": outfit.top,
-            "bottom": outfit.bottom,
-            "shoes": outfit.shoes,
-            "category": outfit.category,
+            "top": parseInt(top),
+            "bottom": parseInt(bottom),
+            "shoes": parseInt(shoes),
+            "category": category,
             "user_id": userId
         };
 
@@ -170,9 +185,7 @@ function postOutfit(url, outfit) {
             contentType: 'application/json; charset=utf-8',
             success: function (outfitId) {
                 if(outfitId != null) {
-
-                    // cargar outfits de nuevo
-
+                    alert("outfit insertado correctamente");
                 } else {
                     alert("There's been a problem trying to insert your outfit")
                 }

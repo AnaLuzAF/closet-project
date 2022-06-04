@@ -32,9 +32,9 @@ public class OutfitController implements OutfitsApi {
     */
 
     @RequestMapping(method = RequestMethod.POST, path = "/users/{user_id}/outfits")
-    public int insert(@PathVariable("user_id") int userId, @PathVariable("category") String category, @RequestBody OutfitRest outfit) {
+    public int insert(@PathVariable("user_id") int userId, @RequestBody OutfitRest outfit) {
 
-        return outfitDAO.insert(userId, outfitMapper.convertToModel(userId, category, outfit));
+        return outfitDAO.insert(userId, outfitMapper.convertToModel(userId, outfit));
 
         /* if userdao.userexists.. hacer consultas a parte */
 

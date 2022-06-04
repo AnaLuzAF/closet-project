@@ -1,13 +1,16 @@
 main {
     width: 100%;
-    background-color: antiquewhite;
+    background-color: #fcf8f5;
     float: left;
 }
 header {
     float: left;
     width: 100%;
     background-color: #A9B6AD;
+    padding: 5px 0;
     z-index: 1000000;
+    filter: drop-shadow(0 0 0.3rem black);
+
 }
 
 /*--------------------------------------------------------------
@@ -45,7 +48,7 @@ header {
 .types-outfit {
     width: 26%;
     margin:0 39%;
-    margin-top:80px;
+    margin-top: 50px;
     margin-bottom: 40px;
     float: left;
 }
@@ -86,36 +89,35 @@ header {
     margin: 0 15%;
     margin-bottom:50px;
     float: left;
-    background-color: #fff;
-    border-radius: 5px;
-    padding: 10px 0;
+    background-color: #ece2d9;
+    /*border-radius: 5px;*/
+    padding: 30px 0;
 }
 
 .outfit-div {
-    width: 21%;
-    height: 620px;
+    width: 15%;
+    /*height: 620px;*/
     margin: 0px 1%;
     padding: 0px;
     float: left;
-    background-color: #A9B6AD;
+    /*background-color: #ece2d9;*/
+    margin-left: 3%;
+    filter: drop-shadow(0 0 0.25rem gray);
 }
 
 .outfit-items {
     width: 100%;
     float: left;
-    height: 205px;
-    background-color: aqua;
+    /*height: 100%;*/
     margin: 0;
     padding: 0;
+    object-fit: contain;
 }
 
 .outfit-items img {
     width: 100%;
 }
 
-#outfitBottom {
-    margin: 3px 0;
-}
 
 /*--------------------------------------------------------------
 # Wardrobe
@@ -168,8 +170,8 @@ header {
     margin: 0 15%;
     float: left;
     padding-left: .5%;
-    background-color: #fff;
-    border-radius: 5px;
+    background-color: #ece2d9;
+    /*border-radius: 5px;*/
 }
 
 .item-box {
@@ -177,7 +179,9 @@ header {
     height: 200px;
     margin: 1.5%;
     float: left;
-    background-color: #A9B6AD;
+    background-color: #ece2d9;
+    color: #4F504E;
+    filter: drop-shadow(0 0 0.25rem gray);
 }
 
 .item-box h1 {
@@ -194,6 +198,11 @@ header {
     padding-top: 15px;
 }
 
+.add-item-box {
+    background-color: #fff;
+    filter: none;
+}
+
 .saveButton.submit{
     margin-top: 20px;
     padding: 5px 15px;
@@ -201,12 +210,12 @@ header {
 }
 
 .saveButton.submit a:hover {
-    background-color: #fff;
+    background-color: #A9B6AD;
     color: #4F504E;
 }
 
 .saveButton.submit:hover {
-    background-color: #fff;
+    background-color: #A9B6AD;
     color: #4F504E;
 }
 
@@ -227,13 +236,12 @@ header {
     width: 33%;
     /*margin: 0 15%;*/
     float: left;
-    padding-left: .5%;
-    background-color: #fff;
-    border-radius: 5px;
+    background-color: #ece2d9;
+    /*border-radius: 5px;*/
     margin-top: 60px;
     margin-bottom: 15px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 20px 2%;
+    margin-bottom: 50px;
 }
 
 .outfit-box {
@@ -241,7 +249,8 @@ header {
     height: 280px;
     margin: 2px 2%;
     float: left;
-    background-color: #A9B6AD;
+    background-color: #ece2d9;
+    filter: drop-shadow(0 0 0.25rem gray);
 }
 .outfit-box .clothes{
     width: 100%;
@@ -276,7 +285,7 @@ header {
 
 .saveButton {
   float: left;
-  background-color: #4F504E;   
+  background-color: #4F504E;
   color: white;
   float: left;
   margin: 0 10%;
@@ -369,7 +378,7 @@ header {
 
 body{
   content: "";
-  background-color: antiquewhite;
+  background-color: #fcf8f5;
   background-size: cover;
     color: #fff;
     float: left;

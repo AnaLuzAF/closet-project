@@ -18,20 +18,19 @@ function loadOutfits(){
                             </div>
                         </div>
                     </div>
-
-
                 </div>`;
 
      outfitStructure.append(outfits);
 }
 
-function printCategoryOutfits(userId,category) {
-    $.get("/users/" +userId+ "/outfits?category=" + category, function(outfits) {
+function printCategoryOutfits(userId, category) {
+    $.get("/users/" + userId + "/outfits?category=" + category, function(outfits) {
         var outfitsDiv = $('#outfits');
         outfitsDiv.empty();
 
         for (outfit of outfits) {
             outfitsDiv.append(outfitDiv(outfit));
+             addImages(outfit);
         }
   });
   }
@@ -44,23 +43,7 @@ function printOutfits(userId) {
         for (outfit of outfits) {
             outfitsDiv.append(outfitDiv(outfit));
             addImages(outfit);
-            //var outfitDiv = $('#outfit-div');
          }
-
-         // todo - esta cogiendo todo el rato el primer div de outfit, no salta a los otros
-
-        /*
-        var outfitImages = $('.outfit-div');
-                    outfitImages.empty();
-                    outfitImages.append(addImages(outfit));
-                    */
-/*
-        var outfitImages = $('.outfit-div');
-        outfitImages.empty();
-        for (outfit of outfits) {
-            outfitImages.append(addImages(outfit));
-        }
-*/
   });
   }
 
@@ -73,18 +56,19 @@ function outfitDiv(outfit) {
         <div class="outfit-items" id="outfitShoes"></div>
 `;
 
-
-     return $("<div class='outfit-div'>").append(outfitStructure);
+     return $("<div class='outfit-div'>").append(outfitStructure).attr('id', outfit.id);
 }
 
 function addImages(outfit) {
 
-            var topItem = $('#outfitTop');
+            var outfitDiv = $('#' + outfit.id);
+
+            var topItem = outfitDiv.find('#outfitTop');
             topItem.append($("<img src= '/images/" + outfit.top + ".jpg' alt= " + outfit.id + " class=''>"));
 
-            var bottomItem = $('#outfitBottom');
+            var bottomItem = outfitDiv.find('#outfitBottom');
             bottomItem.append($("<img src= '/images/" + outfit.bottom + ".jpg' alt= " + outfit.id + " class=''>"));
 
-            var shoesItem = $('#outfitShoes');
+            var shoesItem = outfitDiv.find('#outfitShoes');
             shoesItem.append($("<img src= '/images/" + outfit.shoes + ".jpg' alt= " + outfit.id + " class=''>"));
 }

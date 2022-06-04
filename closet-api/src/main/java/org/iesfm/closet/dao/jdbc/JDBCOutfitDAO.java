@@ -25,10 +25,9 @@ public class JDBCOutfitDAO implements OutfitDAO {
     private final static RowMapper<Outfit> OUTFIT_ROW_MAPPER =
             (rs, rowNum) -> new Outfit(
                     rs.getInt("id"),
-                    rs.getString("top_id"),
-                    rs.getString("bottom_id"),
-                    rs.getString("shoes_id"),
-                    // consulta que dado un outfit id saque los tags - ver SHOPREST
+                    rs.getInt("top_id"),
+                    rs.getInt("bottom_id"),
+                    rs.getInt("shoes_id"),
                     rs.getString("category"),
                     rs.getInt("user_id")
             );
@@ -38,14 +37,14 @@ public class JDBCOutfitDAO implements OutfitDAO {
             " top_id, " +
             " bottom_id, " +
             " shoes_id, " +
-            " category" +
+            " category, " +
             " user_id" +
             ") " +
             "VALUES(" +
             " :top_id, " +
             " :bottom_id, " +
             " :shoes_id, " +
-            " :category" +
+            " :category, " +
             " :user_id" +
             ")";
 
