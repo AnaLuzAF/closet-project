@@ -178,6 +178,8 @@ function postOutfit(url, outfit) {
         success: function(outfitId) {
             if (outfitId == null) {
                 alert("There's been a problem trying to insert your outfit")
+            } else {
+                alert("Outfit saved! :)");
             }
         }
     }).done();

@@ -26,7 +26,6 @@ function loadOutfits() {
 function printCategoryOutfits(userId, category) {
     $.get("/users/" + userId + "/outfits?category=" + category, function(outfits) {
         var outfitsDiv = $('#outfits');
-        outfitsDiv.empty();
 
         for (outfit of outfits) {
             outfitsDiv.append(outfitDiv(outfit));
