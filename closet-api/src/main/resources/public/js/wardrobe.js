@@ -28,18 +28,17 @@ function loadWardrobe() {
                  
                <div class="dropdown">
 
-<select class="dropbtn" id="selectCategory" name="select">
-  <option value="sport" selected>Sport</option>
-  <option value="classy">Classy</option>
-  <option value="casual">Casual</option>
-</select>
+                    <select class="dropbtn" id="selectCategory" name="select">
+                      <option value="sport" selected>Sport</option>
+                      <option value="classy">Classy</option>
+                      <option value="casual">Casual</option>
+                    </select>
 
-</div>
-                        <div class="saveButton" onclick=insertOutfit()><a>Submit</a>
+                </div>
+                <div class="saveButton" onclick=insertOutfit()><a>Submit</a></div>
 
-                    </div>
+                </div>
 
-</div>
            <div class="outfit-parts">
                <div class="outfit-box" id="outfit-box-top"></div>
                <div class="outfit-box" id="outfit-box-bottom"></div>
@@ -49,7 +48,7 @@ function loadWardrobe() {
        </div>
        `;
 
-     wardrobeStructure.append(form);
+    wardrobeStructure.append(form);
 }
 
 
@@ -63,100 +62,94 @@ function printItems(userId, itemType) {
         for (item of items) {
             itemsDiv.append(itemDiv(item));
         }
-  });
+    });
 }
 
 function itemDiv(item) {
-    var itemString=JSON.stringify(item);
+    var itemString = JSON.stringify(item);
     return $("<div class='item-box' onclick= 'outfitBoxItem(" + itemString + ")'>")
         .append($("<img src= '/images/" + item.id + ".jpg' alt= " + item.id + " class='clothes'>"));
 }
 
-function outfitBoxItem(itemString){
-    var top=$("#outfit-box-top");
-    var bottom=$("#outfit-box-bottom");
-    var shoes=$("#outfit-box-shoes");
+function outfitBoxItem(itemString) {
+    var top = $("#outfit-box-top");
+    var bottom = $("#outfit-box-bottom");
+    var shoes = $("#outfit-box-shoes");
 
-    if(itemString.itemType=="top"){
+    if (itemString.itemType == "top") {
         top.empty();
-        top.append($("<img id='topImg' src='/images/"+ itemString.id + ".jpg' alt= 'topImg' class='clothes'>"));
-    }else if(itemString.itemType=="bottom"){
+        top.append($("<img id='topImg' src='/images/" + itemString.id + ".jpg' alt= 'topImg' class='clothes'>"));
+    } else if (itemString.itemType == "bottom") {
         bottom.empty();
-        bottom.append($("<img id='bottomImg' src='/images/"+ itemString.id + ".jpg' alt= 'bottomImg' class='clothes'>"));
-    }else{
+        bottom.append($("<img id='bottomImg' src='/images/" + itemString.id + ".jpg' alt= 'bottomImg' class='clothes'>"));
+    } else {
         shoes.empty();
-        shoes.append($("<img id='shoesImg' src='/images/"+ itemString.id + ".jpg' alt= 'shoesImg' class='clothes'>"));
+        shoes.append($("<img id='shoesImg' src='/images/" + itemString.id + ".jpg' alt= 'shoesImg' class='clothes'>"));
     }
 }
 
 
 function insertItem(userId, itemType) {
     var item = {
-            "user_id": userId,
-            "item_type": itemType
-        };
+        "user_id": userId,
+        "item_type": itemType
+    };
 
-        postItem("/users/" + userId + "/items", item);
+    postItem("/users/" + userId + "/items", item);
 }
 
 function postItem(url, item) {
 
-    $.post(
-        {
-            url: url,
-            data: JSON.stringify(item),
-            contentType: 'application/json; charset=utf-8',
-            success: function (itemId) {
-                if(itemId != null) {
+    $.post({
+        url: url,
+        data: JSON.stringify(item),
+        contentType: 'application/json; charset=utf-8',
+        success: function(itemId) {
+            if (itemId != null) {
 
-                    upload(item.user_id, itemId, item.item_type);
+                upload(item.user_id, itemId, item.item_type);
 
-                } else {
-                    alert("There's been a problem trying to insert your item")
-                }
+            } else {
+                alert("There's been a problem trying to insert your item")
             }
         }
-    ).done(
-    );
- }
+    }).done();
+}
 
 function upload(userId, itemId, itemType) {
 
     var fd = new FormData();
 
     var input = $('#image')[0];
-    fd.append( 'image', input.files[0] );
+    fd.append('image', input.files[0]);
 
     $.ajax({
-         url: "/users/" + userId + "/items/" + itemId + "/image",
-         data: fd,
-         processData: false,
-         contentType: false,
-         type: 'POST',
-         success: function(data){
-             printItems(userId, itemType);
+        url: "/users/" + userId + "/items/" + itemId + "/image",
+        data: fd,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function(data) {
+            printItems(userId, itemType);
         }
     });
 }
 
-// todo - Post outfit
 
 function getImageName(src) {
-    var attr = src.split('/');      // ["static","images","banner","blue.jpg"]
-    var file = attr[attr.length-1]; // "blue.jpg"
-    var name = file.split('.')[0];  // "blue"
+    var attr = src.split('/');
+    var file = attr[attr.length - 1];
+    var name = file.split('.')[0];
     return name;
 }
 
 function insertOutfit() {
 
-    var srcTop = $('#topImg').attr('src'); // "static/images/banner/blue.jpg"
+    var srcTop = $('#topImg').attr('src');
     var top = getImageName(srcTop);
 
     var srcBottom = $('#bottomImg').attr('src');
     var bottom = getImageName(srcBottom);
-
-    alert(top);
 
     var srcShoes = $('#shoesImg').attr('src');
     var shoes = getImageName(srcShoes);
@@ -166,31 +159,26 @@ function insertOutfit() {
     var userId = 1;
 
     var outfit = {
-            "top": parseInt(top),
-            "bottom": parseInt(bottom),
-            "shoes": parseInt(shoes),
-            "category": category,
-            "user_id": userId
-        };
+        "top": parseInt(top),
+        "bottom": parseInt(bottom),
+        "shoes": parseInt(shoes),
+        "category": category,
+        "user_id": userId
+    };
 
-        postOutfit("/users/" + userId + "/outfits", outfit);
+    postOutfit("/users/" + userId + "/outfits", outfit);
 }
 
 function postOutfit(url, outfit) {
 
-    $.post(
-        {
-            url: url,
-            data: JSON.stringify(outfit),
-            contentType: 'application/json; charset=utf-8',
-            success: function (outfitId) {
-                if(outfitId != null) {
-                    alert("outfit insertado correctamente");
-                } else {
-                    alert("There's been a problem trying to insert your outfit")
-                }
+    $.post({
+        url: url,
+        data: JSON.stringify(outfit),
+        contentType: 'application/json; charset=utf-8',
+        success: function(outfitId) {
+            if (outfitId == null) {
+                alert("There's been a problem trying to insert your outfit")
             }
         }
-    ).done(
-    );
- }
+    }).done();
+}

@@ -1,4 +1,4 @@
-function loadOutfits(){
+function loadOutfits() {
     var outfitStructure = $('#main');
     outfitStructure.empty();
 
@@ -20,7 +20,7 @@ function loadOutfits(){
                     </div>
                 </div>`;
 
-     outfitStructure.append(outfits);
+    outfitStructure.append(outfits);
 }
 
 function printCategoryOutfits(userId, category) {
@@ -30,45 +30,45 @@ function printCategoryOutfits(userId, category) {
 
         for (outfit of outfits) {
             outfitsDiv.append(outfitDiv(outfit));
-             addImages(outfit);
+            addImages(outfit);
         }
-  });
-  }
+    });
+}
 
 function printOutfits(userId) {
-    $.get("/users/" +userId+ "/outfits", function(outfits) {
+    $.get("/users/" + userId + "/outfits", function(outfits) {
         var outfitsDiv = $('#outfits');
         outfitsDiv.empty();
 
         for (outfit of outfits) {
             outfitsDiv.append(outfitDiv(outfit));
             addImages(outfit);
-         }
-  });
-  }
+        }
+    });
+}
 
 
 function outfitDiv(outfit) {
-    
+
     var outfitStructure = `
         <div class="outfit-items" id="outfitTop"></div>
         <div class="outfit-items" id="outfitBottom"></div>
         <div class="outfit-items" id="outfitShoes"></div>
 `;
 
-     return $("<div class='outfit-div'>").append(outfitStructure).attr('id', outfit.id);
+    return $("<div class='outfit-div'>").append(outfitStructure).attr('id', outfit.id);
 }
 
 function addImages(outfit) {
 
-            var outfitDiv = $('#' + outfit.id);
+    var outfitDiv = $('#' + outfit.id);
 
-            var topItem = outfitDiv.find('#outfitTop');
-            topItem.append($("<img src= '/images/" + outfit.top + ".jpg' alt= " + outfit.id + " class=''>"));
+    var topItem = outfitDiv.find('#outfitTop');
+    topItem.append($("<img src= '/images/" + outfit.top + ".jpg' alt= " + outfit.id + " class=''>"));
 
-            var bottomItem = outfitDiv.find('#outfitBottom');
-            bottomItem.append($("<img src= '/images/" + outfit.bottom + ".jpg' alt= " + outfit.id + " class=''>"));
+    var bottomItem = outfitDiv.find('#outfitBottom');
+    bottomItem.append($("<img src= '/images/" + outfit.bottom + ".jpg' alt= " + outfit.id + " class=''>"));
 
-            var shoesItem = outfitDiv.find('#outfitShoes');
-            shoesItem.append($("<img src= '/images/" + outfit.shoes + ".jpg' alt= " + outfit.id + " class=''>"));
+    var shoesItem = outfitDiv.find('#outfitShoes');
+    shoesItem.append($("<img src= '/images/" + outfit.shoes + ".jpg' alt= " + outfit.id + " class=''>"));
 }
