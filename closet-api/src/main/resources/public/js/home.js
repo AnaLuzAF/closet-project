@@ -13,33 +13,39 @@ function loadHome() {
 
                             <div class="formulario">
                                 <h2>Log In</h2>
-                                <form action="#">
-                                    <input type="text" placeholder="User" required>
+                                <form action="#" class="form" id="form">
+                                    <input id="user" type="text" placeholder="User" required>
                                     <input id="password-view" type="password" placeholder="Password" required>
                                     <span>show</span>
-                                    <input type="submit" value="Log In">
+                                    <input type="submit" id="submit" onclick="validar()" value="Log In">
+                                    <p class="warnings" id="warnings"></p>
+
                                 </form>
                             </div>
 
                             <div class="formulario" id="formulario">
                                 <h2>Create your Account</h2>
-                                <form action="" class="form" id="form">
-                                    <input type="text" name="name" placeholder="User" required>
+                                <form onsubmit="sendMail(); reset(); return=false;" action="#" class="form" id="form">
+                                    <input id="user" type="text" name="name" placeholder="User" required>
 
                                     <input id= "password-view-create" type="password" placeholder="Password" required>
                                     <span>show</span>
 
-                                    <input type="email" name="emailUser" placeholder="Email" required>
+                                    <input id="emailUser" type="email" name="emailUser" placeholder="Email" required>
 
                                     <input type="submit" value="Check In">
                                 </form>
+
                             </div>
                             <div class="reset-password">
                                 <a href="#">I forgot my password</a>
                             </div>
                         </div>
-
+                        <script src="https://smtpjs.com/v3/smtp.js"></script>
                 `;
+
+
+
      homeStructure.append(home);
      $('.toggle').click(function(){
          $('.formulario').animate({
@@ -77,5 +83,44 @@ function loadHome() {
              }
           });
 
+          //Validar usuarios
 }
+function validar(){
+ //Escuchar un evento al hacer click en submit
+
+                var name = $('#user').val();
+                var password = $('#password-view-create').val();
+                var emailUser = $('#emailUser').val();
+                var parrafo = $('#warnings').val();
+
+                /*CONEXION A LA BASE DE DATOS PARA COMPROBAR LOS NICKNAME DE LOS USUARIOS Y COMPROBAR SI EXISTE EL USUARIO QUE SE LOGEA, RUTAS CORRECTAS PERO NO FUNCIONA
+                alert("DELANTE");
+                   $.get('/users/'+name.value,function(users){
+                    alert("DENTRO");
+                    function comprobarNickName(user,name){
+                        var userString=JSON.stringify(user);
+                    } });
+                    if(name.value==users.nickname){
+                    */
+                   if(name != "" && password != ""){
+                            parrafo.innerHTML = "";
+
+
+                           $('#main').hide();
+                           $(document).ready(function() {
+                               $('.loader').show();
+                               setTimeout(function() {
+                                   location.reload();
+
+                               },2000);
+
+                           });
+                   }else{
+                     parrafo.innerHTML = "Debe rellenar todos los campos";
+                   }
+
+}
+
+
+
 

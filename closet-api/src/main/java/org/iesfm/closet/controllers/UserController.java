@@ -1,5 +1,8 @@
 package org.iesfm.closet.controllers;
 
+import org.iesfm.closet.client.UserApi;
+import org.iesfm.closet.controllers.mappers.OutfitMapper;
+import org.iesfm.closet.controllers.mappers.UserMapper;
 import org.iesfm.closet.controllers.pojosApi.UserRest;
 import org.iesfm.closet.dao.UserDAO;
 import org.iesfm.closet.pojos.User;
@@ -11,10 +14,15 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @RestController
-public class UserController {
+public class UserController implements UserApi {
 
     @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    private UserMapper userMapper;
+
+
 /*
     @RequestMapping(method = RequestMethod.POST, path = "/users")
     public void insert(@RequestBody UserApi user) {
@@ -25,6 +33,7 @@ public class UserController {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "User already exists");
         }
     }
+
 
 
     @RequestMapping(method = RequestMethod.GET, path = "/users")
@@ -78,6 +87,13 @@ public class UserController {
                 .stream() // stream(t1)
                 .map(t1 -> fn.apply(t1)) // stream de t2
                 .collect(Collectors.toList()); // vuelves a convertir en una lista (de stream a list)
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/users/")
+    public List<UserRest> listAllUsersNickname(String nickname) {
+
+        return userMapper.convert(userDAO.listAllUsersNickname(nickname),
+                user -> userMapper.convertToApi(user));
     }
 
 }
