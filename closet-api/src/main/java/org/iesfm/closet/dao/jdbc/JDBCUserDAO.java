@@ -1,6 +1,5 @@
 package org.iesfm.closet.dao.jdbc;
 
-import org.iesfm.closet.controllers.pojosApi.UserRest;
 import org.iesfm.closet.dao.UserDAO;
 import org.iesfm.closet.pojos.User;
 import org.springframework.jdbc.core.RowMapper;
@@ -8,7 +7,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -63,25 +61,19 @@ public class JDBCUserDAO implements UserDAO {
             " :email" +
             ")";
 
+    @Override
+    public User getAllFormUser(String nickname) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("nickname",nickname);
+        return jdbc.queryForObject(SELECT_USER_NICKNAME,params,
+                USER_ROW_MAPPER
+                );
+    }
+
     // IMPLEMENTACION DE LAS QUERIES
 
     //getUser comprobación de user y pass
-    public List<User> listAllUsersNickname(String nickname) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("nickname", nickname);
 
-
-
-        return jdbc.query(
-                SELECT_USER_NICKNAME,params,
-                (rs, rowNum) ->
-                        new User(
-                                rs.getString("nickname"),
-                                rs.getString("password"),
-                                rs.getString("email")
-                                )
-        );
-    }
 
     /*
     @Override

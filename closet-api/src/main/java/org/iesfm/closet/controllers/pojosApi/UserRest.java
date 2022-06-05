@@ -7,18 +7,29 @@ import java.util.Objects;
 
 public class UserRest {
 
+    private int id;
     private String nickname;
     private String password;
     private String email;
 
     @JsonCreator
     public UserRest(
+            @JsonProperty("id") int id,
             @JsonProperty("nickname") String nickname,
             @JsonProperty("password") String password,
             @JsonProperty("email") String email) {
+        this.id = id;
         this.nickname = nickname;
         this.password = password;
         this.email = email;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNickname() {
@@ -50,18 +61,19 @@ public class UserRest {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserRest userRest = (UserRest) o;
-        return Objects.equals(nickname, userRest.nickname) && Objects.equals(password, userRest.password) && Objects.equals(email, userRest.email);
+        return id == userRest.id && Objects.equals(nickname, userRest.nickname) && Objects.equals(password, userRest.password) && Objects.equals(email, userRest.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nickname, password, email);
+        return Objects.hash(id, nickname, password, email);
     }
 
     @Override
     public String toString() {
         return "UserRest{" +
-                "nickname='" + nickname + '\'' +
+                "id=" + id +
+                ", nickname='" + nickname + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 '}';

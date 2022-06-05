@@ -1,31 +1,39 @@
 const express = require ('express');
-const sendMail = require ('./mail');
 const log = console.log;
 const app = express();
-const path = require ('path');
-const PORT = 3238;
+const PORT = process.env.PORT ||  3238;
 //data parsing(parseo de datos)
-app.use(express.urlencoded({extended:false}));
+app.use(express.static('views'));
 app.use(express.json());
 //send email here
-app.post('/email',(req,res)=>{
-const{subject,email,text} = req.body;
-console.log('data:',req.body);
-sendMail(email,subject,text,function(err,data){
-    if(err){
-        res.status(500).json({
-            message:'internal error'
-        });
-    }else{
-        res.json({
-            message: 'email send'
-        });
+app.get('/',(req,res) =>{
+    res.sendFile(__dirname + "/views/index.html")
+})
+app.post('/',(req,res) =>{
+    console.log(req.body);
+
+    const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+            user: "closetproject2022@gmail.com",
+            pass: "closet2022"
+        }
+    })
+
+    const mailOptions = {
+        from: req.body.email,
+        to: "closetproject2022@gmail.com",
+        subject: 'message From ${req.body.email}: ${req.body.subject}',
+        text: req.body.message
     }
-});
-});
-//líneas necesarias para poder aplicar el css, decirle que use la carpeta views como estática
-app.use(express.static("views"));
-//dar como respuesta el archivo index
-app.get('/',(req,res)=>{res.sendFile('index.html');})
-//si se escuchó bien que me diga donde se inició el puerto
-app.listen(PORT,()=> log('Server is starting on PORT,',3238));
+
+    transporter.sendMail(mailOptions,(error,info)=>{
+        if(error){
+            console.log(error);
+            res.send('error');
+        }else{
+            console.log('email');
+            res.send('sucess');
+        }
+    })
+})

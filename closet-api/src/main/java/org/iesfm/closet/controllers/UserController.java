@@ -1,17 +1,11 @@
 package org.iesfm.closet.controllers;
 
 import org.iesfm.closet.client.UserApi;
-import org.iesfm.closet.controllers.mappers.OutfitMapper;
 import org.iesfm.closet.controllers.mappers.UserMapper;
-import org.iesfm.closet.controllers.pojosApi.UserRest;
 import org.iesfm.closet.dao.UserDAO;
 import org.iesfm.closet.pojos.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @RestController
 public class UserController implements UserApi {
@@ -61,7 +55,7 @@ public class UserController implements UserApi {
 
 
          //////////////// conversores de tipos ////////////////
-
+/*
     private UserRest convertToApi(User user) {
         return new UserRest(
                 user.getNickname(),
@@ -79,7 +73,7 @@ public class UserController implements UserApi {
                 user.getEmail()
         );
     }
-*/
+
 
     // Conversor generico de tipos:
     public  <T1, T2> List<T2> convert(List<T1> list, Function<T1, T2> fn) {
@@ -88,12 +82,18 @@ public class UserController implements UserApi {
                 .map(t1 -> fn.apply(t1)) // stream de t2
                 .collect(Collectors.toList()); // vuelves a convertir en una lista (de stream a list)
     }
+*/
 
-    @RequestMapping(method = RequestMethod.GET, path = "/users/")
-    public List<UserRest> listAllUsersNickname(String nickname) {
-
-        return userMapper.convert(userDAO.listAllUsersNickname(nickname),
-                user -> userMapper.convertToApi(user));
+    @RequestMapping(method = RequestMethod.GET, path = "/users/{nickname}")
+    public User getAllFormUser(
+            @PathVariable("nickname") String nickname,
+            @RequestParam(name = "password", required = true) String password)
+             {
+                 if (nickname == null && password == null){
+                     return  null;
+                 } else {
+                     return userDAO.getAllFormUser(nickname);
+                 }
     }
 
 }

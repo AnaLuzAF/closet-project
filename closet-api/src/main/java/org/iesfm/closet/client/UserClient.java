@@ -1,6 +1,7 @@
 package org.iesfm.closet.client;
 import org.iesfm.closet.controllers.mappers.UserMapper;
 import org.iesfm.closet.controllers.pojosApi.UserRest;
+import org.iesfm.closet.pojos.Outfit;
 import org.iesfm.closet.pojos.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,14 +26,31 @@ public class UserClient implements UserApi {
     }
 
 
+
+
     @Override
-    public List<UserRest> listAllUsersNickname(String nickname) {
+    public User getAllFormUser(String nickname, String password) {
         HashMap<String, Object> params = new HashMap<>();
-        if (nickname!= null) {
-            params.put("nickname", nickname);
+        if (nickname != null && password != null){
+            params.put("password",password);
+            params.put("nickname",nickname);
+
+            User users = restTemplate
+                    .getForObject(host + "/users/{nickname}", User.class);
+            return users;
+
+        }else{
+            return null;
         }
-        User[] users = restTemplate.getForObject(host + "/users/{nickname}", User[].class);
-        return userMapper.convert(List.of(users),
-                user -> userMapper.convertToApi(user));
+
+
     }
-}
+
+    /*
+          User[] users = restTemplate
+                .getForObject(host + "/users/{nickname}", User[].class);
+        return userMapper.convert((users),
+                user -> userMapper.convertToApi(user));
+     */
+    }
+

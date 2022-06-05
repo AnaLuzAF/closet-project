@@ -14,6 +14,7 @@ public class UserMapper {
 
     public UserRest convertToApi(User user) {
         return new UserRest(
+                user.getId(),
                 user.getNickname(),
                 user.getPassword(),
                 user.getEmail()

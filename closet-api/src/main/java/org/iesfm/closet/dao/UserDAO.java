@@ -1,9 +1,6 @@
 package org.iesfm.closet.dao;
 
-import org.iesfm.closet.controllers.pojosApi.UserRest;
 import org.iesfm.closet.pojos.User;
-
-import java.util.List;
 
 public interface UserDAO {
 
@@ -17,6 +14,7 @@ public interface UserDAO {
 
     //boolean userExists(int id);
 
-    List<User> listAllUsersNickname(String nickname);
 
+
+    User getAllFormUser(String nickname);
 }
