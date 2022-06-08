@@ -86,4 +86,3 @@ INSERT INTO category(name) VALUES('classy');
 INSERT INTO category(name) VALUES('casual');
 
 INSERT INTO outfit(top_id, bottom_id, shoes_id, category, user_id) VALUES(1, 2, 3,'casual',1);
-INSERT INTO outfit(top_id, bottom_id, shoes_id, category, user_id) VALUES(4, 5, 6,'classy',1);

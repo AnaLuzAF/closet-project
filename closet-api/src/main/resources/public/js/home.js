@@ -60,7 +60,7 @@ function loadHome() {
         const passwordInput = document.querySelector('#password-view');
         if(e.target.classList.contains('show')){
         e.target.classList.remove('show');
-        e.target.textContent='hidden';
+        e.target.textContent='hide';
         passwordInput.type='text';
         }else{
         e.target.classList.add('show');
@@ -73,7 +73,7 @@ function loadHome() {
              const passwordInput = document.querySelector('#password-view-create');
              if(e.target.classList.contains('show')){
              e.target.classList.remove('show');
-             e.target.textContent='hidden';
+             e.target.textContent='hide';
              passwordInput.type='text';
              }else{
              e.target.classList.add('show');
