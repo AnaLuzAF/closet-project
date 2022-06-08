@@ -2,8 +2,11 @@ main {
     width: 100%;
     background-color: #fcf8f5;
     float: left;
+    font-family: "Poppins", sans-serif;
 }
+
 header {
+    font-family: "Poppins", sans-serif;
     float: left;
     width: 100%;
     /*background-color: #A9B6AD;*/
@@ -11,36 +14,35 @@ header {
     padding: 5px 0;
     z-index: 1000000;
     filter: drop-shadow(0 0 0.3rem black);
-
 }
 
-/*--------------------------------------------------------------
-# Formulario
---------------------------------------------------------------*/
-.inicio {
-    width: 90%;
-    margin: 80px 5% 0 5%;
+footer {
     float: left;
+    width: 100%;
+    height: 70px;
+    background-color: #ece2d9;
+    font-family: "Poppins", sans-serif;
 }
-.formulario{
-        width: 16%;
-        margin: 0 4%;
-        height: 310px;
-        float: left;
-        background-color: #fff;
-        border-radius: 20px;
+
+footer p {
+    color: #4F504E;
+    padding-left: 5%;
+    margin-top: 25px;
 }
-.formulario form{
-    margin: 20px 26px;
+
+#fondoHome {
+  /*position: fixed;*/
+  background: #040404 url(../images/background/111.jpg) top right no-repeat;
+  background-size: cover;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  float: left;
+  z-index: -10000;
 }
-.formulario form label{
-    color: black;
-    padding:10px;
-}
-.formulario form input{
-    padding:10px;
-    margin: 6px -6px;
-}
+
 
 /*--------------------------------------------------------------
 # Outfits
@@ -385,12 +387,11 @@ body{
   content: "";
   background-color: #fcf8f5;
   background-size: cover;
-    color: #fff;
-    float: left;
-
-    padding: 0;
-    margin: 0;
-    width: 100%;
+  color: #fff;
+  float: left;
+  padding: 0;
+  margin: 0;
+  width: 100%;
   height: 100vh;
   z-index: -1;
 }
@@ -479,11 +480,6 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
-span {
-color: green;  
-    text-decoration: underline;
-}
-
 /*--------------------------------------------------------------
 # Sections General
 --------------------------------------------------------------*/
@@ -536,3 +532,202 @@ section.section-show {
 /*--------------------------------------------------------------
 # Contact
 --------------------------------------------------------------*/
+
+
+.inicio{
+      width: 90%;
+      margin: 20px 5% 0 5%;
+      font-size:32px;
+      text-align:center;
+      font-family:Roboto;
+      color: #4F504E;
+      float: left;
+}
+
+.inicio h2 {
+      font-size: 36px;
+      margin-top: 0;
+      margin-bottom: 50px;
+}
+
+.inicio h1 {
+    margin-bottom: 5px;
+    font-size: 60px;
+    margin-top: 30px;
+    color: #005C0C;
+}
+
+
+/*--------------------------------------------------------------
+# Formulario Log in/Register
+--------------------------------------------------------------*/
+.contenedor-form {
+
+    background: #4F504E;
+    width: 30%;
+    margin: 0 35%;
+    /*border-radius: 5px;*/
+    float: left;
+    color: #fff;
+    position: relative;
+    /*padding: 40px;*/
+    border-radius: 5px;
+}
+
+.contenedor-form .toggle {
+    position: absolute;
+    top: 15px;
+    right: 40px;
+    width: 160px;
+    height: 30px;
+    font-size: 12px;
+    line-height: 25px;
+    text-align: center;
+    border-bottom: 2px solid #b48772;
+    cursor: pointer;
+    transition: all .5s ease;
+}
+
+.contenedor-form .toggle:hover {
+    border-bottom: 2px solid #0075d9;
+}
+
+.contenedor-form .toggle span {
+    letter-spacing: 1px;
+    text-decoration:none;
+    color:#FAFAFC;
+}
+
+.contenedor-form h2 {
+    margin: 30px 0 25px 0;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1;
+}
+.contenedor-form input[type="text"],
+.contenedor-form input[type="password"],
+.contenedor-form input[type="email"] {
+    outline: none;
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    margin: 0 0 20px 0;
+    background: #ece2d9;
+    height: 50px;
+    color: #fff;
+    border: none;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight:normal;
+    transition: all .5s ease;
+}
+
+.contenedor-form input[type="password"] {
+    color: #4F504E;
+}
+
+
+.contenedor-form input[type="submit"] {
+    background: #856651;
+    color: #FFF;
+    width: 100%;
+    border: none;
+    padding: 10px 0;
+    font-size: 16px;
+    font-weight: normal;
+    font-family: "Poppins", sans-serif;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all .5s ease;
+}
+
+.contenedor-form input[type="submit"]:hover {
+    background-color: #A9B6AD;
+}
+
+.contenedor-form .reset-password {
+    background: #b48772;
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.contenedor-form .reset-password a {
+    color:#FAFAFC;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.contenedor-form .formulario {
+    display: none;
+    padding: 40px;
+}
+
+.contenedor-form .formulario:nth-child(2) {
+    display: block;
+}
+
+/*--------------------------------------------------------------
+# Formulario Contacto
+--------------------------------------------------------------*/
+
+.contact .form-contact{
+    width:50%;
+    margin: 25%; 
+    background:#4F504E;
+    padding:10px 20px;
+    box-sizing:border-box;
+    margin-top: 80px;
+    border-radius: 5px;
+    border-style: none;
+    margin-bottom: 0;
+    float: left;
+}
+
+.form-contact .form-contact-container h2{
+    color:#fff;
+    text-align:center;
+    font-size:30px;
+    margin-bottom:20px;
+
+}
+
+.form-contact input, .form-contact textarea{
+    width:100%;
+    margin-bottom: 20px;
+    padding: 7px;
+    box-sizing:border-box;
+    font-size: 16px;
+    background-color: #ece2d9;
+    font-family: inherit;
+    border-style: none;
+
+}
+
+.form-contact textarea{
+    min-height: 160px;
+    max-height: 200px;
+    max-width: 100%;
+    resize: none;
+
+}
+
+.form-contact .form-contact-input-send{
+    background: #856651;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.form-contact .form-contact-input-send:hover{
+    cursor:pointer;
+    background-color: #A9B6AD;
+}
+
+@media (max-width:480px){
+    .contact .form-contact{
+        width:100%;
+    }
+}
