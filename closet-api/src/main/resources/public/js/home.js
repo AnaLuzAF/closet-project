@@ -1,8 +1,8 @@
-function loadHome() {
-    var homeStructure = $('#main');
-    homeStructure.empty();
+    function loadHome() {
+        var homeStructure = $('#main');
+        homeStructure.empty();
 
-    var home = `<div class="inicio">
+       var home = `<div class="inicio">
                                     <h1><a href = "index.html">Online Closet</a></h1>
                                     <h2>Plan your <span>best outfits</span> ahead</h2>
                                    </div>
@@ -14,10 +14,10 @@ function loadHome() {
                             <div class="formulario">
                                 <h2>Log In</h2>
                                 <form action = "#" class = "form" id = "form">
-                                    <input id = "user" type = "text" placeholder = "User" required>
+                                    <input id = "users" type = "text" placeholder = "User" required>
                                     <input id = "password-view" type = "password" placeholder = "Password" required>
                                     <span>show</span>
-                                    <input type = "submit" id = "submit" onclick = "validar()" value = "Log In">
+                                    <input type = "submit" id = "submit" onclick = "printUsers()" value = "Log In">
                                     <p class = "warnings" id ="warnings"></p>
 
                                 </form>
@@ -43,10 +43,9 @@ function loadHome() {
                         </div>
                         <script src="https://smtpjs.com/v3/smtp.js"></script>
                 `;
+        homeStructure.append(home);
 
 
-
-     homeStructure.append(home);
      $('.toggle').click(function(){
          $('.formulario').animate({
              height: "toggle",
@@ -83,53 +82,46 @@ function loadHome() {
              }
           });
 
-          //Validar usuarios
-}
-function validar(){
- //Escuchar un evento al hacer click en submit
-
-                var name = $('#user').val();
-                var password = $('#password-view').val();
-                var emailUser = $('#emailUser').val();
-                var parrafo = $('#warnings').val();
-
-                var divLoader = document.getElementById("loader");
-                var p = document.createElement("p");
-                //crear un nodo de texto y agregarlo al parrafo
-
-                var text = document.createTextNode("welcome " + name);
-
-
-
-                /*CONEXION A LA BASE DE DATOS PARA COMPROBAR LOS NICKNAME DE LOS USUARIOS Y COMPROBAR SI EXISTE EL USUARIO QUE SE LOGEA, RUTAS CORRECTAS PERO NO FUNCIONA
-                alert("DELANTE");
-                   $.get('/users/'+name.value,function(users){
-                    alert("DENTRO");
-                    function comprobarNickName(user,name){
-                        var userString=JSON.stringify(user);
-                    } });
-                    if(name.value==users.nickname){
-                    */
-                   if(name != "" && password != ""){
-                            parrafo.innerHTML = "";
-
-                            p.appendChild(text);
-                            divLoader.appendChild(p);
-
-                           $('#main').hide();
-                           $(document).ready(function() {
-                               $('.loader').show();
-                               setTimeout(function() {
-                                   location.reload();
-
-                               },3000);
-
-                           });
-                   }else{
-                     parrafo.innerHTML = "Debe rellenar todos los campos";
-                   }
 
 }
+
+    function printUsers() {
+           var nickname = $('#users').val();
+           var password = $('#password-view').val();
+           var parrafo = $('#warnings').val();
+
+           
+
+            $.get("/users/" + nickname + "?password=" + password, function(user) {
+
+
+            var divLoader = document.getElementById("loader");
+            var p = document.createElement("p");
+            //crear un nodo de texto y agregarlo al parrafo
+            var text = document.createTextNode("welcome " + nickname);
+
+              p.appendChild(text);
+              divLoader.appendChild(p);
+
+              $('#main').hide();
+              $(document).ready(function() {
+              $('.loader').show();
+              setTimeout(function() {
+              location.reload();
+
+              },3000);
+
+              });
+
+    });
+}
+
+
+
+
+
+
+
 
 
 

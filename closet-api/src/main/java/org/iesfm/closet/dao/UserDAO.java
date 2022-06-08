@@ -15,6 +15,5 @@ public interface UserDAO {
     //boolean userExists(int id);
 
 
-
-    User getAllFormUser(String nickname);
+    User getUserByNickname(String nickname, String password);
 }

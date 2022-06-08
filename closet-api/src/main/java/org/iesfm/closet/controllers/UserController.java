@@ -2,8 +2,8 @@ package org.iesfm.closet.controllers;
 
 import org.iesfm.closet.client.UserApi;
 import org.iesfm.closet.controllers.mappers.UserMapper;
+import org.iesfm.closet.controllers.pojosApi.UserRest;
 import org.iesfm.closet.dao.UserDAO;
-import org.iesfm.closet.pojos.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,10 +51,7 @@ public class UserController implements UserApi {
     }*/
 
 
-
-
-
-         //////////////// conversores de tipos ////////////////
+    //////////////// conversores de tipos ////////////////
 /*
     private UserRest convertToApi(User user) {
         return new UserRest(
@@ -85,15 +82,13 @@ public class UserController implements UserApi {
 */
 
     @RequestMapping(method = RequestMethod.GET, path = "/users/{nickname}")
-    public User getAllFormUser(
+    public UserRest getUserByNickname(
             @PathVariable("nickname") String nickname,
-            @RequestParam(name = "password", required = true) String password)
-             {
-                 if (nickname == null && password == null){
-                     return  null;
-                 } else {
-                     return userDAO.getAllFormUser(nickname);
-                 }
+            @RequestParam(name = "password", required = false) String password) {
+
+        return userMapper.convertToApi(userDAO.getUserByNickname(nickname, password));
+
+
     }
 
 }

@@ -30,7 +30,7 @@ public class JDBCUserDAO implements UserDAO {
                     rs.getString("email")
             );
     //seleccionar todos los nicknames de la tabla user
-    private final static String SELECT_USER_NICKNAME= "SELECT * FROM user WHERE nickname =:nickname";
+    private final static String SELECT_USER_BY_NICKNAME = "SELECT * FROM user WHERE nickname =:nickname AND password =:password";
 
     private final static String SELECT_USERS = "SELECT * FROM user";
 
@@ -62,12 +62,13 @@ public class JDBCUserDAO implements UserDAO {
             ")";
 
     @Override
-    public User getAllFormUser(String nickname) {
+    public User getUserByNickname(String nickname,String password) {
         Map<String, Object> params = new HashMap<>();
-        params.put("nickname",nickname);
-        return jdbc.queryForObject(SELECT_USER_NICKNAME,params,
+        params.put("nickname", nickname);
+        params.put("password", password);
+        return jdbc.queryForObject(SELECT_USER_BY_NICKNAME, params,
                 USER_ROW_MAPPER
-                );
+        );
     }
 
     // IMPLEMENTACION DE LAS QUERIES
@@ -182,7 +183,6 @@ public class JDBCUserDAO implements UserDAO {
     }
 
      */
-
 
 
 }
