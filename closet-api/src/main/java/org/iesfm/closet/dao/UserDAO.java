@@ -2,8 +2,6 @@ package org.iesfm.closet.dao;
 
 import org.iesfm.closet.pojos.User;
 
-import java.util.List;
-
 public interface UserDAO {
 
     //boolean insert(User user);
@@ -15,4 +13,6 @@ public interface UserDAO {
     //int deleteUser(int id);
 
     //boolean userExists(int id);
+
+    User getUserByNickname(String nickname, String password);
 }

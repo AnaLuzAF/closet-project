@@ -17,8 +17,8 @@ function loadHome() {
                                     <input id="user" type="text" placeholder="User" required>
                                     <input id="password-view" type="password" placeholder="Password" required>
                                     <span>show</span>
-                                    <input type="submit" id="submit" onclick="validar()" value="Log In">
-                                    <p class="warnings" id="warnings"></p>
+                                    <input type = "submit" id = "submit" onclick = "printUsers()" value = "Log In">
+                                    <p class = "warnings" id ="warnings"></p>
 
                                 </form>
                             </div>
@@ -81,6 +81,48 @@ function loadHome() {
              passwordInput.type='password';
              }
           });
+
+
 }
 
-   //Validar usuarios
+    function printUsers() {
+           var nickname = $('#users').val();
+           var password = $('#password-view').val();
+           var parrafo = $('#warnings').val();
+
+
+
+            $.get("/users/" + nickname + "?password=" + password, function(user) {
+
+
+            var divLoader = document.getElementById("loader");
+            var p = document.createElement("p");
+            //crear un nodo de texto y agregarlo al parrafo
+            var text = document.createTextNode("welcome " + nickname);
+
+              p.appendChild(text);
+              divLoader.appendChild(p);
+
+              $('#main').hide();
+              $(document).ready(function() {
+              $('.loader').show();
+              setTimeout(function() {
+              location.reload();
+
+              },3000);
+
+              });
+
+    });
+}
+
+
+
+
+
+
+
+
+
+
+

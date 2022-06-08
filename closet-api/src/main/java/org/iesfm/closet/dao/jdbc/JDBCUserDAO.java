@@ -1,18 +1,12 @@
 package org.iesfm.closet.dao.jdbc;
 
 import org.iesfm.closet.dao.UserDAO;
-import org.iesfm.closet.pojos.Item;
-import org.iesfm.closet.pojos.Outfit;
 import org.iesfm.closet.pojos.User;
-import org.springframework.dao.DuplicateKeyException;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 
@@ -35,6 +29,8 @@ public class JDBCUserDAO implements UserDAO {
                     rs.getString("password"),
                     rs.getString("email")
             );
+
+    private final static String SELECT_USER_BY_NICKNAME = "SELECT * FROM user WHERE nickname =:nickname AND password =:password";
 
     private final static String SELECT_USERS = "SELECT * FROM user";
 
@@ -65,7 +61,20 @@ public class JDBCUserDAO implements UserDAO {
             " :email" +
             ")";
 
+
+    @Override
+    public User getUserByNickname(String nickname,String password) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("nickname", nickname);
+        params.put("password", password);
+        return jdbc.queryForObject(SELECT_USER_BY_NICKNAME, params,
+                USER_ROW_MAPPER
+        );
+    }
+
     // IMPLEMENTACION DE LAS QUERIES
+
+    //getUser comprobación de user y pass
 
     /*
     @Override
@@ -174,4 +183,6 @@ public class JDBCUserDAO implements UserDAO {
     }
 
      */
+
+
 }
