@@ -644,6 +644,18 @@ section.section-show {
     background-color: #A9B6AD;
 }
 
+.contenedor-form .formulario span{
+    background-color: #856651;
+    position: absolute;
+    right: 50px;
+    top: 196px;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 2px 10px;
+    color: white;
+    text-decoration: none;
+}
+
 .contenedor-form .reset-password {
     background: #b48772;
     width: 100%;
