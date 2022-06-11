@@ -22,7 +22,7 @@ header {
 .contenedor-form {
 
     background: #7E807B;
-    max-width: 620px;
+    max-width: 450px;
     width: 100%;
     margin: 330px auto;
     border-radius: 5px;
@@ -132,8 +132,19 @@ header {
 }
 
 .contenedor-form .formulario {
-    display: none;
+    /*display: none;*/
     padding: 40px;
+}
+#log{
+margin-left:500px;
+height:307px;
+}
+#log .reset-password{
+margin-top:-10px;
+}
+#create{
+margin-top:-640px;
+margin-left:1040px;
 }
 
 .contenedor-form .formulario:nth-child(2) {
