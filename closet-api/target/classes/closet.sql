@@ -6,9 +6,9 @@ USE Closet;
 
 CREATE TABLE IF NOT EXISTS user (
 id				    INT AUTO_INCREMENT PRIMARY KEY,
-nickname		    VARCHAR (30) NOT NULL,
+nickname		    VARCHAR (30) NOT NULL UNIQUE,
 password		    VARCHAR (20) NOT NULL,
-email 				VARCHAR (50) NOT NULL
+email 				VARCHAR (50) NOT NULL UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS item_type (

@@ -1,11 +1,11 @@
-function loadHome() {
+function loadAbout() {
     var homeStructure = $('#main');
     homeStructure.empty();
 
     var home = `<div id="fondoHome"><div class="inicio">
-                        <h1>Online Closet</h1>
-                        <h2>Plan your <span>best outfits</span> ahead</h2>
-                </div>
+                                    <h1>Online Closet</h1>
+                                    <h2>Plan your <span>best outfits</span> ahead</h2>
+                                   </div>
                         <div class="contenedor-form">
                             <div class="toggle">
                                 <span> Log In/Create Account</span>
@@ -47,7 +47,7 @@ function loadHome() {
 
      homeStructure.append(home);
 
-     /*$('.toggle').click(function(){
+     $('.toggle').click(function(){
          $('.formulario').animate({
              height: "toggle",
              'padding-top': 'toggle',
@@ -81,7 +81,7 @@ function loadHome() {
              e.target.textContent='show';
              passwordInput.type='password';
              }
-          });*/
+          });
 }
 
 function getUser() {
@@ -104,18 +104,15 @@ function getUser() {
 }
 
 function showLoader () {
-         $('#main').hide();
-         $(document).ready(function() {
-            $('.loader').show();
-            setTimeout(function() {
-            location.reload();
-             },2000);
-         });
+
+                  $('#main').hide();
+                  $(document).ready(function() {
+                      $('.loader').show();
+                      setTimeout(function() {
+                        location.reload();
+                      },2000);
+                  });
 }
-
-
-
-// todo cris --- insert user
 
 function insertUser() {
     var user = {

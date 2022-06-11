@@ -1,6 +1,7 @@
 package org.iesfm.closet.client;
 
 import org.iesfm.closet.controllers.mappers.UserMapper;
+import org.iesfm.closet.controllers.pojosApi.ItemRest;
 import org.iesfm.closet.controllers.pojosApi.UserRest;
 import org.iesfm.closet.pojos.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,6 @@ public class UserClient implements UserApi {
         this.host = host;
     }
 
-
     @Override
     public UserRest getUserByNickname(String nickname, String password) {
         HashMap<String, Object> params = new HashMap<>();
@@ -34,9 +34,10 @@ public class UserClient implements UserApi {
 
         User user = restTemplate.getForObject(host + "/users/{nickname}", User.class, params);
         return userMapper.convertToApi(user);
-
-
     }
 
-
+    @Override
+    public void insert(UserRest user) {
+        restTemplate.postForObject(host + "/users", user, Void.class);
+    }
 }

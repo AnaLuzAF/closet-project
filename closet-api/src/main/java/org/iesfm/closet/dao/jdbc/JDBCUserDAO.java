@@ -2,6 +2,7 @@ package org.iesfm.closet.dao.jdbc;
 
 import org.iesfm.closet.dao.UserDAO;
 import org.iesfm.closet.pojos.User;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -72,11 +73,6 @@ public class JDBCUserDAO implements UserDAO {
         );
     }
 
-    // IMPLEMENTACION DE LAS QUERIES
-
-    //getUser comprobación de user y pass
-
-    /*
     @Override
     public boolean insert(User user) {
         try {
@@ -90,7 +86,7 @@ public class JDBCUserDAO implements UserDAO {
         }
     }
 
-
+/*
     private List<String> selectUserItems(int id) {
         Map<String, Object> params = new HashMap<>();
         params.put("user_id", id);
