@@ -15,8 +15,7 @@ public class ItemMapper {
     public ItemRest convertToApi(Item item) {
         return new ItemRest(
                 item.getId(),
-                item.getItemType(),
-                item.getImageItem()
+                item.getItemType()
         );
     }
 
@@ -24,7 +23,6 @@ public class ItemMapper {
     public Item convertToModel(ItemRest item, int userId) {
         return new Item(
                 item.getItemType(),
-                item.getImageItem(),
                 userId
         );
     }

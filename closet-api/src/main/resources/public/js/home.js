@@ -90,7 +90,7 @@
            var password = $('#password-view').val();
            var parrafo = $('#warnings').val();
 
-           
+
 
             $.get("/users/" + nickname + "?password=" + password, function(user) {
 

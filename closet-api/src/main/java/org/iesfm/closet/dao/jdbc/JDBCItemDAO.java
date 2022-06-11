@@ -23,7 +23,6 @@ public class JDBCItemDAO implements ItemDAO {
     private final static RowMapper<Item> ITEM_ROW_MAPPER =
             (rs, rowNum) -> new Item(
                     rs.getInt("id"),
-                    rs.getString("image_item"),
                     rs.getString("item_type"),
                     rs.getInt("user_id")
             );
@@ -39,12 +38,10 @@ public class JDBCItemDAO implements ItemDAO {
     private static final String DELETE_ITEM = "DELETE FROM item WHERE id = :id";
     private final static String INSERT_ITEM = "INSERT INTO item(" +
             " item_type, " +
-            " image_item, "+
             " user_id" +
             ") " +
             "VALUES(" +
             " :item_type, " +
-            " :image_item, " +
             " :user_id" +
             ")";
 
@@ -54,7 +51,6 @@ public class JDBCItemDAO implements ItemDAO {
         try {
             Map<String, Object> params = new HashMap<>();
             params.put("item_type", item.getItemType());
-            params.put("image_item",item.getImageItem());
             params.put("user_id",item.getUserId());
             return jdbc.update(INSERT_ITEM, params) == 1;
         } catch (DuplicateKeyException e) {
@@ -107,7 +103,6 @@ public class JDBCItemDAO implements ItemDAO {
                         new Item(
                                 rs.getInt("id"),
                                 rs.getString("item_type"),
-                                rs.getString("image_item"),
                                 rs.getInt("user_id")
                         )
         );
