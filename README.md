@@ -1,3 +1,28 @@
+# MANUAL DE USUARIO PARA HACER PRUEBAS
+
+## REQUISITOS PREVIOS
+
+1. INICIAR CONTENEDOR DOCKER DE MYSQL
+2. CARGAR BASE DE DATOS CLOSET.SQL
+3. INICIAR LA APLICACION DESDE ApiMain
+
+## PASOS PARA HACER UNA PRUEBA
+
+1. Abrir localhost:8080/index.html
+2. Ir a la pestaña WARDROBE
+3. Añadir una prenda de cada tipo en las diferentes secciones, cogiendo la imagen desde la carpeta de IMAGENES PARA SUBIR: están ya preparadas para poder ser subidas sin problemas
+4. Seleccionar 3 prendas, una de cada tipo
+5. Seleccionar una categoria en el menu dropdown y dar a SUBMIT
+6. Comprobar que sale un alert que indica que el outfit se ha guardado correctamente
+7. Ir a la pestaña OUTFIT
+8. comprobar que el outfit se ha gurdado y se muestra correctamente
+
+A tener en cuenta: las categorias de outfit que aun no tengan ningun outfit guardado, saldrán vacias por defecto. Para una puesta a punto incial lo ideal es guardar un outfit de cada tipo, y asi ver como se muestran en cada categoria cuando se hace el filtrado
+
+
+
+
+
 # Readme de referencia para configuración futura (obtenido de Library project)
 
 ## Configuración del entorno de desarrollo
