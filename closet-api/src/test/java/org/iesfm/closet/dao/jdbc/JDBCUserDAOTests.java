@@ -17,8 +17,7 @@ public class JDBCUserDAOTests {
 
     //OBTENER USUARIO POR SU NICKNAME
     @Test
-    public void findNickname() {
-
+    public void findUserNicknameTest() {
         User nickname = jdbcUserDAO.getUserByNickname("tester","test");
         Assert.assertEquals("tester", nickname.getNickname());
     }
