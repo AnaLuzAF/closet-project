@@ -4,7 +4,10 @@ import org.iesfm.closet.dao.UserDAO;
 import org.iesfm.closet.pojos.User;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -79,15 +82,20 @@ public class JDBCUserDAO implements UserDAO {
 
 
     @Override
-    public boolean insert(User user) {
+    public int insert(User user) {
+        final KeyHolder holder = new GeneratedKeyHolder();
         try {
-            Map<String, Object> params = new HashMap<>();
-            params.put("nickname", user.getNickname());
-            params.put("password", user.getPassword());
-            params.put("email", user.getEmail());
-            return jdbc.update(INSERT_USER, params) == 1;
+            MapSqlParameterSource params = new MapSqlParameterSource();
+            params.addValue("nickname", user.getNickname());
+            params.addValue("password",user.getPassword());
+            params.addValue("email",user.getEmail());
+            jdbc.update(INSERT_USER, params, holder, new String[] {"id"});
+
+            Number generatedId = holder.getKey();
+            return generatedId.intValue();
+
         } catch (DuplicateKeyException e) {
-            return false;
+            return -1;
         }
     }
 
