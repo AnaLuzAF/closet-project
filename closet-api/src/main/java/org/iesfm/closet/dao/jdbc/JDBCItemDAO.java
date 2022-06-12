@@ -3,6 +3,7 @@ package org.iesfm.closet.dao.jdbc;
 import org.iesfm.closet.dao.ItemDAO;
 import org.iesfm.closet.pojos.Item;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -81,6 +82,11 @@ public class JDBCItemDAO implements ItemDAO {
         Map<String, Object> params = new HashMap<>();
         params.put("user_id", userId);
         return jdbc.query(SELECT_ITEMS_BY_USER_ID, params, ITEM_ROW_MAPPER);
+    }
+
+    @Override
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+
     }
 
     /*
