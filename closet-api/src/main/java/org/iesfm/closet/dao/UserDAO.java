@@ -4,7 +4,7 @@ import org.iesfm.closet.pojos.User;
 
 public interface UserDAO {
 
-    //boolean insert(User user);
+    boolean insert(User user);
 
     //List<User> listAll();
 

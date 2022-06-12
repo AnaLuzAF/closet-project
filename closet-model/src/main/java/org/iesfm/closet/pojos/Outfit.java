@@ -5,13 +5,13 @@ import java.util.Objects;
 public class Outfit {
 
     private int id;
-    private String top;
-    private String bottom;
-    private String shoes;
+    private int top;
+    private int bottom;
+    private int shoes;
     private String category;
     private int userId;
 
-    public Outfit(int id, String top, String bottom, String shoes, String category, int userId) {
+    public Outfit(int id, int top, int bottom, int shoes, String category, int userId) {
         this.id = id;
         this.top = top;
         this.bottom = bottom;
@@ -20,7 +20,7 @@ public class Outfit {
         this.userId = userId;
     }
 
-    public Outfit(String top, String bottom, String shoes, String category, int userId) {
+    public Outfit(int top, int bottom, int shoes, String category, int userId) {
         this.top = top;
         this.bottom = bottom;
         this.shoes = shoes;
@@ -36,27 +36,27 @@ public class Outfit {
         this.id = id;
     }
 
-    public String getTop() {
+    public int getTop() {
         return top;
     }
 
-    public void setTop(String top) {
+    public void setTop(int top) {
         this.top = top;
     }
 
-    public String getBottom() {
+    public int getBottom() {
         return bottom;
     }
 
-    public void setBottom(String bottom) {
+    public void setBottom(int bottom) {
         this.bottom = bottom;
     }
 
-    public String getShoes() {
+    public int getShoes() {
         return shoes;
     }
 
-    public void setShoes(String shoes) {
+    public void setShoes(int shoes) {
         this.shoes = shoes;
     }
 
@@ -81,7 +81,7 @@ public class Outfit {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Outfit outfit = (Outfit) o;
-        return id == outfit.id && userId == outfit.userId && Objects.equals(top, outfit.top) && Objects.equals(bottom, outfit.bottom) && Objects.equals(shoes, outfit.shoes) && Objects.equals(category, outfit.category);
+        return id == outfit.id && top == outfit.top && bottom == outfit.bottom && shoes == outfit.shoes && userId == outfit.userId && Objects.equals(category, outfit.category);
     }
 
     @Override
@@ -93,11 +93,11 @@ public class Outfit {
     public String toString() {
         return "Outfit{" +
                 "id=" + id +
-                ", top='" + top + '\'' +
-                ", bottom='" + bottom + '\'' +
-                ", shoes='" + shoes + '\'' +
+                ", top=" + top +
+                ", bottom=" + bottom +
+                ", shoes=" + shoes +
                 ", category='" + category + '\'' +
-                ", user_id=" + userId +
+                ", userId=" + userId +
                 '}';
     }
 }

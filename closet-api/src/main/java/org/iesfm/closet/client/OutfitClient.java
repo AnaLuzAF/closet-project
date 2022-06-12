@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.List;
 
-public class OutfitClient implements OutfitsApi{
+public class OutfitClient implements OutfitsApi {
     private RestTemplate restTemplate;
     private String host;
 
@@ -29,17 +29,23 @@ public class OutfitClient implements OutfitsApi{
 
     //listar todos los outfits y por categoria
     @Override
-    public List<OutfitRest> listUserOutfits(int userId,String category) {
+    public List<OutfitRest> listUserOutfits(int userId, String category) {
         HashMap<String, Object> params = new HashMap<>();
-        if (category!=null){
-            params.put("category",category);
-        }else{
-            params.put("user_id",userId);
+
+        params.put("user_id", userId);
+
+        if (category != null) {
+            params.put("category", category);
         }
         Outfit[] outfits = restTemplate
                 .getForObject(host + "/users/{user_id}/outfits", Outfit[].class);
         return outfitMapper.convert(List.of(outfits),
                 outfit -> outfitMapper.convertToApi(outfit));
+    }
+
+    @Override
+    public int insert(int userId, OutfitRest outfit) {
+        return restTemplate.postForObject(host + "/users/{userId}/outfits", outfit, int.class);
     }
 
 }

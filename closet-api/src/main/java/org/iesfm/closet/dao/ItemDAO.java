@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ItemDAO {
 
-    boolean insert(Item item);
+    int insert(Item item);
 
     //int deleteItem (int id);
 

@@ -17,17 +17,18 @@ public class OutfitMapper {
                 outfit.getId(),
                 outfit.getTop(),
                 outfit.getBottom(),
-                outfit.getShoes()
+                outfit.getShoes(),
+                outfit.getCategory()
         );
     }
 
 
-    public Outfit convertToModel(OutfitRest outfit,String category,int userId) {
+    public Outfit convertToModel(int userId, OutfitRest outfit) {
         return new Outfit(
                 outfit.getTop(),
                 outfit.getBottom(),
                 outfit.getShoes(),
-                category,
+                outfit.getCategory(),
                 userId
         );
     }

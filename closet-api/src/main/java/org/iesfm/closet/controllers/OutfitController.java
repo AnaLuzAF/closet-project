@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 public class OutfitController implements OutfitsApi {
 
+
     @Autowired
     private OutfitDAO outfitDAO;
 
@@ -30,9 +31,11 @@ public class OutfitController implements OutfitsApi {
     Ver los outfits de una categoria: GET /users/{userId}/outfits/{category}
     */
 
-    /*
-    @RequestMapping(method = RequestMethod.POST, path = "/users/{userId}/categories/{category}/outfits")
-    public void insert(@PathVariable("user_id") int user_id, @PathVariable("category") String category, @RequestBody OutfitApi outfit) {
+    @RequestMapping(method = RequestMethod.POST, path = "/users/{user_id}/outfits")
+    public int insert(@PathVariable("user_id") int userId, @RequestBody OutfitRest outfit) {
+
+        return outfitDAO.insert(userId, outfitMapper.convertToModel(userId, outfit));
+
         /* if userdao.userexists.. hacer consultas a parte */
 
     /*
@@ -47,8 +50,12 @@ public class OutfitController implements OutfitsApi {
             // si la categoria no existe
             //throw new ResponseStatusException(HttpStatus.CONFLICT, "Outfit already exists");
             //}
-        }
+        }*/
     }
+
+
+
+    /*
     @RequestMapping(method = RequestMethod.GET, path = "/users/{userId}/categories/{category}/outfits")
     public List<Outfit> listUserOutfits(@PathVariable("user_id") int userId, @PathVariable("category") String category) {
         if (category.equalsIgnoreCase("all")) {
@@ -60,34 +67,13 @@ public class OutfitController implements OutfitsApi {
 */
 
 
-
-
-
-    //////////////// conversores de tipos ////////////////
-
-
-
-    /*
-    private Outfit convertToModel(OutfitRest outfit, String category, int userId) {
-        return new Outfit(
-                id, // outfit id autogenerado????
-                outfit.getTop(),
-                outfit.getBottom(),
-                outfit.getShoes(),
-                category,
-                userId
-        );
-    }*/
-
-
-
     //listar todos los outfits
     @RequestMapping(method = RequestMethod.GET, path = "/users/{user_id}/outfits")
-    public List <OutfitRest> listUserOutfits(
-            @PathVariable("user_id")int userId,
+    public List<OutfitRest> listUserOutfits(
+            @PathVariable("user_id") int userId,
             @RequestParam(name = "category", required = false) String category) {
 
-        if (category == null){
+        if (category == null) {
             return outfitMapper.convert(outfitDAO.listUserOutfits(userId),
                     outfit -> outfitMapper.convertToApi(outfit));
         } else {
@@ -97,5 +83,6 @@ public class OutfitController implements OutfitsApi {
 
     }
 
-    }
+
+}
 
