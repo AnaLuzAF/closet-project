@@ -6,12 +6,9 @@ function loadHome() {
                         <h1>Online Closet</h1>
                         <h2>Plan your <span>best outfits</span> ahead</h2>
                 </div>
-                        <div class="contenedor-form">
-                            <div class="toggle">
-                                <span> Log In/Create Account</span>
-                            </div>
+                <div class = "contenedor-form" id="log">
 
-                            <div class="formulario">
+                       <div class="formulario" id="logContainer">
                                 <h2>Log In</h2>
                                 <form action="#" class="form" id="form">
                                     <input id="user" type="text" placeholder="User" required>
@@ -21,7 +18,11 @@ function loadHome() {
                                     <p class = "warnings" id ="warnings"></p>
                                 </form>
                             </div>
-
+                            <div class="reset-password">
+                                <a href="#">I forgot my password</a>
+                            </div>
+                        </div>
+                        <div class = "contenedor-form" id="create">
                             <div class="formulario" id="formulario">
                                 <h2>Create your Account</h2>
                                 <form onsubmit="sendMail(); reset(); return=false;" action="#" class="form" id="form">
@@ -36,12 +37,7 @@ function loadHome() {
 
                                     <input type="submit" value="Register" id="register" onclick=insertUser()>
                                 </form>
-
                             </div>
-                            <div class="reset-password">
-                                <a href="#">I forgot my password</a>
-                            </div>
-                        </div>
                     </div>
                 `;
 
