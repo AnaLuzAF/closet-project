@@ -1,3 +1,10 @@
+
+/* ************************************************************
+En esta clase está implementado el formulario de log in y de
+register con estilos y animaciones hechas con un toggle.
+Para sustituir en un futuro el login de la página de home.
+**************************************************************/
+
 function loadAbout() {
     var homeStructure = $('#main');
     homeStructure.empty();

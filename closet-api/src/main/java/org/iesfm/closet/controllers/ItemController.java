@@ -33,16 +33,6 @@ public class ItemController implements ItemsApi {
             @PathVariable("user_id") int userId,
             @RequestParam(name = "item_type", required = false) String itemType) {
 
-        /*
-        if (!userDAO.existsUser(user_id)){
-            // user not found
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-            //bad request si esta mal el item_type
-        } else if (!itemDAO.existsItemType(itemType)){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-        */
-
         if (itemType == null) {
             return itemMapper.convert(itemDAO.listUserItems(userId),
                     item -> itemMapper.convertToApi(item));
@@ -75,18 +65,4 @@ public class ItemController implements ItemsApi {
         }
         return true;
     }
-
-
-    /*
-
-    //Eliminar una prenda: DELETE /users/{userId}/items/{id}
-    @RequestMapping(method = RequestMethod.DELETE, path = "/users/{user_id}/items/{id}")
-    public void deleteItem(@PathVariable("id") int id) {
-        if (itemDAO.deleteItem(id) == 0) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Item not found");
-        }
-    }*/
-
-
 }

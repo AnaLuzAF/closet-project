@@ -10,5 +10,4 @@ public interface ItemsApi {
 
     int insert(ItemRest item, int userId);
 
-
 }

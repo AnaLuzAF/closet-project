@@ -270,7 +270,7 @@ animation-timing-function: linear;
 }
 
 .outfit-parts {
-    width: 33%;
+    width: 28%;
     /*margin: 0 15%;*/
     float: left;
     background-color: #ece2d9;
@@ -284,7 +284,7 @@ animation-timing-function: linear;
 
 .outfit-box {
     width: 96%;
-    height: 280px;
+    height: 240px;
     margin: 2px 2%;
     float: left;
     background-color: #f1e9e1;
@@ -294,7 +294,7 @@ animation-timing-function: linear;
 
 .outfit-box .clothes{
     width: 100%;
-    height: 280px;
+    height: 240px;
 }
 
 

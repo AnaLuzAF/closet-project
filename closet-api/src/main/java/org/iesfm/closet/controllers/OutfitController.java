@@ -24,50 +24,14 @@ public class OutfitController implements OutfitsApi {
     private OutfitMapper outfitMapper;
 
 
-
-   /*
-    Crear outfit (añadir un outfit a una categoria): POST /users/{userId}/outfits/{category}??
-    Ver el outfit : GET /users/{userId}/outfits
-    Ver los outfits de una categoria: GET /users/{userId}/outfits/{category}
-    */
-
     @RequestMapping(method = RequestMethod.POST, path = "/users/{user_id}/outfits")
     public int insert(@PathVariable("user_id") int userId, @RequestBody OutfitRest outfit) {
 
         return outfitDAO.insert(userId, outfitMapper.convertToModel(userId, outfit));
 
-        /* if userdao.userexists.. hacer consultas a parte */
-
-    /*
-        if(!userDAO.userExists(user_id)) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
-        }
-        if (!outfitDAO.insert(outfitApi) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bad request");
-            // lanzar excepciones segun el error:
-            // si no encuentra al user
-            // si el outfit esta repetido
-            // si la categoria no existe
-            //throw new ResponseStatusException(HttpStatus.CONFLICT, "Outfit already exists");
-            //}
-        }*/
     }
 
-
-
-    /*
-    @RequestMapping(method = RequestMethod.GET, path = "/users/{userId}/categories/{category}/outfits")
-    public List<Outfit> listUserOutfits(@PathVariable("user_id") int userId, @PathVariable("category") String category) {
-        if (category.equalsIgnoreCase("all")) {
-            return outfitDAO.listUserOutfits();
-        } else {
-            return outfitDAO.listUserOutfitsFromCategory(category);
-        }
-    }
-*/
-
-
-    //listar todos los outfits
+    //listar outfits
     @RequestMapping(method = RequestMethod.GET, path = "/users/{user_id}/outfits")
     public List<OutfitRest> listUserOutfits(
             @PathVariable("user_id") int userId,
@@ -80,8 +44,6 @@ public class OutfitController implements OutfitsApi {
             return outfitMapper.convert(outfitDAO.listUserOutfitsByCategory(userId, category),
                     outfit -> outfitMapper.convertToApi(outfit));
         }
-
     }
-
 }
 

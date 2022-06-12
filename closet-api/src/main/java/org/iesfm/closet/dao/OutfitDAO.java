@@ -12,9 +12,4 @@ public interface OutfitDAO {
 
     List<Outfit> listUserOutfitsByCategory(int userId, String category);
 
-    //List<Outfit> listUserOutfits();
-
-    //List<Outfit> listUserOutfitsFromCategory(String name);
-
-
 }

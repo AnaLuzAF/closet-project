@@ -34,9 +34,7 @@ public class JDBCItemDAO implements ItemDAO {
 
     private static final String SELECT_ITEMS_BY_USER_ID = "SELECT * FROM item WHERE user_id = :user_id";
 
-
     private static final String SELECT_ITEM_BY_ITEM_TYPE = "SELECT * FROM item WHERE item_type = :item_type AND user_id= :user_id";
-
 
     private static final String DELETE_ITEM = "DELETE FROM item WHERE id = :id";
 
@@ -50,15 +48,14 @@ public class JDBCItemDAO implements ItemDAO {
             ")";
 
 
-
     @Override
     public int insert(Item item) {
         final KeyHolder holder = new GeneratedKeyHolder();
         try {
             MapSqlParameterSource params = new MapSqlParameterSource();
             params.addValue("item_type", item.getItemType());
-            params.addValue("user_id",item.getUserId());
-            jdbc.update(INSERT_ITEM, params, holder, new String[] {"id"});
+            params.addValue("user_id", item.getUserId());
+            jdbc.update(INSERT_ITEM, params, holder, new String[]{"id"});
 
             Number generatedId = holder.getKey();
             return generatedId.intValue();
@@ -69,22 +66,6 @@ public class JDBCItemDAO implements ItemDAO {
     }
 
 
-    /*
-
-    public List<Item> listAllItems() {
-        Map<String, Object> params = new HashMap<>();
-        return jdbc.query(
-                SELECT_ALL_ITEMS,
-                (rs, rowNum) ->
-                        new Item(
-                                rs.getInt("id"),
-                                rs.getString("item_type"),
-                                rs.getInt("user_id")
-                        )
-        );
-    }
-    */
-
     // Get items by userId
     @Override
     public List<Item> listUserItems(int userId) {
@@ -93,15 +74,6 @@ public class JDBCItemDAO implements ItemDAO {
         return jdbc.query(SELECT_ITEMS_BY_USER_ID, params, ITEM_ROW_MAPPER);
     }
 
-    /*
-    @Override
-    public int deleteItem(int id) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("id", id);
-        return jdbc.update(DELETE_ITEM, params);
-
-    }
-*/
     @Override
     public List<Item> listUserItemsByType(int userId, String itemType) {
         Map<String, Object> params = new HashMap<>();

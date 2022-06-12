@@ -52,23 +52,21 @@ public class JDBCOutfitDAO implements OutfitDAO {
 
     private static final String SELECT_USER_OUTFITS_FROM_CATEGORY = "SELECT * FROM outfit WHERE category=:category AND user_id=:user_id";
 
+
     @Override
     public List<Outfit> listUserOutfits(int userId) {
         Map<String, Object> params = new HashMap<>();
-        params.put("user_id",userId);
+        params.put("user_id", userId);
         return jdbc.query(SELECT_OUTFITS, params, OUTFIT_ROW_MAPPER);
     }
 
     @Override
     public List<Outfit> listUserOutfitsByCategory(int userId, String category) {
         Map<String, Object> params = new HashMap<>();
-        params.put("user_id",userId);
-        params.put("category",category);
-        return jdbc.query(SELECT_USER_OUTFITS_FROM_CATEGORY ,params,OUTFIT_ROW_MAPPER);
+        params.put("user_id", userId);
+        params.put("category", category);
+        return jdbc.query(SELECT_USER_OUTFITS_FROM_CATEGORY, params, OUTFIT_ROW_MAPPER);
     }
-
-
-    // IMPLEMENTACION DE LAS QUERIES
 
     @Override
     public int insert(int userId, Outfit outfit) {
@@ -81,7 +79,7 @@ public class JDBCOutfitDAO implements OutfitDAO {
             params.addValue("shoes_id", outfit.getShoes());
             params.addValue("category", outfit.getCategory());
             params.addValue("user_id", userId);
-            jdbc.update(INSERT_OUTFIT, params, holder, new String[] {"id"});
+            jdbc.update(INSERT_OUTFIT, params, holder, new String[]{"id"});
 
             Number generatedId = holder.getKey();
             return generatedId.intValue();
@@ -90,29 +88,4 @@ public class JDBCOutfitDAO implements OutfitDAO {
             return -1;
         }
     }
-
-
-/*
-    // listar outfits de una categoria
-    @Override
-    public List<Outfit> listUserOutfitsFromCategory(String name) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("name", name);
-        return jdbc.query(
-                SELECT_USER_OUTFITS_FROM_CATEGORY,
-                OUTFIT_ROW_MAPPER
-        );
-    }
-
-    // listar todos los outfits
-    @Override
-    public List<Outfit> listUserOutfits() {
-        Map<String, Object> params = new HashMap<>();
-        return jdbc.query(
-                SELECT_OUTFITS,
-                OUTFIT_ROW_MAPPER
-        );
-    }
-
-     */
 }

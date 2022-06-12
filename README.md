@@ -1,4 +1,4 @@
-# Library project
+# Readme de referencia para configuración futura (obtenido de Library project)
 
 ## Configuración del entorno de desarrollo
 
