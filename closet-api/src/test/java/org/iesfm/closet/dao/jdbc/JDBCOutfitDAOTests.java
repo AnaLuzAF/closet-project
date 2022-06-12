@@ -1,5 +1,6 @@
 package org.iesfm.closet.dao.jdbc;
 
+import org.iesfm.closet.pojos.Item;
 import org.iesfm.closet.pojos.Outfit;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +15,13 @@ public class JDBCOutfitDAOTests {
 
     @Autowired
     private JDBCOutfitDAO jdbcOutfitDAO;
+
+    //INSERTAR UN OUTFIT SEGÚN EL ID DEL USER MAL
+    @Test(expected = Exception.class)
+    public void insertItemFailTest() {
+        jdbcOutfitDAO.insert(1,new Outfit(1,2,3,"test",1));
+
+    }
 
     //INSERTAR UN OUTFIT SEGÚN EL ID DEL USER
     @Test

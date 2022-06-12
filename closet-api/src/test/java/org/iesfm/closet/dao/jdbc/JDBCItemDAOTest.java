@@ -15,10 +15,18 @@ public class JDBCItemDAOTest {
     @Autowired
     private JDBCItemDAO jdbcItemDAO;
 
+    // INSERTAR UN ITEM MAL
+    @Test(expected = Exception.class)
+    public void insertItemFailTest() {
+        jdbcItemDAO.insert(new Item("hola",1));
+
+    }
+
     // INSERTAR UN ITEM
     @Test
     public void insertItemTest() {
-        jdbcItemDAO.insert(new Item("top",3));
+        jdbcItemDAO.insert(new Item("top",1));
+
     }
 
 }

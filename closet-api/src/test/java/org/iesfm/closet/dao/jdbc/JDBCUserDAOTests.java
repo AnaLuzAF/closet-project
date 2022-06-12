@@ -17,11 +17,12 @@ public class JDBCUserDAOTests {
 
     //OBTENER USUARIO POR SU NICKNAME
     @Test
-    public void findUserNicknameTest() {
-        User nickname = jdbcUserDAO.getUserByNickname("tester","test");
-        Assert.assertEquals("tester", nickname.getNickname());
+    public void findUserByNicknameTest() {
+        User user = jdbcUserDAO.getUserByNickname("tester","test");
+        Assert.assertEquals("tester", user.getNickname());
     }
 
+    
     //INSERTAR UN USUARIO
      @Test
     public void insertUserTest() {
