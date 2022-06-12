@@ -23,7 +23,7 @@ public class UserController implements UserApi {
     @RequestMapping(method = RequestMethod.GET, path = "/users/{nickname}")
     public UserRest getUserByNickname(
             @PathVariable("nickname") String nickname,
-            @RequestParam(name = "password", required = false) String password) {
+            @RequestParam(name = "password", required = true) String password) {
 
         return userMapper.convertToApi(userDAO.getUserByNickname(nickname, password));
     }
