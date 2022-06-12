@@ -11,9 +11,8 @@ function loadHome() {
                        <div class="formulario" id="logContainer">
                                 <h2>Log In</h2>
                                 <form action="#" class="form" id="form">
-                                    <input id="user" type="text" placeholder="User" required>
+                                    <input id="userLog" type="text" placeholder="User" required>
                                     <input id="password-view" type="password" placeholder="Password" required>
-                                    <span>show</span>
                                     <input type = "submit" id = "submit" onclick = "getUser()" value = "Log In">
                                     <p class = "warnings" id ="warnings"></p>
                                 </form>
@@ -25,13 +24,12 @@ function loadHome() {
                         <div class = "contenedor-form" id="create">
                             <div class="formulario" id="formulario">
                                 <h2>Create your Account</h2>
-                                <form onsubmit="sendMail(); reset(); return=false;" action="#" class="form" id="form">
+
+                                <form action="#" class="form" id="form">
 
                                     <input id="user" type="text" name="name" placeholder="User" required>
 
                                     <input id= "password-view-create" type="password" placeholder="Password" required>
-
-                                    <span>show</span>
 
                                     <input id="email" type="email" name="email" placeholder="Email" required>
 
@@ -42,46 +40,10 @@ function loadHome() {
                 `;
 
      homeStructure.append(home);
-
-     /*$('.toggle').click(function(){
-         $('.formulario').animate({
-             height: "toggle",
-             'padding-top': 'toggle',
-             'padding-bottom': 'toggle',
-             opacity: 'toggle'
-         }, "slow");
-     });
-
-     document.querySelector('.contenedor-form .formulario span').addEventListener('click',
-     e => {
-        const passwordInput = document.querySelector('#password-view');
-        if(e.target.classList.contains('show')){
-        e.target.classList.remove('show');
-        e.target.textContent='hide';
-        passwordInput.type='text';
-        }else{
-        e.target.classList.add('show');
-        e.target.textContent='show';
-        passwordInput.type='password';
-        }
-     });
-     document.querySelector('.contenedor-form #formulario span').addEventListener('click',
-          e => {
-             const passwordInput = document.querySelector('#password-view-create');
-             if(e.target.classList.contains('show')){
-             e.target.classList.remove('show');
-             e.target.textContent='hide';
-             passwordInput.type='text';
-             }else{
-             e.target.classList.add('show');
-             e.target.textContent='show';
-             passwordInput.type='password';
-             }
-          });*/
 }
 
 function getUser() {
-           var nickname = $('#user').val();
+           var nickname = $('#userLog').val();
            var password = $('#password-view').val();
            var parrafo = $('#warnings').val();
 
@@ -109,9 +71,6 @@ function showLoader () {
          });
 }
 
-
-
-// todo cris --- insert user
 
 function insertUser() {
     var user = {
