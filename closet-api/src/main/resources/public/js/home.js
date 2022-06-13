@@ -85,38 +85,70 @@
 
 }
 
-    function printUsers() {
-           var nickname = $('#users').val();
+
+function getUser() {
+           var nickname = $('#userLog').val();
            var password = $('#password-view').val();
            var parrafo = $('#warnings').val();
 
-
-
             $.get("/users/" + nickname + "?password=" + password, function(user) {
 
+               var divLoader = document.getElementById("loader");
+               var p = document.createElement("p");
+               var text = document.createTextNode("welcome " + nickname);
 
-            var divLoader = document.getElementById("loader");
-            var p = document.createElement("p");
-            //crear un nodo de texto y agregarlo al parrafo
-            var text = document.createTextNode("welcome " + nickname);
+               p.appendChild(text);
+               divLoader.appendChild(p);
 
-              p.appendChild(text);
-              divLoader.appendChild(p);
+               showLoader();
+            }
+    );
+}
 
-              $('#main').hide();
-              $(document).ready(function() {
-              $('.loader').show();
-              setTimeout(function() {
-              location.reload();
-
-              },3000);
-
-              });
-
-    });
+function showLoader () {
+         $('#main').hide();
+         $(document).ready(function() {
+            $('.loader').show();
+            setTimeout(function() {
+            location.reload();
+             },2000);
+         });
 }
 
 
+function insertUser() {
+
+
+
+    var user = {
+        "nickname": $('#user').val(),
+        "password": $('#password-view-create').val(),
+        "email": $('#email').val()
+    };
+
+    postUser("/users", user);
+}
+
+function postUser(url, user) {
+
+    $.ajax({
+        type : "POST",
+        url: url,
+        data: JSON.stringify(user),
+        contentType: 'application/json; charset=utf-8',
+       success: function (response) {
+           alert("Account created");
+       },
+       statusCode: {
+           409: function() {
+               alert("Username already exist");
+           }
+       },
+       error: function (e) {
+           alert("Error processing request");
+       }
+       });
+}
 
 
 
