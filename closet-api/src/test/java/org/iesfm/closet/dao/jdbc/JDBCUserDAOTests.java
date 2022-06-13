@@ -22,7 +22,7 @@ public class JDBCUserDAOTests {
         Assert.assertEquals("tester", user.getNickname());
     }
 
-    
+
     //INSERTAR UN USUARIO
      @Test
     public void insertUserTest() {
