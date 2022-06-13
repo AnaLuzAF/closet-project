@@ -73,6 +73,9 @@ function showLoader () {
 
 
 function insertUser() {
+
+
+
     var user = {
         "nickname": $('#user').val(),
         "password": $('#password-view-create').val(),
