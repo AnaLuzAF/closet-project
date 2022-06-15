@@ -16,13 +16,13 @@ public class JDBCOutfitDAOTests {
     @Autowired
     private JDBCOutfitDAO jdbcOutfitDAO;
 
-    //INSERTAR UN OUTFIT MAL
+    //INSERTAR UN OUTFIT EN UNA CATEGORÍA QUE NO EXISTE
     @Test(expected = Exception.class)
     public void insertItemFailTest() {
         jdbcOutfitDAO.insert(1,new Outfit(1,2,3,"test",1));
     }
 
-    //INSERTAR UN OUTFIT SEGÚN EL ID DEL USER
+    //INSERTAR UN OUTFIT
     @Test
     public void insertOutfitTest() {
         jdbcOutfitDAO.insert(1,new Outfit(1,2,3,"sport",1));
