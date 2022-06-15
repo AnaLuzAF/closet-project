@@ -16,7 +16,7 @@ function loadAbout() {
                                     <input id = "users" type = "text" placeholder = "User" required>
                                     <input id = "password-view" type = "password" placeholder = "Password" required>
                                     <span>show</span>
-                                    <input type = "submit" id = "submit" onclick = "printUsers()" value = "Log In">
+                                    <input type="submit" class="submitBtn" onclick = "getUser()" value="Sign up">
                                     <p class = "warnings" id ="warnings"></p>
                                 </form>
 
@@ -32,7 +32,7 @@ function loadAbout() {
 
                                     <input id = "emailUser" type = "email" name = "emailUser" placeholder = "Email" required>
 
-                                    <input type="submit" value = "Check In">
+                                    <input type="submit" class="submitBtn" onclick = "insertUser()" value="Sign up">
                                 </form>
                             </div>
                             <div class="reset-password">

@@ -34,7 +34,7 @@
                          <div class = "form-container-general" id="container-register-general">
                             <div class="signupform">
                                 <form action="" class="form">
-                                  <h1 class="title">Sign up</h1>
+                                  <h1 class="title">Create your Account</h1>
 
                                     <div class="inputContainer">
                                      <input  id="user" type="text" class="input" placeholder="nickname">

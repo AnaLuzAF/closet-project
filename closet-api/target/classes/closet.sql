@@ -6,9 +6,9 @@ USE Closet;
 
 CREATE TABLE IF NOT EXISTS user (
 id				    INT AUTO_INCREMENT PRIMARY KEY,
-nickname		    VARCHAR (30) NOT NULL,
+nickname		    VARCHAR (30) NOT NULL UNIQUE,
 password		    VARCHAR (20) NOT NULL,
-email 				VARCHAR (50) NOT NULL
+email 				VARCHAR (50) NOT NULL UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS item_type (
@@ -86,4 +86,3 @@ INSERT INTO category(name) VALUES('classy');
 INSERT INTO category(name) VALUES('casual');
 
 INSERT INTO outfit(top_id, bottom_id, shoes_id, category, user_id) VALUES(1, 2, 3,'casual',1);
-INSERT INTO outfit(top_id, bottom_id, shoes_id, category, user_id) VALUES(4, 5, 6,'classy',1);
