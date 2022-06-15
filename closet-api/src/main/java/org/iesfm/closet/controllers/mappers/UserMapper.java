@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+
 @Service
 public class UserMapper {
 
     public UserRest convertToApi(User user) {
         return new UserRest(
-                user.getId(),
                 user.getNickname(),
                 user.getPassword(),
                 user.getEmail()

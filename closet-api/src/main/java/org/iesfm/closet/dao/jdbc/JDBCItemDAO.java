@@ -5,7 +5,10 @@ import org.iesfm.closet.pojos.Item;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -48,16 +51,22 @@ public class JDBCItemDAO implements ItemDAO {
 
 
     @Override
-    public boolean insert(Item item) {
+    public int insert(Item item) {
+        final KeyHolder holder = new GeneratedKeyHolder();
         try {
-            Map<String, Object> params = new HashMap<>();
-            params.put("item_type", item.getItemType());
-            params.put("user_id",item.getUserId());
-            return jdbc.update(INSERT_ITEM, params) == 1;
+            MapSqlParameterSource params = new MapSqlParameterSource();
+            params.addValue("item_type", item.getItemType());
+            params.addValue("user_id",item.getUserId());
+            jdbc.update(INSERT_ITEM, params, holder, new String[] {"id"});
+
+            Number generatedId = holder.getKey();
+            return generatedId.intValue();
+
         } catch (DuplicateKeyException e) {
-            return false;
+            return -1;
         }
     }
+
 
 
     /*
@@ -84,10 +93,7 @@ public class JDBCItemDAO implements ItemDAO {
         return jdbc.query(SELECT_ITEMS_BY_USER_ID, params, ITEM_ROW_MAPPER);
     }
 
-    @Override
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 
-    }
 
     /*
     @Override

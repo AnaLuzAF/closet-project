@@ -4,16 +4,7 @@ import org.iesfm.closet.pojos.User;
 
 public interface UserDAO {
 
-    //boolean insert(User user);
-
-    //List<User> listAll();
-
-    //User getUser(int id);
-
-    //int deleteUser(int id);
-
-    //boolean userExists(int id);
-
+    boolean insert(User user);
 
     User getUserByNickname(String nickname, String password);
 }

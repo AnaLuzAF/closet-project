@@ -2,8 +2,12 @@ package org.iesfm.closet.dao.jdbc;
 
 import org.iesfm.closet.dao.UserDAO;
 import org.iesfm.closet.pojos.User;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -29,26 +33,12 @@ public class JDBCUserDAO implements UserDAO {
                     rs.getString("password"),
                     rs.getString("email")
             );
-    //seleccionar todos los nicknames de la tabla user
+
     private final static String SELECT_USER_BY_NICKNAME = "SELECT * FROM user WHERE nickname =:nickname AND password =:password";
 
     private final static String SELECT_USERS = "SELECT * FROM user";
 
     private final static String DELETE_USER = "DELETE FROM user WHERE id = :id";
-
-    private final static String SELECT_USER_BY_ID = "SELECT * FROM user WHERE id = :id";
-
-    private final static String SELECT_USER_ITEMS =
-            "SELECT * FROM item WHERE user_id=:id";
-
-    private final static String SELECT_USER_OUTFITS =
-            "SELECT * FROM outfit WHERE user_id=:id";
-
-    private final static String SELECT_ITEMS_BY_USER_ID =
-            "SELECT * FROM item WHERE user_id=:id";
-
-    private final static String SELECT_OUTFITS_BY_USER_ID =
-            "SELECT * FROM outfit WHERE user_id=:id";
 
     private final static String INSERT_USER = "INSERT INTO user(" +
             " nickname, " +
@@ -61,8 +51,9 @@ public class JDBCUserDAO implements UserDAO {
             " :email" +
             ")";
 
+
     @Override
-    public User getUserByNickname(String nickname,String password) {
+    public User getUserByNickname(String nickname, String password) {
         Map<String, Object> params = new HashMap<>();
         params.put("nickname", nickname);
         params.put("password", password);
@@ -71,12 +62,6 @@ public class JDBCUserDAO implements UserDAO {
         );
     }
 
-    // IMPLEMENTACION DE LAS QUERIES
-
-    //getUser comprobación de user y pass
-
-
-    /*
     @Override
     public boolean insert(User user) {
         try {
@@ -89,100 +74,4 @@ public class JDBCUserDAO implements UserDAO {
             return false;
         }
     }
-
-
-    private List<String> selectUserItems(int id) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("user_id", id);
-        return jdbc.query(SELECT_USER_ITEMS, params,
-                (rs, rownum) ->
-                        rs.getString("items")
-        );
-    }
-
-    private List<String> selectUserOutfits(String nif) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("nif", nif);
-        return jdbc.query(SELECT_USER_OUTFITS, params,
-                (rs, rownum) ->
-                        rs.getString("role")
-        );
-    }
-
-
-
-    @Override
-    public User getUser(int id) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("id", id);
-
-        try {
-            return jdbc.queryForObject(
-                    SELECT_USER_BY_ID,
-                    params,
-                    USER_ROW_MAPPER);
-        } catch (EmptyResultDataAccessException e) {
-            return null;
-        }
-    }
-
-    private List<Item> getUserItems(int id) {
-        Map<String, Object> params = new HashMap<>();
-        // TODO - cambiar por id?
-        params.put("user_id", id);
-        return new LinkedList<>(
-                jdbc.query(
-                        SELECT_ITEMS_BY_USER_ID,
-                        params,
-                        (rs, rowNum) -> new Item(
-                                rs.getInt("id"),
-                                rs.getString("item_type"),
-                                rs.getInt("user_id")
-                        )
-                )
-        );
-    }
-
-    private List<Outfit> getUserOutfits(int id) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("id", id);
-        return new LinkedList<>(
-                jdbc.query(
-                        SELECT_OUTFITS_BY_USER_ID,
-                        params,
-                        (rs, rowNum) -> new Outfit(
-                                rs.getInt("id"),
-                                rs.getString("top_id"),
-                                rs.getString("bottom_id"),
-                                rs.getString("shoes_id"),
-                                rs.getString("category"),
-                                rs.getInt("user_id")
-                        )
-                )
-        );
-    }
-
-
-    @Override
-    public List<User> listAll() {
-        return jdbc.query(
-                SELECT_USERS,
-                USER_ROW_MAPPER);
-    }
-
-    @Override
-    public int deleteUser(int id) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("id", id);
-        return jdbc.update(DELETE_USER, params);
-    }
-
-    @Override
-    public boolean userExists(int id) {
-        return false;
-    }
-
-     */
-
-
 }

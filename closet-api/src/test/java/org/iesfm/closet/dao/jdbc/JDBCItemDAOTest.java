@@ -1,67 +1,32 @@
 package org.iesfm.closet.dao.jdbc;
 
-import org.iesfm.closet.dao.ItemDAO;
 import org.iesfm.closet.pojos.Item;
-import org.junit.Assert;
+import org.iesfm.closet.pojos.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-@JdbcTest
-@Sql({"schema.sql", "test-data.sql"})
+@SpringBootTest
+@RunWith(SpringRunner.class)
 public class JDBCItemDAOTest {
 
     @Autowired
-   private JDBCItemDAO jdbcItemDAO;
+    private JDBCItemDAO jdbcItemDAO;
 
-    @Autowired
-    private ItemDAO itemDAO;
+    // INSERTAR UN ITEM QUE NO EXISTE
+    @Test(expected = Exception.class)
+    public void insertItemFailTest() {
+        jdbcItemDAO.insert(new Item("hola",1));
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-
-    @Test
-    void whenInjectInMemoryDataSource_thenReturnCorrectEmployeeCount() {
-
-        itemDAO.setJdbcTemplate(jdbcTemplate);
-
-        assertEquals(4, itemDAO.listUserItems(1));
     }
 
-    @Test
-    public void getUserByItemsTest() {
-        List<Item> prendas = jdbcItemDAO.listUserItems(1);
-        Assert.assertEquals(1, prendas.get(0).getUserId());
-    }
-
-
-    /*@Test
-    public void insertClientTest() {
-        clientDAO.insert(new Client(0, "Bob", "Esponja"));
-    }*/
-
+    // INSERTAR UN ITEM
     @Test
     public void insertItemTest() {
         jdbcItemDAO.insert(new Item("top",1));
 
     }
 
-    @Test
-    public void getUserItemsByTypeTest(){
-        List<Item> prendas = jdbcItemDAO.listUserItemsByType(1,"top");
-        Assert.assertEquals("top",prendas.get(0).getItemType());
-    }
 }
-
-
-
-
