@@ -108,12 +108,12 @@ function insertUser() {
     if(nickname == null || nickname == "") {
         alert("User can't be empty or null ");
     }
-    if(password == null || password == "") {
+    else if(password == null || password == "") {
          alert("Password can't be empty or null ");
     }
-    if(email == null || email == "") {
+    else if(email == null || email == "") {
          alert("Email can't be empty or null ");
-    }
+    } else {
 
     var user = {
         "nickname": nickname,
@@ -122,6 +122,7 @@ function insertUser() {
     };
 
     postUser("/users", user);
+    }
 }
 
 function postUser(url, user) {
