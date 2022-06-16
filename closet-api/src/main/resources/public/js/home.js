@@ -43,9 +43,19 @@ function loadHome() {
 }
 
 function getUser() {
-           var nickname = $('#userLog').val();
-           var password = $('#password-view').val();
+
+            var nickname = $('#userLog').val();
+            var password = $('#password-view-').val()
+
+            if(nickname == null || nickname == "") {
+                alert("User can't be empty or null ");
+            }
+            if(password == null || password == "") {
+                 alert("Password can't be empty or null ");
+            }
+
            var parrafo = $('#warnings').val();
+
 
             $.get("/users/" + nickname + "?password=" + password, function(user) {
 
@@ -74,12 +84,24 @@ function showLoader () {
 
 function insertUser() {
 
+    var nickname = $('#user').val();
+    var password = $('#password-view-create').val()
+    var email = $('#email').val();
 
+    if(nickname == null || nickname == "") {
+        alert("User can't be empty or null ");
+    }
+    if(password == null || password == "") {
+         alert("Password can't be empty or null ");
+    }
+    if(email == null || email == "") {
+         alert("Email can't be empty or null ");
+    }
 
     var user = {
-        "nickname": $('#user').val(),
-        "password": $('#password-view-create').val(),
-        "email": $('#email').val()
+        "nickname": nickname,
+        "password": password,
+        "email": email
     };
 
     postUser("/users", user);
