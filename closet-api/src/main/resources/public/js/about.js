@@ -31,17 +31,15 @@ function loadAbout() {
 
                             <div class="formulario" id="formulario">
                                 <h2>Create your Account</h2>
-                                <form onsubmit="sendMail(); reset(); return=false;" action="#" class="form" id="form">
+                                <form action="#" class="form" id = "form">
+                                    <input id = "user" type = "text" name = "name" placeholder = "User" required>
 
-                                    <input id="user" type="text" name="name" placeholder="User" required>
-
-                                    <input id= "password-view-create" type="password" placeholder="Password" required>
-
+                                    <input id = "password-view-create" type ="password" placeholder = "Password" required>
                                     <span>show</span>
 
                                     <input id="email" type="email" name="email" placeholder="Email" required>
 
-                                    <input type="submit" value="Register" id="register" onclick=insertUser()>
+                                    <input type="submit" value="Register" id="register" onclick=insertUser2()>
                                 </form>
 
                             </div>
@@ -121,7 +119,7 @@ function showLoader () {
                   });
 }
 
-function insertUser() {
+function insertUser2() {
     var user = {
         "nickname": $('#user').val(),
         "password": $('#password-view-create').val(),
@@ -151,13 +149,3 @@ function postUser(url, user) {
        }
        });
 }
-
-
-
-
-
-
-
-
-
-

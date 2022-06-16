@@ -25,14 +25,18 @@ public class UserController implements UserApi {
             @PathVariable("nickname") String nickname,
             @RequestParam(name = "password", required = true) String password) {
 
-        return userMapper.convertToApi(userDAO.getUserByNickname(nickname, password));
+        try {
+            return userMapper.convertToApi(userDAO.getUserByNickname(nickname, password));
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
+        }
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/users")
     public void insert(@RequestBody UserRest user) {
 
         if (!userDAO.insert(userMapper.convertToModel(user))) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Member already exists");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "User already exists");
         } else {
             userDAO.insert(userMapper.convertToModel(user));
             throw new ResponseStatusException(HttpStatus.CREATED, "Member inserted");

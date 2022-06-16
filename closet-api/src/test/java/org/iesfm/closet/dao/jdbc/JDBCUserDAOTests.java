@@ -22,11 +22,11 @@ public class JDBCUserDAOTests {
         Assert.assertEquals("testUser", user.getNickname());
     }
 
-    
+
     //INSERTAR UN USUARIO
-     @Test
+    @Test
     public void insertUserTest() {
-         jdbcUserDAO.insert(new User("tester", "test", "test@gmail.com"));
+        jdbcUserDAO.insert(new User("tester", "test", "test@gmail.com"));
     }
 
 }

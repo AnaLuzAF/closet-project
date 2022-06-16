@@ -15,7 +15,7 @@ public class JDBCItemDAOTest {
     @Autowired
     private JDBCItemDAO jdbcItemDAO;
 
-    // INSERTAR UN ITEM MAL
+    // INSERTAR UN ITEM DE UN TIPO QUE NO EXISTE
     @Test(expected = Exception.class)
     public void insertItemFailTest() {
         jdbcItemDAO.insert(new Item("hola",1));

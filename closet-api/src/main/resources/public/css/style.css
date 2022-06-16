@@ -44,7 +44,7 @@ footer p {
 }
 
 .contenedor-form .formulario {
-    /*display: none;*/
+    display: none;
     padding: 40px;
 }
 #log{
@@ -335,7 +335,7 @@ animation-timing-function: linear;
   font-size: 15px;
   padding: 5px 30px;
   border-radius: 6px;
-  font-weight: 400; 
+  font-weight: 400;
     color: #fff;
 }
 
@@ -662,7 +662,7 @@ section.section-show {
     color: #4F504E;
 }
 
-.contenedor-form input[type="submit"] {
+.submitBtn {
     background: #856651;
     color: #FFF;
     width: 100%;
@@ -676,7 +676,7 @@ section.section-show {
     transition: all .5s ease;
 }
 
-.contenedor-form input[type="submit"]:hover {
+.submitBtn:hover {
     background-color: #A9B6AD;
 }
 
@@ -708,13 +708,115 @@ section.section-show {
 }
 
 .contenedor-form .formulario {
-    /*display: none;*/
+    display: none;
     padding: 40px;
 }
 
 .contenedor-form .formulario:nth-child(2) {
     display: block;
 }
+
+
+
+/*--------------------------------------------------------------
+# Formulario Log in/Register
+--------------------------------------------------------------*/
+#formularios-container-all {
+    width: 100%;
+    float: left;
+}
+.form-container-general{
+
+    background: #4F504E;
+    width: 30%;
+    color: #fff;
+    float: left;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.form-container-general h2 {
+    margin: 30px 0 25px 0;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1;
+}
+.form-container-general input {
+    outline: none;
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    margin: 0 0 20px 0;
+    background: #ece2d9;
+    height: 50px;
+    color: #4F504E;
+    border: none;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight:normal;
+}
+
+.form-container-general input[type="password"] {
+    color: #4F504E;
+}
+
+.form-container-general input[type="submit"] {
+    background: #856651;
+    color: #FFF;
+    width: 100%;
+    border: none;
+    padding: 10px 0;
+    font-size: 16px;
+    font-weight: normal;
+    font-family: "Poppins", sans-serif;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.form-container-general input[type="submit"]:hover {
+    background-color: #A9B6AD;
+}
+
+
+.form-container-general .reset-password {
+    background: #b48772;
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#container-login-general .form{
+padding: 20px;
+padding-bottom: 35px;
+}
+#container-login-general{
+margin-left: 16%;
+}
+
+#container-register-general{
+margin-left: 6%;
+}
+
+#container-register-general .form{
+padding: 20px;
+}
+
+.form-container-general .reset-password a {
+    color:#FAFAFC;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.form-container-general .formulario {
+    /*display: none;*/
+    padding: 40px;
+}
+
+.form-container-general.formulario:nth-child(2) {
+    display: block;
+}
+
 
 /*--------------------------------------------------------------
 # Formulario Contacto

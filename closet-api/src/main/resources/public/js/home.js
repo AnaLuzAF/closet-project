@@ -2,50 +2,66 @@ function loadHome() {
     var homeStructure = $('#main');
     homeStructure.empty();
 
-    var home = `<div id="fondoHome"><div class="inicio">
+    var home = `
+    <div id="fondoHome"><div class="inicio">
                         <h1>Online Closet</h1>
                         <h2>Plan your <span>best outfits</span> ahead</h2>
                 </div>
-                <div class = "contenedor-form" id="log">
+                <div id="formularios-container-all">
+                        <div class = "form-container-general" id="container-login-general">
 
-                       <div class="formulario" id="logContainer">
-                                <h2>Log In</h2>
-                                <form action="#" class="form" id="form">
-                                    <input id="userLog" type="text" placeholder="User" required>
-                                    <input id="password-view" type="password" placeholder="Password" required>
-                                    <input type = "submit" id = "submit" onclick = "getUser()" value = "Log In">
-                                    <p class = "warnings" id ="warnings"></p>
+                             <div class="login-form">
+                                <form class="form">
+                                   <h1 class="title">Log In</h1>
+
+                                    <div class="inputContainer">
+                                     <input id="userLog" type="text" class="input" placeholder="user">
+                                     </div>
+                                    <div class="inputContainer">
+                                        <input id="password-view" type="password" class="input" placeholder="password">
+                                    </div>
+
+                                 <div id="submit" onclick=login()><a>Log in</a></div>
                                 </form>
-                            </div>
-                            <div class="reset-password">
-                                <a href="#">I forgot my password</a>
-                            </div>
-                        </div>
-                        <div class = "contenedor-form" id="create">
-                            <div class="formulario" id="formulario">
-                                <h2>Create your Account</h2>
 
-                                <form action="#" class="form" id="form">
+                                <div class="reset-password">
+                                    <a href="#">I forgot my password</a>
+                                 </div>
+                             </div>
 
-                                    <input id="user" type="text" name="name" placeholder="User" required>
+                         </div>
 
-                                    <input id= "password-view-create" type="password" placeholder="Password" required>
+                         <div class = "form-container-general" id="container-register-general">
+                            <div class="signupform">
+                                <form class="form">
+                                  <h1 class="title">Create your Account</h1>
 
-                                    <input id="email" type="email" name="email" placeholder="Email" required>
+                                    <div class="inputContainer">
+                                     <input  id="user" type="text" class="input" placeholder="nickname">
+                                       </div>
 
-                                    <input type="submit" value="Register" id="register" onclick=insertUser()>
+                                  <div class="inputContainer">
+                                    <input id="password-view-create" type="password" class="input" placeholder="password">
+                                  </div>
+
+                                  <div class="inputContainer">
+                                    <input id="email" type="text" class="input" placeholder="email">
+                                  </div>
+
+                                 <div id="register" onclick=insertUser()><a>Register</a></div>
                                 </form>
-                            </div>
-                    </div>
+                              </div>
+                         </div>
+                   </div>
                 `;
 
      homeStructure.append(home);
 }
 
-function getUser() {
+function login() {
 
             var nickname = $('#userLog').val();
-            var password = $('#password-view-').val()
+            var password = $('#password-view').val()
 
             if(nickname == null || nickname == "") {
                 alert("User can't be empty or null ");
@@ -53,9 +69,6 @@ function getUser() {
             if(password == null || password == "") {
                  alert("Password can't be empty or null ");
             }
-
-           var parrafo = $('#warnings').val();
-
 
             $.get("/users/" + nickname + "?password=" + password, function(user) {
 
@@ -67,8 +80,12 @@ function getUser() {
                divLoader.appendChild(p);
 
                showLoader();
-            }
-    );
+
+               alert("You have logged in");
+             }
+    ).fail(function() {
+        alert("User not found");
+    });
 }
 
 function showLoader () {
